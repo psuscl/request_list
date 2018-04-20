@@ -1,0 +1,13 @@
+<%= javascript_include_tag "jquery.cookie" %>
+<%= javascript_include_tag 'request_list' %>
+
+<script>
+
+  $(function() {
+
+    var request_list = new RequestList();
+    window.request_list = request_list;
+
+  });
+
+</script>

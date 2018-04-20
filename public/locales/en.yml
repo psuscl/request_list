@@ -1,0 +1,5 @@
+en:
+  plugin:
+    request_list:
+      menu_label: My List (0)
+      add_to_list_button_label: Add to List
