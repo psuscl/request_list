@@ -2,6 +2,7 @@ en:
   plugin:
     request_list:
       list_title: Request List
+      submit_button_label: Send Requests
       menu_label: My List (0)
       add_to_list_button_label: Add to List
       add_to_list_button_icon: fa-plus

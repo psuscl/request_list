@@ -6,6 +6,8 @@
 
 <% if @results %>
 
+<%= form_tag @system[:url] do |f| %>
+
 <div class="row">
 
   <div class="col-sm-9">
@@ -14,12 +16,16 @@
     <div class="row search-results">
       <div class="col-sm-12">
         <a name="searchresults" id="searchresults"></a>
+        <% index = 0 %>
         <% @results.records.each do |r| %>
+          <% index += 1 %>
           <div class="recordrow" style="clear:both" data-uri="<%= r['uri'] %>">
-              <%= render partial: 'request_list/remove_from_list_button', locals: {:record => r } %>
-
+            <%= render partial: 'request_list/remove_from_list_button', locals: {:record => r } %>
             <%= render partial: 'shared/idbadge', locals: {:result => r, :props => {} } %>
             <div class="row"></div>
+            <div class="row request-list-item-form">
+              <%= render partial: 'request_list/item_form', locals: {:record => r, :index => index, :form => f } %>
+            </div>
           </div>
         <% end %>
       </div>
@@ -28,9 +34,12 @@
   </div>
 
   <div class="col-sm-3">
+    <%= render partial: 'request_list/list_form', locals: {:form => f } %>
   </div>
 
 </div>
+
+<% end %>
 
 <% else %>
 
