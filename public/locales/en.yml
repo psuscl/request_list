@@ -3,3 +3,6 @@ en:
     request_list:
       menu_label: My List (0)
       add_to_list_button_label: Add to List
+      add_to_list_button_icon: fa-plus
+      remove_from_list_button_label: Remove from List
+      remove_from_list_button_icon: fa-times
