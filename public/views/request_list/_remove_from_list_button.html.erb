@@ -1,0 +1,11 @@
+<a id="request_list_remove_from_list_button"
+   class="btn btn-default page_action pull-right"
+   data-uri="<%= record['uri'] %>"
+   title="<%= t('plugin.request_list.remove_from_list_button_label') %>"
+   onclick="request_list.removeFromList($(this).data('uri')); $(this).parent().slideUp('normal', function() {$(this).remove()});"
+   href="javascript:void(0);">
+
+  <i class="fa <%= t('plugin.request_list.remove_from_list_button_icon') %>"></i>
+</a>
+
+

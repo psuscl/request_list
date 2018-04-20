@@ -1,5 +1,31 @@
-<ul>
-<% @list.each do |c| %>
-<li><%= c %></li>
-<% end %>
-</ul>
+<div class="row">
+  <div class="col-sm-12">
+    <h2><%= t('plugin.request_list.list_title')  %></h2>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-9">
+    <a name="main" title="Main Content"></a>
+    <div class="row"></div>
+    <div class="row search-results">
+      <div class="col-sm-12">
+        <a name="searchresults" id="searchresults"></a>
+        <% @results.records.each do |r| %>
+          <div class="recordrow" style="clear:both" data-uri="<%= r['uri'] %>">
+              <%= render partial: 'request_list/remove_from_list_button', locals: {:record => r } %>
+
+            <%= render partial: 'shared/idbadge', locals: {:result => r, :props => {} } %>
+            <div class="row"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row"></div>
+  </div>
+
+  <div class="col-sm-3">
+  </div>
+
+</div>
