@@ -1,6 +1,4 @@
 
-# check config
-
 raise 'No config found for request_list plugin!' unless AppConfig.has_key?(:request_list)
 
 cfg = AppConfig[:request_list]
@@ -12,3 +10,7 @@ Plugins::add_menu_item('/plugin/request_list', 'plugin.request_list.menu_label')
 Plugins::add_record_page_action_erb(cfg.fetch(:record_types, ['archival_object', 'accession']),
                                     'request_list/action_button',
                                     cfg.fetch(:button_position, nil))
+
+Rails.application.config.after_initialize do
+  RequestList.init(cfg)
+end

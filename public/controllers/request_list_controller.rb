@@ -1,11 +1,11 @@
 class RequestListController <  ApplicationController
   def index
-    list = JSON.parse(cookies['as_pui_request_list_list_contents'])
-    if list.empty?
-      @results = false
-    else
-      @results = archivesspace.search_records(list, {})
-      @system = AppConfig[:request_list][:systems][:test_aeon]
-    end
+
+    uris = JSON.parse(cookies['as_pui_request_list_list_contents'])
+    # this nonsense because search_records blows up on an empty list
+    results = uris.empty? ? false : archivesspace.search_records(uris)
+
+    @mapper = RequestList.new(results.records)
+
   end
 end
