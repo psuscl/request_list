@@ -5,6 +5,12 @@ class RequestListItemMapper
     @opts = opts
   end
 
+
+  def show_button?(item)
+    true
+  end
+
+
   def map(item)
     raise NotImplementedError.new("Subclass must implement this")
   end

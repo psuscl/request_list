@@ -33,6 +33,26 @@ class RequestList
   end
 
 
+  def self.repo_config_for(record)
+    repo = record.resolved_repository['repo_code']    
+    repo_config = @@repositories[:default]
+    repo_config.merge!(@@repositories[repo]) if @@repositories.has_key?(repo)
+    repo_config
+  end
+
+
+  def self.item_mapper_for(record)
+    cfg = repo_config_for(record)
+    profile = @@request_handlers[cfg[:handler]][:profile]
+    @@profiles[profile][:item_mappers][record.class].new(profile, cfg[:opts])
+  end
+
+
+  def self.show_button_for?(record)
+    item_mapper_for(record).show_button?(record)
+  end
+
+
   def initialize(records)
     raise 'Call RequestList.init(config) before trying to instantiate.' unless @@init
 
@@ -46,15 +66,11 @@ class RequestList
 
 
   def handler_for(record)
-    repo = record.resolved_repository['repo_code']    
-    repo_args = @@repositories[:default]
-    repo_args.merge!(@@repositories[repo]) if @@repositories.has_key?(repo)
+    repo_args = RequestList.repo_config_for(record)
 
     handler_args = @@request_handlers[repo_args[:handler]]
 
-    @handlers[repo_args[:handler]] ||= RequestListHandler.new(handler_args[:name],
-                                                              handler_args[:profile],
-                                                              handler_args[:url],
+    @handlers[repo_args[:handler]] ||= RequestListHandler.new(handler_args[:name], handler_args[:profile], handler_args[:url],
                                                               list_mapper_for(handler_args[:profile], repo_args[:opts]),
                                                               item_mappers_for(handler_args[:profile], repo_args[:opts]))
   end
