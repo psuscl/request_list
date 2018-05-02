@@ -17,7 +17,7 @@
       <div class="col-sm-12">
         <a name="searchresults" id="searchresults"></a>
 
-        <% handler.each_item_map do |item, map| %>
+        <% unhandled_items = handler.each_item_map do |item, map| %>
           <div class="recordrow" style="clear:both" data-uri="<%= item.uri %>">
             <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
             <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
@@ -31,6 +31,19 @@
       </div>
     </div>
     <div class="row"></div>
+    <% unless unhandled_items.empty? %>
+      <div class="row">
+        <h3><%= t('plugin.request_list.unhandled_items_title')  %></h3>
+        <div><%= t('plugin.request_list.unhandled_items_message')  %></div>
+        <% unhandled_items.each do |item| %>
+          <div class="recordrow" style="clear:both" data-uri="<%= item.uri %>">
+            <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
+            <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
+            <div class="row"></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-sm-3">

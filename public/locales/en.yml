@@ -8,3 +8,6 @@ en:
       add_to_list_button_icon: fa-plus
       remove_from_list_button_label: Remove from List
       remove_from_list_button_icon: fa-times
+      empty_list_message: There are no items in your list. Please use the 'Add to List' button when viewing records you wish to request and then return here to send the requests.
+      unhandled_items_title: Unhandled Items
+      unhandled_items_message: The following items could not be requested. Please contact the Archives for assistance.

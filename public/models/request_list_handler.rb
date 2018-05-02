@@ -33,6 +33,7 @@ class RequestListHandler
         @unhandled_items.push(item)
       end
     end
+    @unhandled_items
   end
 
 

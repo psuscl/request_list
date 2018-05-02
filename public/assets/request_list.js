@@ -74,6 +74,9 @@
 	    list.splice($.inArray(uri, list), 1);
 	    this.setList(list);
 	    this.showListCount(true);
+	    if (list.length == 0) {
+		location.reload(true);
+	    }
 	    return true;
 	} else {
 	    return false;
