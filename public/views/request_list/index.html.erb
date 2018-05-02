@@ -47,10 +47,10 @@
   </div>
 
   <div class="col-sm-3">
+    <h3><%= handler.name %></h3>
     <div>
-      <%= handler.name %>
+      <%= render partial: 'request_list/list_form', locals: {:form => f, :list_map => handler.list_map } %>
     </div>
-    <%= render partial: 'request_list/list_form', locals: {:form => f, :list_map => handler.list_map } %>
   </div>
 
 </div>
