@@ -1,6 +1,7 @@
 (function(exports) {
 
-    function RequestList() {
+    function RequestList(item_limit) {
+	this.item_limit = item_limit;
 	this.setUpList();
     };
 
@@ -54,10 +55,19 @@
 	if (flash) {
 	    a.parent().fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 	}
+	if (items >= this.item_limit) {
+	    a.parent().addClass('request-list-full');
+	} else {
+	    a.parent().removeClass('request-list-full');
+	}
     };
 
     RequestList.prototype.addToList = function(uri) {
 	var list = this.getList();
+	if (list.length >= this.item_limit) {
+	    alert("Your list is full. Please go to 'My List' and remove items or submit your requests to make room for more.");
+	    return;
+	}
 	if (this.isInList(uri)) {
 	    return false;
 	} else {

@@ -1,3 +1,7 @@
 .request-list-item-form {
   display: none;
 }
+
+.request-list-full {
+  background-color: #fcc;
+}
