@@ -16,7 +16,8 @@ class RequestList
       raise 'You must provide a default handler in RequestList configuration.'
     end
 
-    @@request_handlers.each_value do |handler|
+    @@request_handlers.each do |key, handler|
+      @@request_handlers[key][:list_opts] ||= {}
       @@profiles[handler[:profile]] ||= { :item_mappers => {}}
     end
 
