@@ -10,7 +10,8 @@ class HarvardAeonArchivalObjectMapper < RequestListItemMapper
     {
       'Request' => num, 
       "ItemTitle_#{num}" => strip_mixed_content(item['title']),
-      "Location_#{num}" => item.resolved_repository['repo_code']
+      "Location_#{num}" => repo_field_for(item, 'Location'),
+      "Site_#{num}" => repo_field_for(item, 'Site'),
     }
   end
 
