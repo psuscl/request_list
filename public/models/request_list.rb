@@ -11,7 +11,7 @@ class RequestList
 
     begin
       @@repositories[:default][:handler]
-      @@repositories[:default][:opts] ||= {}
+      @@repositories[:default][:item_opts] ||= {}
     rescue
       raise 'You must provide a default handler in RequestList configuration.'
     end
@@ -48,7 +48,7 @@ class RequestList
     cfg = repo_config_for(record)
     profile = @@request_handlers[cfg[:handler]][:profile]
     return false unless @@profiles[profile][:item_mappers].has_key?(record.class)
-    @@profiles[profile][:item_mappers][record.class].new(profile, cfg[:opts]).show_button?(record)
+    @@profiles[profile][:item_mappers][record.class].new(profile, cfg[:item_opts]).show_button?(record)
   end
 
 
@@ -70,10 +70,10 @@ class RequestList
     handler_args = @@request_handlers[repo_args[:handler]]
 
     @handlers[repo_args[:handler]] ||= RequestListHandler.new(handler_args[:name], handler_args[:profile], handler_args[:url],
-                                                              list_mapper_for(handler_args[:profile], handler_args[:opts]))
+                                                              list_mapper_for(handler_args[:profile], handler_args[:list_opts]))
 
     @handlers[repo_args[:handler]].add_item_mappers_for_repo(record.resolved_repository['repo_code'],
-                                                             item_mappers_for(handler_args[:profile], repo_args[:opts]))
+                                                             item_mappers_for(handler_args[:profile], repo_args[:item_opts]))
 
     @handlers[repo_args[:handler]]
   end
