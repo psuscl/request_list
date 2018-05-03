@@ -6,7 +6,9 @@ class HarvardAeonListMapper < RequestListMapper
     {
       'SystemId' => 'ArchivesSpace',
       'ReturnLinkURL' => (AppConfig[:public_proxy_url] || AppConfig[:public_url]) + '/plugin/request_list',
-      'ReturnLinkSystemName' => @opts[:return_link_label]
+      'ReturnLinkSystemName' => @opts[:return_link_label],
+      'RequestType' => 'Loan',
+      'UserReview' => 'No',
     }
   end
 

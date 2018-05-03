@@ -1,5 +1,7 @@
 class RequestListMapper
 
+  attr_reader :opts
+
   def initialize(profile, opts)
     @profile = profile
     @opts = opts

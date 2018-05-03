@@ -23,6 +23,11 @@ class RequestListHandler
   end
 
 
+  def list_opts
+    @list_mapper.opts
+  end
+
+
   def list_map
     @list_mapper.map    
   end
