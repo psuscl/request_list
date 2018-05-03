@@ -18,14 +18,7 @@
         <a name="searchresults" id="searchresults"></a>
 
         <% unhandled_items = handler.each_item_map do |item, map| %>
-          <div class="recordrow" style="clear:both" data-uri="<%= item.uri %>">
-            <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
-            <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
-            <div class="row"></div>
-            <div class="row request-list-item-form">
-              <%= render partial: 'request_list/item_form', locals: {:form => f, :item => map } %>
-            </div>
-          </div>
+          <%= render partial: 'request_list/show_item', locals: {:form => f, :item => item, :map => map, :include_form => true} %>
         <% end %>
 
       </div>
@@ -35,13 +28,11 @@
       <div class="row">
         <h3><%= t('plugin.request_list.unhandled_items_title')  %></h3>
         <div><%= t('plugin.request_list.unhandled_items_message')  %></div>
+
         <% unhandled_items.each do |item| %>
-          <div class="recordrow" style="clear:both" data-uri="<%= item.uri %>">
-            <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
-            <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
-            <div class="row"></div>
-          </div>
+          <%= render partial: 'request_list/show_item', locals: {:form => f, :item => item, :map => map, :include_form => false} %>
         <% end %>
+
       </div>
     <% end %>
   </div>
@@ -49,7 +40,7 @@
   <div class="col-sm-3">
     <h3><%= handler.name %></h3>
     <div>
-      <%= render partial: 'request_list/list_form', locals: {:form => f, :list_map => handler.list_map } %>
+      <%= render partial: 'request_list/list_form', locals: {:form => f, :list_map => handler.list_map, :list_opts => handler.list_opts} %>
     </div>
   </div>
 

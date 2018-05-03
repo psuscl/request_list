@@ -1,0 +1,13 @@
+<div class="recordrow" style="clear:both" data-uri="<%= item.uri %>">
+
+  <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
+  <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
+  <div class="row"></div>
+
+  <% if include_form %>
+    <div class="row request-list-item-form">
+      <%= render partial: 'request_list/item_form', locals: {:form => form, :item => map } %>
+    </div>
+  <% end %>
+
+</div>
