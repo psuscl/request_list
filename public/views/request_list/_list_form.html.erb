@@ -5,6 +5,21 @@
 
 <% end %>
 
-<%= list_opts.inspect %>
+  <select name="request_type" id="request_type_select">
+    <% list_opts[:request_types].each do |type, values| %>
+      <option name="<%= type %>" value="<%= ASUtils.to_json(values) %>"><%= type %></option>
+    <% end %>
+  </select>
 
 <button type="submit" class="btn btn-default"><%= t('plugin.request_list.submit_button_label') %></button>
+
+<script>
+
+  $("#request_type_select").change(function() {
+    var inputs = JSON.parse(this.selectedOptions[0].getAttribute("value"));
+    for(var name in inputs) {
+      $(this).parent().find("input[name=" + name + "]").attr("value", inputs[name]);
+    }
+  });
+
+</script>
