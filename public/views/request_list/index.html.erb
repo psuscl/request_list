@@ -10,7 +10,7 @@
 
 <div class="row">
 
-  <div class="col-sm-9">
+  <div class="col-sm-8">
     <a name="main" title="Main Content"></a>
     <div class="row"></div>
     <div class="row search-results">
@@ -37,7 +37,7 @@
     <% end %>
   </div>
 
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <h3><%= handler.name %></h3>
     <div>
       <%= render partial: 'request_list/list_form', locals: {:form => f, :list_map => handler.list_map, :list_opts => handler.list_opts} %>
