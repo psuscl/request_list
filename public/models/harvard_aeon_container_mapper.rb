@@ -1,7 +1,6 @@
-require 'securerandom'
-
 class HarvardAeonContainerMapper < RequestListItemMapper
 
+  include HarvardCommon
   include ManipulateNode
 
   RequestList.register_item_mapper(self, :harvard_aeon, Container)
@@ -13,7 +12,7 @@ class HarvardAeonContainerMapper < RequestListItemMapper
 
 
   def map(item)
-    num = SecureRandom.hex(4)
+    num = get_request_number
     {
       'Request' => num, 
       "ItemTitle_#{num}" => strip_mixed_content(item['title']),
