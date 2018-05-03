@@ -2,14 +2,19 @@ class RequestListHandler
 
   attr_reader :name, :profile, :url
 
-  def initialize(name, profile, url, list_mapper, item_mappers)
+  def initialize(name, profile, url, list_mapper)
     @name = name
     @profile = profile
     @url = url
     @list_mapper = list_mapper
-    @item_mappers = item_mappers
+    @item_mappers = {}
     @items = []
     @unhandled_items = []
+  end
+
+
+  def add_item_mappers_for_repo(repo, item_mappers)
+    @item_mappers[repo] = item_mappers
   end
 
 
@@ -38,7 +43,7 @@ class RequestListHandler
 
 
   def item_mapper_for(item)
-    @item_mappers[item.class]
+    @item_mappers[item.resolved_repository['repo_code']][item.class]
   end
 
 end

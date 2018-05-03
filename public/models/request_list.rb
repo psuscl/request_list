@@ -16,6 +16,10 @@ class RequestList
       raise 'You must provide a default handler in RequestList configuration.'
     end
 
+    @@request_handlers.each_value do |handler|
+      @@profiles[handler[:profile]] ||= { :item_mappers => {}}
+    end
+
     @@init = true
   end
 
@@ -27,8 +31,7 @@ class RequestList
 
 
   def self.register_item_mapper(mapper_class, profile, record_type)
-    @@profiles[profile] ||= {}
-    @@profiles[profile][:item_mappers] ||= {}
+    @@profiles[profile] ||= {:item_mappers => {}}
     @@profiles[profile][:item_mappers][record_type] = mapper_class
   end
 
@@ -41,15 +44,11 @@ class RequestList
   end
 
 
-  def self.item_mapper_for(record)
+  def self.show_button_for?(record)
     cfg = repo_config_for(record)
     profile = @@request_handlers[cfg[:handler]][:profile]
-    @@profiles[profile][:item_mappers][record.class].new(profile, cfg[:opts])
-  end
-
-
-  def self.show_button_for?(record)
-    item_mapper_for(record).show_button?(record)
+    return false unless @@profiles[profile][:item_mappers].has_key?(record.class)
+    @@profiles[profile][:item_mappers][record.class].new(profile, cfg[:opts]).show_button?(record)
   end
 
 
@@ -71,8 +70,12 @@ class RequestList
     handler_args = @@request_handlers[repo_args[:handler]]
 
     @handlers[repo_args[:handler]] ||= RequestListHandler.new(handler_args[:name], handler_args[:profile], handler_args[:url],
-                                                              list_mapper_for(handler_args[:profile], repo_args[:opts]),
-                                                              item_mappers_for(handler_args[:profile], repo_args[:opts]))
+                                                              list_mapper_for(handler_args[:profile], handler_args[:opts]))
+
+    @handlers[repo_args[:handler]].add_item_mappers_for_repo(record.resolved_repository['repo_code'],
+                                                             item_mappers_for(handler_args[:profile], repo_args[:opts]))
+
+    @handlers[repo_args[:handler]]
   end
 
 
