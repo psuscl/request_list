@@ -5,3 +5,7 @@
 .request-list-full {
   background-color: #fcc;
 }
+
+#photoduplication-options-form {
+  display: none;
+}

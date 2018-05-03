@@ -5,20 +5,63 @@
 
 <% end %>
 
-  <select name="request_type" id="request_type_select">
+<div class="form-group">
+  <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
+</div>
+
+<div class="form-group">
+  <label class="control-label">Request Type</label>
+  <select name="request_type" id="request_type_select" class="form-control">
     <% list_opts[:request_types].each do |type, values| %>
-      <option name="<%= type %>" value="<%= ASUtils.to_json(values) %>"><%= type %></option>
+      <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
     <% end %>
   </select>
+</div>
 
-<button type="submit" class="btn btn-default"><%= t('plugin.request_list.submit_button_label') %></button>
+<div id="photoduplication-options-form">
+  <div class="form-group">
+    <select name="Format" class="form-control">
+      <option value="">Select a format ...</option>
+      <% list_opts[:format_options].each do |option| %>
+        <option value="<%= option %>"><%= option %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <select name="ShippingOption" class="form-control">
+      <option value="">Select a delivery option ...</option>
+      <% list_opts[:delivery_options].each do |option| %>
+        <option value="<%= option %>"><%= option %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <select name="ForPublication" class="form-control">
+      <option value="">Intended for publication? ...</option>
+      <option value="Yes">Yes, intended for publication</option>
+      <option value="No">No, not intended for publication</option>
+    </select>
+  </div>
+
+</div>
+
 
 <script>
 
   $("#request_type_select").change(function() {
-    var inputs = JSON.parse(this.selectedOptions[0].getAttribute("value"));
+    var selected = this.selectedOptions[0];
+    var inputs = JSON.parse(selected.getAttribute("value"));
     for(var name in inputs) {
       $(this).parent().find("input[name=" + name + "]").attr("value", inputs[name]);
+    }
+    if (selected.text == 'Photoduplication') {
+      $("#photoduplication-options-form").show();
+    } else {
+      var form = $("#photoduplication-options-form");
+      form.hide();
+      form.find("select").val("");
     }
   });
 
