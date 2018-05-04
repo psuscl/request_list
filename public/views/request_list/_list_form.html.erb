@@ -1,28 +1,34 @@
 
-<% list_map.each do |name, value| %>
+<% handler.list_map.each do |name, value| %>
 
   <input type="hidden" name="<%= name %>" value="<%= value  %>">
 
 <% end %>
 
 <div class="form-group">
-  <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
+  <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %> to <%= handler.name %></button>
 </div>
 
-<div class="form-group">
-  <label class="control-label">Request Type</label>
-  <select name="request_type" id="request_type_select" class="form-control">
-    <% list_opts[:request_types].each do |type, values| %>
-      <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
-    <% end %>
-  </select>
+<div class="form-group request-list-type-select">
+  <label class="control-label col-sm-5">Request Type</label>
+  <div class="col-sm-7">
+    <select name="request_type" id="request_type_select" class="form-control">
+      <% handler.list_opts[:request_types].each do |type, values| %>
+        <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
+      <% end %>
+    </select>
+  </div>
 </div>
 
+<div class="row"><br/></div>
+
+<div class="col-sm-12 request-list-additional-fields">
+<div class="row"><br/></div>
 <div id="photoduplication-options-form">
   <div class="form-group">
     <select name="Format" class="form-control">
       <option value="">Select a format ...</option>
-      <% list_opts[:format_options].each do |option| %>
+      <% handler.list_opts[:format_options].each do |option| %>
         <option value="<%= option %>"><%= option %></option>
       <% end %>
     </select>
@@ -31,7 +37,7 @@
   <div class="form-group">
     <select name="ShippingOption" class="form-control">
       <option value="">Select a delivery option ...</option>
-      <% list_opts[:delivery_options].each do |option| %>
+      <% handler.list_opts[:delivery_options].each do |option| %>
         <option value="<%= option %>"><%= option %></option>
       <% end %>
     </select>
@@ -45,6 +51,17 @@
     </select>
   </div>
 
+  <div class="form-group">
+    <label class="control-label">Note</label>
+    <textarea name="PhotoduplicationNote" rows="4" class="form-control"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Photoduplication Instructions</label>
+    <textarea name="PhotoduplicationInstructions" rows="4" class="form-control"></textarea>
+  </div>
+
+</div>
 </div>
 
 
@@ -58,10 +75,14 @@
     }
     if (selected.text == 'Photoduplication') {
       $("#photoduplication-options-form").show();
+      $(".request-list-additional-fields").slideDown();
     } else {
+      $(".request-list-additional-fields").slideUp();
       var form = $("#photoduplication-options-form");
-      form.hide();
+      // deal with hiding this when doing the other types
+      // form.hide();
       form.find("select").val("");
+      form.find("textarea").val("");
     }
   });
 

@@ -38,9 +38,8 @@
   </div>
 
   <div class="col-sm-4">
-    <h3><%= handler.name %></h3>
     <div>
-      <%= render partial: 'request_list/list_form', locals: {:form => f, :list_map => handler.list_map, :list_opts => handler.list_opts} %>
+      <%= render partial: 'request_list/list_form', locals: {:form => f, :handler => handler} %>
     </div>
   </div>
 

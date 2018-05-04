@@ -9,3 +9,11 @@
 #photoduplication-options-form {
   display: none;
 }
+
+.request-list-type-select {
+}
+
+.request-list-additional-fields {
+  display: none;
+  background: #ccc;
+}
