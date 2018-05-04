@@ -77,12 +77,12 @@
       $("#photoduplication-options-form").show();
       $(".request-list-additional-fields").slideDown();
     } else {
-      $(".request-list-additional-fields").slideUp();
-      var form = $("#photoduplication-options-form");
-      // deal with hiding this when doing the other types
-      // form.hide();
-      form.find("select").val("");
-      form.find("textarea").val("");
+      $(".request-list-additional-fields").slideUp('normal', function() {
+        var form = $("#photoduplication-options-form");
+        form.hide();
+        form.find("select").val("");
+        form.find("textarea").val("");
+      });
     }
   });
 
