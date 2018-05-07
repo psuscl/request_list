@@ -1,8 +1,5 @@
 module HarvardAeon
-  class ArchivalObjectMapper < RequestListItemMapper
-
-    include HarvardCommon
-    include ManipulateNode
+  class ArchivalObjectMapper < ItemMapper
 
     RequestList.register_item_mapper(self, :harvard_aeon, ArchivalObject)
 

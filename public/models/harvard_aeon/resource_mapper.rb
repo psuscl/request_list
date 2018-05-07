@@ -1,8 +1,5 @@
 module HarvardAeon
-  class ResourceMapper < RequestListItemMapper
-
-    include HarvardCommon
-    include ManipulateNode
+  class ResourceMapper < ItemMapper
 
     RequestList.register_item_mapper(self, :harvard_aeon, Resource)
 
