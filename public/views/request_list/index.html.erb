@@ -18,7 +18,7 @@
         <a name="searchresults" id="searchresults"></a>
 
         <% unhandled_items = handler.each_item_map do |item, map| %>
-          <%= render partial: 'request_list/show_item', locals: {:form => f, :item => item, :map => map, :include_form => true} %>
+          <%= render partial: 'request_list/show_item', locals: {:form => f, :item => item, :map => map, :handler => handler, :include_form => true} %>
         <% end %>
 
       </div>
@@ -30,7 +30,7 @@
         <div><%= t('plugin.request_list.unhandled_items_message')  %></div>
 
         <% unhandled_items.each do |item| %>
-          <%= render partial: 'request_list/show_item', locals: {:form => f, :item => item, :map => map, :include_form => false} %>
+          <%= render partial: 'request_list/show_item', locals: {:form => f, :item => item, :map => map, :handler => handler, :include_form => false} %>
         <% end %>
 
       </div>
@@ -39,7 +39,7 @@
 
   <div class="col-sm-4">
     <div>
-      <%= render partial: 'request_list/list_form', locals: {:form => f, :handler => handler} %>
+           <%= render partial: "request_list/#{handler.profile}/list_form", locals: {:form => f, :handler => handler} %>
     </div>
   </div>
 
