@@ -21,17 +21,21 @@ class RequestList
       @@profiles[handler[:profile]] ||= { :item_mappers => {}}
     end
 
+    Rails.logger.info("RequestList initialized")
+
     @@init = true
   end
 
 
   def self.register_list_mapper(mapper_class, profile)
+    Rails.logger.info("RequestList list mapper registered: #{mapper_class} #{profile}")
     @@profiles[profile] ||= {}
     @@profiles[profile][:list_mapper] = mapper_class
   end
 
 
   def self.register_item_mapper(mapper_class, profile, record_type)
+    Rails.logger.info("RequestList item mapper registered: #{mapper_class} #{profile} #{record_type}")
     @@profiles[profile] ||= {:item_mappers => {}}
     @@profiles[profile][:item_mappers][record_type] = mapper_class
   end
