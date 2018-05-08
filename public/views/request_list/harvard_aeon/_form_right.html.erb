@@ -49,12 +49,12 @@
 
   <div class="form-group">
     <label class="control-label">Note</label>
-    <textarea name="PhotoduplicationNote" rows="4" class="form-control"></textarea>
+    <textarea name="Notes" rows="4" class="form-control"></textarea>
   </div>
 
   <div class="form-group">
     <label class="control-label">Photoduplication Instructions</label>
-    <textarea name="PhotoduplicationInstructions" rows="4" class="form-control"></textarea>
+    <textarea name="SpecialRequest" rows="4" class="form-control"></textarea>
   </div>
 
 </div>
@@ -67,7 +67,7 @@
     var selected = this.selectedOptions[0];
     var inputs = JSON.parse(selected.getAttribute("value"));
     for(var name in inputs) {
-      $(this).parent().find("input[name=" + name + "]").attr("value", inputs[name]);
+      $(this).parent().parent().parent().find("input[name=" + name + "]").attr("value", inputs[name]);
     }
     if (selected.text == 'Photoduplication') {
       $("#photoduplication-options-form").show();

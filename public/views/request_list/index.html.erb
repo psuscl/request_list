@@ -6,7 +6,7 @@
 
 <% @mapper.handlers.each do |handler| %>
 
-<%= form_tag handler.url do |f| %>
+<%= form_tag handler.url, :target => 'harvard-library-requests' do |f| %>
 
 <div class="row">
   <div>
