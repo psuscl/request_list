@@ -2,11 +2,12 @@
 
   <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
   <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
+
   <div class="row"></div>
 
   <% if include_form %>
     <div class="row request-list-item-form">
-      <%= render partial: "request_list/#{handler.profile}/item_form", locals: {:form => form, :item => map } %>
+      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => map } %>
     </div>
   <% end %>
 
