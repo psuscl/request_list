@@ -7,7 +7,8 @@ class RequestListController <  ApplicationController
       return render 'request_list/empty_list'
     end
 
-    results = archivesspace.search_records(uris)
+    results = archivesspace.search_records(uris, {'resolve[]' => ['repository:id', 'resource:id']})
+#    results = archivesspace.search_records(uris, {'resolve[]' => ['repository:id', 'resource:id@compact_resource']})
 
     @mapper = RequestList.new(results.records)
 

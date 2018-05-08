@@ -19,5 +19,17 @@ module HarvardAeon
       end
     end
 
+
+    def hollis_number_for(resource)
+      resource['notes'].select {|n| n['type'] == 'processinfo' && n['label'] == 'Aleph ID'}
+                       .map {|n| n['subnotes'].map {|s| s['content'].strip}}
+                       .flatten.compact.join('; ')
+    end
+
+
+    def creation_date_for(item)
+      item['dates'].select {|d| d['label'] == 'creation'}.map {|d| d['expression']}.join('; ')
+    end
+
   end
 end
