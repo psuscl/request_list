@@ -10,13 +10,11 @@ module HarvardAeon
 
 
     def map(item)
-      num = get_request_number
-      {
-        'Request' => num, 
-        "ItemTitle_#{num}" => strip_mixed_content(item['title']),
-        "Location_#{num}" => repo_field_for(item, 'Location'),
-        "Site_#{num}" => repo_field_for(item, 'Site'),
-      }
+      request_number_for({
+        'ItemTitle' => strip_mixed_content(item['title']),
+        'Location' => repo_field_for(item, 'Location'),
+        'Site' => repo_field_for(item, 'Site'),
+      })
     end
 
   end

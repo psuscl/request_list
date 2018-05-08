@@ -1,3 +1,5 @@
+require 'pp'
+
 class RequestListHandler
 
   attr_reader :name, :profile, :url
@@ -37,6 +39,8 @@ class RequestListHandler
     @items.each do |item|
       mapper = item_mapper_for(item)
       if mapper
+        pp ['IIII', item]
+        pp ['MMMM', mapper.map(item)]
         yield [item, mapper.map(item)]
       else
         Rails.logger.debug("RequestListHandler: No handler for #{item}")
