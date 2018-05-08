@@ -1,7 +1,8 @@
 <div class="recordrow" style="clear:both" data-uri="<%= item.uri %>">
 
   <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
-  <%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
+
+  <%= render partial: "request_list/item_display", locals: {:form => form, :item => item } %>
 
   <div class="row"></div>
 
