@@ -114,3 +114,11 @@
     exports.RequestList = RequestList;
 
 }(window));
+
+// Make sure the list is set up when arriving from a back button click
+window.onpageshow = function(event) {
+  if (typeof window.request_list !== 'undefined') {
+      window.request_list.setUpList();
+  }
+}
+
