@@ -5,6 +5,12 @@ module HarvardAeon
 
     include ManipulateNode
 
+    def with_request_number(item_map)
+      num = SecureRandom.hex(4)
+      Hash[[['Request', num]] + item_map.map {|k,v| [k+'_'+num, v]}]
+    end
+
+
     def repo_field_for(item, field)
       repo_code = item.resolved_repository['repo_code']
       if @opts.has_key?(:repo_fields)
@@ -22,14 +28,38 @@ module HarvardAeon
     end
 
 
+    def access_restrictions_for(item)
+      item['notes'].select {|n| n['type'] == 'accessrestrict'}
+                   .map {|n| n['subnotes'].map {|s| s['content']}}
+                   .flatten.compact.join('; ')
+    end
+
+
     def creation_date_for(item)
       item['dates'].select {|d| d['label'] == 'creation'}.map {|d| d['expression']}.join('; ')
     end
 
 
-    def with_request_number(item_map)
-      num = SecureRandom.hex(4)
-      Hash[[['Request', num]] + item_map.map {|k,v| [k+'_'+num, v]}]
+    def physical_location_for(item)
+      item['notes'].select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
+    end
+
+
+    def container_barcode_for(item)
+      item['instances'].select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
+                       .map {|i| i['sub_container']['top_container']['_resolved']['barcode']}.join('; ')
+    end
+
+
+    def container_child_indicator_for(item)
+      item['instances'].select {|i| i.has_key?('sub_container')}
+                       .map {|i| i['sub_container']['indicator_2']}.join('; ')
+    end
+
+
+    def container_location_for(item)
+      (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.map {|a| a.map {|tc| tc['location_display_string_u_sstr']}}
+                                                            .flatten.join('; ')
     end
 
   end

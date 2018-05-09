@@ -11,12 +11,19 @@ module HarvardAeon
 
     def map(item)
       with_request_number({
+        'Site' => repo_field_for(item, 'Site'),
         'ItemInfo2' => hollis_number_for(item['json']),
         'ItemTitle' => strip_mixed_content(item['title']),
         'ItemAuthor' => (item.raw["creators"] || []).join('; '), 
         'ItemDate' => creation_date_for(item['json']),
+        'ItemVolume' => item.container_display.join('; '),
         'Location' => repo_field_for(item, 'Location'),
-        'Site' => repo_field_for(item, 'Site'),
+        'SubLocation' => physical_location_for(item['json']),
+        'CallNumber' => item.identifier,
+        'ItemNumber' => container_barcode_for(item['json']),
+        'ItemIssue' => container_child_indicator_for(item['json']),
+        'ItemInfo5' => container_location_for(item),
+        'ItemPlace' => access_restrictions_for(item['json']),
       })
     end
 
