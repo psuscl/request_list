@@ -27,7 +27,7 @@ module HarvardAeon
     end
 
 
-    def request_number_for(item_map)
+    def with_request_number(item_map)
       num = SecureRandom.hex(4)
       Hash[[['Request', num]] + item_map.map {|k,v| [k+'_'+num, v]}]
     end

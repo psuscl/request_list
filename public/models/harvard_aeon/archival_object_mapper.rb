@@ -6,7 +6,7 @@ module HarvardAeon
     def map(item)
       resource = JSON.parse(item.resolved_resource['json'])
 
-      request_number_for({
+      with_request_number({
         'ItemInfo2' => hollis_number_for(resource),
         'ItemTitle' => strip_mixed_content(resource['title']),
         'SubItemTitle' => strip_mixed_content(item['title']),

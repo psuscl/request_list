@@ -10,7 +10,7 @@ module HarvardAeon
 
 
     def map(item)
-      request_number_for({
+      with_request_number({
         'ItemInfo2' => hollis_number_for(item['json']),
         'ItemTitle' => strip_mixed_content(item['title']),
         'ItemAuthor' => (item.raw["creators"] || []).join('; '), 
