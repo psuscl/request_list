@@ -45,6 +45,24 @@ module HarvardAeon
     end
 
 
+    def containers_for(item)
+      (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.flatten.compact
+        .map {|tc| tc['sub_containers'] = item['json']['instances']
+          .select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
+          .map {|i| i['sub_container']}.select {|sc| sc['top_container']['ref'] == tc['uri']}; tc}
+    end
+
+
+    def with_mapped_container(item_map, container)
+      item_map.merge({
+        'ItemVolume'  => container['display_string'],
+        'ItemNumber'  => (container['barcode_u_sstr'] || []).first,
+        'ItemIssue'   => container['sub_containers'].map {|sc| sc['indicator_2']}.compact.join('; '),
+        'ItemInfo5'   => (container['location_display_string_u_sstr'] || []).join('; '),
+      })
+    end
+
+
     def container_barcode_for(item)
       item['instances'].select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
                        .map {|i| i['sub_container']['top_container']['_resolved']['barcode']}.join('; ')

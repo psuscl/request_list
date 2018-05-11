@@ -1,5 +1,5 @@
-<% item.map.each do |name, value| %>
+<% item.each {|r| r.each {|name, value| %>
 
   <input type="hidden" name="<%= name %>" value="<%= value  %>">
 
-<% end %>
+<% }} %>
