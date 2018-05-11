@@ -3,7 +3,7 @@ module HarvardAeon
 
     RequestList.register_item_mapper(self, :harvard_aeon, Container)
 
-    def show_button?(item)
+    def request_permitted?(item)
       # only if only one resource
       item['json']['collection'].length < 2
     end

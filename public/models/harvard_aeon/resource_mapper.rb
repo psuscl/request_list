@@ -3,7 +3,7 @@ module HarvardAeon
 
     RequestList.register_item_mapper(self, :harvard_aeon, Resource)
 
-    def show_button?(item)
+    def request_permitted?(item)
       # only if childless
       ArchivesSpaceClient.instance.get_raw_record(item['uri'] + '/tree/root')['child_count'] == 0
     end

@@ -6,7 +6,7 @@ class RequestListItemMapper
   end
 
 
-  def show_button?(item)
+  def request_permitted?(item)
     true
   end
 
