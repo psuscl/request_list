@@ -5,11 +5,11 @@ module HarvardAeon
 
     def map
       {
-        'SystemId' => 'ArchivesSpace',
-        'ReturnLinkURL' => (AppConfig[:public_proxy_url] || AppConfig[:public_url]) + '/plugin/request_list',
-        'ReturnLinkSystemName' => @opts[:return_link_label],
-        'RequestType' => 'Loan',
-        'UserReview' => 'No',
+        'SystemId'              => 'ArchivesSpace',
+        'ReturnLinkURL'         => AppConfig[:public_proxy_url] + '/plugin/request_list',
+        'ReturnLinkSystemName'  => @opts[:return_link_label],
+        'RequestType'           => 'Loan',
+        'UserReview'            => 'No',
       }
     end
 
