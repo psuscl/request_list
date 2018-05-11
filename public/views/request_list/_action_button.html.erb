@@ -1,6 +1,5 @@
 <% if RequestList.show_button_for?(record) %>
-  <a id="request_list_action_button"
-     class="btn btn-default page_action"
+  <a class="btn btn-default page_action request_list_action_button"
      data-title="<%= record['title'] %>"
      data-uri="<%= record['uri'] %>"
      data-add-label="<%= t('plugin.request_list.add_to_list_button_label') %>"

@@ -26,9 +26,10 @@
     };
 
     RequestList.prototype.updateButtonState = function() {
-	var button = $("#request_list_action_button");
-	if (button.length > 0) {
-	    if (this.isInList(button.data("uri"))) {
+	var rl = this;
+	$(".request_list_action_button").each(function(ix) {
+	    var button = $(this);
+	    if (rl.isInList(button.data("uri"))) {
 		var i = button.find("i." + button.data("add-icon"));
 		if (i) {
 		    i.removeClass(button.data("add-icon"));
@@ -45,7 +46,7 @@
 		    button.html(button.html().replace(button.data("remove-label"), button.data("add-label")));
 		}
 	    }
-	}
+	});
     };
 
     RequestList.prototype.showListCount = function(flash) {
