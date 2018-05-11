@@ -66,24 +66,5 @@ module HarvardAeon
         'ItemInfo5'   => (container['location_display_string_u_sstr'] || []).join('; '),
       })
     end
-
-
-    def container_barcode_for(item)
-      item['instances'].select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
-                       .map {|i| i['sub_container']['top_container']['_resolved']['barcode']}.join('; ')
-    end
-
-
-    def container_child_indicator_for(item)
-      item['instances'].select {|i| i.has_key?('sub_container')}
-                       .map {|i| i['sub_container']['indicator_2']}.join('; ')
-    end
-
-
-    def container_location_for(item)
-      (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.map {|a| a.map {|tc| tc['location_display_string_u_sstr']}}
-                                                            .flatten.join('; ')
-    end
-
   end
 end
