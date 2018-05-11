@@ -7,7 +7,12 @@ module HarvardAeon
 
     def with_request_number(item_map)
       num = SecureRandom.hex(4)
-      Hash[[['Request', num]] + item_map.map {|k,v| [k+'_'+num, v]}]
+      Hash[[['Request', num]] + without_empty_fields(item_map).map {|k,v| [k+'_'+num, v]}]
+    end
+
+
+    def without_empty_fields(map)
+      map.delete_if {|k, v| !v || v.strip.empty?}
     end
 
 

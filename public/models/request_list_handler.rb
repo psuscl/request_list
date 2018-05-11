@@ -29,7 +29,7 @@ class RequestListHandler
 
 
   def list_map
-    @list_mapper.map    
+    @list_mapper.map
   end
 
 
