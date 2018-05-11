@@ -47,10 +47,7 @@ class RequestList
 
 
   def self.repo_config_for(record)
-    repo = record.resolved_repository['repo_code']    
-    repo_config = @@repositories[:default]
-    repo_config.merge!(@@repositories[repo]) if @@repositories.has_key?(repo)
-    repo_config
+    @@repositories[:default].merge(@@repositories[record.resolved_repository['repo_code']] || {})
   end
 
 
