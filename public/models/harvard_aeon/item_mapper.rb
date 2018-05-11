@@ -62,7 +62,7 @@ module HarvardAeon
       item_map.merge({
         'ItemVolume'  => container['display_string'],
         'ItemNumber'  => (container['barcode_u_sstr'] || []).first,
-        'ItemIssue'   => container['sub_containers'].map {|sc| sc['indicator_2']}.compact.join('; '),
+        'ItemIssue'   => (container['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '),
         'ItemInfo5'   => (container['location_display_string_u_sstr'] || []).join('; '),
       })
     end
