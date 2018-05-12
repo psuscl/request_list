@@ -49,6 +49,21 @@
 	});
     };
 
+    RequestList.prototype.sortListByInput = function(inputName) {
+	var $list = $('.rl-list');
+	var $items = $list.children('.rl-list-item');
+
+	$items.sort(function(a, b) {
+		var ia = $(a).find('input[name^=' + inputName + '_]').val();
+		var ib = $(b).find('input[name^=' + inputName + '_]').val();
+		if (ia < ib) { return -1; }
+		if (ia > ib) { return 1; }
+		return 0;
+	    });
+
+	$items.detach().appendTo($list);
+    };
+
     RequestList.prototype.showListCount = function(flash) {
 	var items = this.getList().length;
 	var a = $("a[href='/plugin/request_list']").first();

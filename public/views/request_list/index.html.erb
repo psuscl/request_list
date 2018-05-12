@@ -23,9 +23,11 @@
       <div class="col-sm-12">
         <a name="searchresults" id="searchresults"></a>
 
-        <% unhandled_items = handler.each_item_map do |item, map| %>
-          <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :map => map, :handler => handler, :include_form => true} %>
-        <% end %>
+        <div class="rl-list">
+          <% unhandled_items = handler.each_item_map do |item, map| %>
+            <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :map => map, :handler => handler, :include_form => true} %>
+          <% end %>
+        </div>
 
       </div>
     </div>
