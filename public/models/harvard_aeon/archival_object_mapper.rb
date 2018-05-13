@@ -10,7 +10,7 @@ module HarvardAeon
         'Site' => repo_field_for(item, 'Site'),
         'ItemInfo2' => hollis_number_for(resource),
         'ItemTitle' => strip_mixed_content(resource['title']),
-        'SubItemTitle' => strip_mixed_content(item['title']),
+        'ItemSubTitle' => strip_mixed_content(item['title']),
         'ItemAuthor' => (item.resolved_resource["creators"] || []).join('; '), 
         'ItemDate' => creation_date_for(item['json']),
         'Location' => repo_field_for(item, 'Location'),

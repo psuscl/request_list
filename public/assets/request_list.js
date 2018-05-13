@@ -49,19 +49,70 @@
 	});
     };
 
-    RequestList.prototype.sortListByInput = function(inputName) {
+    RequestList.prototype.originalListOrder = function(reverse) {
+	var $list = $('.rl-list');
+	var $items = $list.children('.rl-list-item');
+	$items.detach();
+
+	this.getList().forEach(function(u) {
+	    $list.append($items.filter('div[data-uri=' + CSS.escape(u) + ']'));
+	});
+    };
+
+    RequestList.prototype._sortListByInput = function(inputName, reverse) {
 	var $list = $('.rl-list');
 	var $items = $list.children('.rl-list-item');
 
 	$items.sort(function(a, b) {
-		var ia = $(a).find('input[name^=' + inputName + '_]').val();
-		var ib = $(b).find('input[name^=' + inputName + '_]').val();
-		if (ia < ib) { return -1; }
-		if (ia > ib) { return 1; }
+		var ia = $(reverse ? b : a).find('input[name^=' + inputName + '_]').val();
+		var ib = $(reverse ? a : b).find('input[name^=' + inputName + '_]').val();
+		if (ia < ib) { return -1 }
+		if (ia > ib) { return 1 }
 		return 0;
 	    });
 
 	$items.detach().appendTo($list);
+    };
+
+    RequestList.prototype.sortListByInput = function(inputName) {
+	this._sortListByInput(inputName, false);
+    };
+
+    RequestList.prototype.reverseSortListByInput = function(inputName) {
+	this._sortListByInput(inputName, true);
+    };
+
+    RequestList.prototype.sortStates = function() {
+	return {
+	    'fa-sort': 'fa-sort-down', 
+	    'fa-sort-down': 'fa-sort-up', 
+	    'fa-sort-up': 'fa-sort', 
+	};
+    };
+
+    RequestList.prototype.sortButtonClick = function(button, name, field) {
+	var icon = $(button).children('i');
+	var allButtonIcons = $('.rl-sort-button').children('i');
+	var states = this.sortStates();
+	var nextState = states[icon.attr('class').match(/(fa-sort[^ ]*)/)[1]];
+	for (k in states) { allButtonIcons.removeClass(states[k]); }
+	allButtonIcons.addClass('fa-sort');
+	icon.removeClass('fa-sort');
+	icon.addClass(nextState);
+
+	icon.parent().parent().children('.rl-sort-button').css('background', '');
+	icon.parent().parent().children('.rl-sort-button').each(function(ix, but) { $(but).attr('title', $(but).attr('data-title')) });
+	if (icon.hasClass('fa-sort')) {
+	    this.originalListOrder();
+	} else if (icon.hasClass('fa-sort-down')) {
+	    this.sortListByInput(field);
+	    icon.parent().css('background', '#f2f2f2');
+	    $(button).attr('title', 'Sorted A-Z')
+	} else {
+	    this.reverseSortListByInput(field);
+	    icon.parent().css('background', '#f2f2f2');
+	    $(button).attr('title', 'Sorted Z-A')
+	}
     };
 
     RequestList.prototype.showListCount = function(flash) {

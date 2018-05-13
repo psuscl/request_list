@@ -4,7 +4,11 @@ en:
       list_title: My List
       submit_button_label: Send Requests
       sort_button_label: Sort
-      sort_title: Title
+      sort_repository: Repository
+      sort_collection: Collection
+      sort_record: Record
+      sort_container: Container
+      sort_creator: Creator
       menu_label: My List (0)
       add_to_list_button_label: Add to My List
       add_to_list_button_icon: fa-plus

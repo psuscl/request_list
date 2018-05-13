@@ -1,15 +1,22 @@
 <div class="col-sm-7 form-group">
   <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
 
-  <div class="pull-right">
-    <a class="btn btn-default rl-sort"
-       title="<%= t('plugin.request_list.sort_button_label') %>"
-       onclick="request_list.sortListByInput('ItemTitle');"
-       href="javascript:void(0);">
 
-      <i class="fa fa-sort"></i>
-      <%= t('plugin.request_list.sort_title') %>
-    </a>
+  <div class="btn-group pull-right">
+
+    <% RequestList.sort_fields.each do |k, v| %>
+      <a class="btn btn-default rl-sort-button"
+         title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
+         data-title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
+         onclick="request_list.sortButtonClick(this, '<%= k %>', '<%= v %>');"
+         href="javascript:void(0);">
+
+        <i class="fa fa-sort"></i>
+        <%= t("plugin.request_list.sort_#{k}") %>
+      </a>
+    <% end %>
+
   </div>
+
 </div>
 

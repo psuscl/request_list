@@ -59,6 +59,17 @@ class RequestList
   end
 
 
+  def self.sort_fields
+    {
+      'repository' => 'Site',
+      'collection' => 'ItemTitle',
+      'record' => 'ItemSubTitle',
+      'container' => 'ItemVolume',
+      'creator' => 'ItemAuthor',
+    }
+  end
+
+
   def initialize(records)
     raise 'Call RequestList.init(config) before trying to instantiate.' unless @@init
 
