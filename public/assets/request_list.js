@@ -117,15 +117,20 @@
 
     RequestList.prototype.submitButtonClick = function(handlerId) {
 	var self = this;
+	var startListLength = self.getList().length
+
         $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').each(function(ix, rli) {
             self.removeFromList($(rli).data('uri'), true);
             self.removeFromForm($(rli));
         })
         self.setUpList();
 
-	if (self.getList().length == 0) {
-	    // give a message about x requests sent - location.replace(location.href + "sent=x") ??
-	    setTimeout(function() { location.reload(true); }, 1000);
+	var endListLength = self.getList().length
+
+	if (endListLength == 0) {
+	    // seems we need to cover 2 cases here - when the submit button's target tab is open yet ... sigh
+	    setTimeout(function() { location.replace(location.href + '?sent=' + (startListLength - endListLength)); }, 1000);
+	    location.replace(location.href + '?sent=' + (startListLength - endListLength));
 	}
 
 	return true;
