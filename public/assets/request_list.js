@@ -6,6 +6,10 @@
     };
 
     RequestList.prototype.cookie = function(cookie_name, value) {
+	if (!value) {
+	    return $.cookie('as_pui_request_list_' + cookie_name, { path: '/' });
+	}
+
 	var args = Array.prototype.slice.call(arguments, 0);
 	args[0] = 'as_pui_request_list_' + args[0];
 	args.push({ path: '/' });
@@ -218,4 +222,11 @@ window.onpageshow = function(event) {
       window.request_list.setUpList();
   }
 }
+
+// trying to get the list deleted when leaving - not working
+// this works, but does it on every page load
+//window.onunload = function(event) {
+//    window.request_list.setList([]);
+//};
+
 
