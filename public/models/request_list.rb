@@ -87,7 +87,8 @@ class RequestList
 
     handler_args = @@request_handlers[repo_args[:handler]]
 
-    @handlers[repo_args[:handler]] ||= RequestListHandler.new(handler_args[:name], handler_args[:profile], handler_args[:url],
+    @handlers[repo_args[:handler]] ||= RequestListHandler.new(repo_args[:handler], handler_args[:name],
+                                                              handler_args[:profile], handler_args[:url],
                                                               list_mapper_for(handler_args[:profile], handler_args[:list_opts]))
 
     @handlers[repo_args[:handler]].add_item_mappers_for_repo(record.resolved_repository['repo_code'],

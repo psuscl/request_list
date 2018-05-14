@@ -1,8 +1,9 @@
 class RequestListHandler
 
-  attr_reader :name, :profile, :url
+  attr_reader :id, :name, :profile, :url
 
-  def initialize(name, profile, url, list_mapper)
+  def initialize(id, name, profile, url, list_mapper)
+    @id = id
     @name = name
     @profile = profile
     @url = url

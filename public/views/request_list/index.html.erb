@@ -6,6 +6,8 @@
 
 <% @mapper.handlers.each do |handler| %>
 
+<div id="rl-handler-<%= handler.id %>">
+
 <%= form_tag handler.url, :target => 'harvard-library-requests' do |f| %>
 
 <div class="row">
@@ -59,8 +61,15 @@
   </div>
 </div>
 
+<script>
+    $('#rl-handler-<%= handler.id %>').find('.btn-primary').click(function() {
+        request_list.submitButtonClick('<%= handler.id  %>');
+    });
+</script>
 
 <% end %>
+
+</div>
 
 <% end %>
 

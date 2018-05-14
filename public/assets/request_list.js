@@ -115,6 +115,31 @@
 	}
     };
 
+    RequestList.prototype.submitButtonClick = function(handlerId) {
+	var self = this;
+        $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').each(function(ix, rli) {
+            self.removeFromList($(rli).data('uri'), true);
+            self.removeFromForm($(rli));
+        })
+        self.setUpList();
+
+	if (self.getList().length == 0) {
+	    // give a message about x requests sent - location.replace(location.href + "sent=x") ??
+	    setTimeout(function() { location.reload(true); }, 1000);
+	}
+
+	return true;
+    };
+
+    RequestList.prototype.removeFromListButtonClick = function(button) {
+	this.removeFromList($(button).data('uri'));
+	this.removeFromForm($(button).parent());
+    };
+
+    RequestList.prototype.removeFromForm = function(item) {
+	item.slideUp('normal', function() {$(this).remove()});
+    };
+
     RequestList.prototype.showListCount = function(flash) {
 	var items = this.getList().length;
 	var a = $("a[href='/plugin/request_list']").first();
@@ -145,12 +170,12 @@
 	}
     };
 
-    RequestList.prototype.removeFromList = function(uri) {
+    RequestList.prototype.removeFromList = function(uri, silent) {
 	var list = this.getList();
 	if (this.isInList(uri)) {
 	    list.splice($.inArray(uri, list), 1);
 	    this.setList(list);
-	    this.showListCount(true);
+	    this.showListCount(!silent);
 	    if (list.length == 0) {
 		location.reload(true);
 	    }
