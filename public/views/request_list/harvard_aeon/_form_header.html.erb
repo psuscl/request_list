@@ -2,7 +2,8 @@
   <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
 
 
-  <div class="btn-group pull-right">
+  <div class="pull-right">
+  <div class="btn-group">
 
     <% RequestList.sort_fields.each do |k, v| %>
       <a class="btn btn-default rl-sort-button"
@@ -18,5 +19,29 @@
 
   </div>
 
+  &nbsp;
+
+  <a class="btn btn-default"
+     title="<%= t('plugin.request_list.remove_all_button_label') %>"
+     onclick="request_list.removeAll();"
+     href="javascript:void(0);">
+
+    <%= t("plugin.request_list.remove_all_button_label") %>
+    &nbsp;
+    <i class="fa fa-times"></i>
+  </a>
+
+</div>
 </div>
 
+<div class="col-sm-5 form-group">
+  <a class="btn btn-default pull-right"
+     title="<%= t('plugin.request_list.aeon_button_label') %>"
+     href="<%= handler.list_opts[:aeon_link_url]  %>"
+     target="harvard-library-requests">
+
+    <%= t("plugin.request_list.aeon_button_label") %>
+    &nbsp;
+    <i class="fa fa-angle-double-right"></i>
+  </a>
+</div>

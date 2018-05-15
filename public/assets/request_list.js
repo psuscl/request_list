@@ -140,6 +140,11 @@
 	return true;
     };
 
+    RequestList.prototype.removeAll = function() {
+	this.setList([]);
+	location.reload(true);
+    };
+
     RequestList.prototype.removeFromListButtonClick = function(button) {
 	this.removeFromList($(button).data('uri'));
 	this.removeFromForm($(button).parent());
