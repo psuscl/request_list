@@ -47,12 +47,14 @@ class RequestList
 
 
   def self.repo_config_for(record)
-    @@repositories[:default].merge(@@repositories[record.resolved_repository['repo_code']] || {})
+    @@repositories[:default].merge(@@repositories[record.resolved_repository['repo_code'].downcase] || {})
   end
 
 
   def self.show_button_for?(record)
     cfg = repo_config_for(record)
+    return false unless cfg[:handler]
+    return false unless @@request_handlers[cfg[:handler]]
     profile = @@request_handlers[cfg[:handler]][:profile]
     return false unless @@profiles[profile][:item_mappers].has_key?(record.class)
     @@profiles[profile][:item_mappers][record.class].new(profile, cfg[:item_opts]).request_permitted?(record)
