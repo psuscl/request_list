@@ -7,6 +7,7 @@ Developed by Hudson Molonglo for Harvard University.
 
 ... under development.
 
+
 ## Configuration
 
 Example:
@@ -21,7 +22,36 @@ AppConfig[:request_list] = {
     :harvard_test_aeon => {
       :name => 'Harvard Test Aeon',
       :profile => :harvard_aeon,
-      :url => 'https://somewhere.at.harvard.edu/aeon.dll?action=11&type=200'
+      :url => 'https://somewhere.at.harvard.edu/aeon.dll?action=11&type=200',
+      :list_opts => {
+        :return_link_label => 'Return to HOLLIS',
+        :request_types => {
+          'Reading room' => {
+            'RequestType' => 'Loan',
+            'UserReview' => 'No'
+          },
+          'Saved' => {
+            'RequestType' => 'Loan',
+            'UserReview' => 'Yes'
+          },
+          'Photoduplication' => {
+            'RequestType' => 'Copy',
+            'UserReview' => 'No'
+          }
+        },
+        :format_options => [
+                            'Digital Prints',
+                            'Existing Digital Images',
+                            'Microfilm',
+                            'Standard Digital Photography',
+                            'Studio Digital Photography'
+                           ],
+        :delivery_options => [
+                              'Campus Pickup',
+                              'Mail',
+                              'Online Delivery'
+                             ]
+      }
     }
   },
 
@@ -30,6 +60,18 @@ AppConfig[:request_list] = {
       :handler => :harvard_test_aeon,
       :opts => {
         :return_link_label => 'Return to HOLLIS'
+      }
+    },
+    'aaa' => {
+      :handler => :none
+    },
+    'bbb' => {
+      :handler => :harvard_test_aeon,
+      :item_opts => {
+        :repo_fields => {
+          'Location' => 'BBA',
+          'Site' => 'BBC'
+        }
       }
     }
   }
