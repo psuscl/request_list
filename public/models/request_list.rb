@@ -66,7 +66,6 @@ class RequestList
       'repository' => 'Site',
       'collection' => 'ItemTitle',
       'record' => 'ItemSubTitle',
-      'container' => 'ItemVolume',
       'creator' => 'ItemAuthor',
     }
   end
