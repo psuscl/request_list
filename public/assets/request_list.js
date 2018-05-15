@@ -129,12 +129,12 @@
         })
         self.setUpList();
 
-	var endListLength = self.getList().length
+	var itemsSent = startListLength - self.getList().length;
 
-	if (endListLength == 0) {
-	    // seems we need to cover 2 cases here - when the submit button's target tab is open yet ... sigh
-	    setTimeout(function() { location.replace(location.href + '?sent=' + (startListLength - endListLength)); }, 1000);
-	    location.replace(location.href + '?sent=' + (startListLength - endListLength));
+	if (itemsSent > 0) {
+	    // seems we need to cover 2 cases here - whether the submit button's target tab is open yet ... sigh
+	    setTimeout(function() { location.replace(location.href + '?sent=' + itemsSent); }, 1000);
+	    location.replace(location.href + '?sent=' + itemsSent);
 	}
 
 	return true;
