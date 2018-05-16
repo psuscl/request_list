@@ -60,7 +60,7 @@ module HarvardAeon
 
     def with_mapped_container(item_map, container)
       item_map.merge({
-        'ItemVolume'  => container['display_string'],
+        'ItemVolume'  => container['display_string'].gsub(/ \[\d+\]/, ''),
         'ItemNumber'  => (container['barcode_u_sstr'] || []).first,
         'ItemIssue'   => (container['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '),
         'ItemInfo5'   => (container['location_display_string_u_sstr'] || []).join('; '),
