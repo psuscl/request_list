@@ -7,12 +7,13 @@ module HarvardAeon
 
     def with_request_number(item_map)
       num = SecureRandom.hex(4)
-      Hash[[['Request', num]] + without_empty_fields(item_map).map {|k,v| [k+'_'+num, v]}]
+      Hash[[['Request', num]] + without_unneeded_fields(item_map).map {|k,v| [k+'_'+num, v]}]
     end
 
 
-    def without_empty_fields(map)
-      map.delete_if {|k, v| !v || v.strip.empty?}
+    def without_unneeded_fields(map)
+      map.delete_if {|k, v| !v || v.strip.empty?} # empty values
+         .delete_if {|k, v| k.start_with?('_')}   # private keys
     end
 
 
@@ -62,7 +63,8 @@ module HarvardAeon
       item_map.merge({
         'ItemVolume'  => container['display_string'].gsub(/ \[\d+\]/, ''),
         'ItemNumber'  => (container['barcode_u_sstr'] || []).first,
-        'ItemIssue'   => (container['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '),
+        'ItemIssue'   => [item_map['_component_id'], (container['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; ')]
+                         .compact.select{|i| !i.empty?}.join(': '),
         'ItemInfo5'   => (container['location_display_string_u_sstr'] || []).join('; '),
       })
     end
