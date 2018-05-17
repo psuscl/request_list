@@ -1,5 +1,22 @@
 <% item.each {|r| r.each {|name, value| %>
 
-  <input type="hidden" name="<%= name %>" value="<%= value  %>">
+  <input type="hidden" name="<%= name %>" value="<%= value %>">
 
 <% }} %>
+
+<div>
+
+<table>
+<% item.each {|r| %>
+  <tr><td>&nbsp;</td></tr>
+
+  <% r.each {|name, value| %>
+    <tr>
+      <td style="padding: 2px;"><%= name.gsub(/_.+$/, '') %></td>
+      <td style="padding: 2px;"><%= value %></td>
+    </tr>
+  <% } %>
+<% } %>
+</table>
+
+</div>

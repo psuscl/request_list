@@ -1,1 +1,17 @@
-<%= render partial: 'shared/idbadge', locals: {:result => item, :props => {} } %>
+<% @item_count ||= 0; @item_count += 1 %>
+
+<div class="recordinfo">
+  <h3>
+    <%= @item_count %>. &nbsp; &nbsp;
+    <a class="record-title" href="<%= app_prefix(item.uri) %>">  <%== item.display_string %></a>
+  </h3>
+
+  <%= render partial: 'shared/context', locals: {:result => item, :props => {} } %>
+</div>
+
+<%#
+Line 1: Item Title, Date, Top Container Type and ID, Child Container Type and ID, Item ID, Extent Number and Type
+Line 2: Collection Title, Collection ID, Series, Sub-Series [is it possible to provide the collection breadcrumb?]
+Line 3: Repository
+Of course, if any of the fields in line 1 and 2 do not have values, just ignore them.
+%>

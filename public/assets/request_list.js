@@ -53,6 +53,17 @@
 	});
     };
 
+    RequestList.prototype.toggleItemExpand = function(item) {
+	var item_form = $(item).children('.request-list-item-form')
+	if (item_form.is(':visible')) {
+	    item_form.slideUp();
+	    $(item).css('background', '');
+	} else {
+	    $(item).css('background', '#f2f2f2');
+	    item_form.slideDown();
+	}
+    };
+
     RequestList.prototype.originalListOrder = function(reverse) {
 	var $list = $('.rl-list');
 	var $items = $list.children('.rl-list-item');

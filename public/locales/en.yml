@@ -3,8 +3,8 @@ en:
     request_list:
       list_title: My List
       submit_button_label: Send Requests
-      aeon_button_label: View Sent Requests
       remove_all_button_label: Remove All
+      item_expand_message: Click to show and hide item detail
       sort_button_label: Sort
       sort_repository: Repository
       sort_collection: Collection
