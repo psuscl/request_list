@@ -1,12 +1,37 @@
 <% @item_count ||= 0; @item_count += 1 %>
 
-<div class="recordinfo">
-  <h3>
-    <%= @item_count %>. &nbsp; &nbsp;
-    <a class="record-title" href="<%= app_prefix(item.uri) %>">  <%== item.display_string %></a>
-  </h3>
+<div class="row">
+  <div class="col-sm-1">
+    <div align="center">
+      <h3><%= @item_count %></h3>
+    </div>
+  </div>
 
-  <%= render partial: 'shared/context', locals: {:result => item, :props => {} } %>
+  <div class="col-sm-10">
+    <div class="recordinfo">
+
+      <div>
+        <% if item.class == Resource %>
+          Collection:
+        <% else %>
+          Record:
+        <% end %>
+        <a href="<%= app_prefix(item.uri) %>">  <%== item.display_string %></a>
+      </div>
+
+      <% unless item.class == Resource %>
+      <div>
+        Collection:
+        <a href="<%= app_prefix(item.resolved_resource['uri']) %>">  <%== item.resolved_resource['display_string'] %></a>
+      </div>
+      <% end %>
+
+      <div>
+        Repository:
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <%#
