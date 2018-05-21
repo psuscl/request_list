@@ -83,6 +83,8 @@ AppConfig[:pui_page_actions_request] = false
 
 ## Customization
 
+__This is not currently accurate - the mapping code is being refactored. I'll update this when done.__
+
 In the example config you will see the entry `:harvard_test_aeon` under `:request_handlers` has
 a `:profile` property with a value of `:harvard_aeon`.
 

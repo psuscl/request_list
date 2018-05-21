@@ -38,10 +38,10 @@ class RequestListHandler
     @items.each do |item|
       mapper = item_mapper_for(item)
       if mapper
-        yield [item, mapper.map(item)]
+        yield mapper.map(item)
       else
         Rails.logger.debug("RequestListHandler: No handler for #{item}")
-        @unhandled_items.push(item)
+        @unhandled_items.push(RequestListItemMapper.new(:none).map(item))
       end
     end
     @unhandled_items

@@ -10,24 +10,21 @@
   <div class="col-sm-10">
     <div class="recordinfo">
 
-      <div>
-        <% if item.class == Resource %>
-          Collection:
-        <% else %>
+      <% unless item.type == Resource %>
+        <div>
           Record:
-        <% end %>
-        <a href="<%= app_prefix(item.uri) %>">  <%== item.display_string %></a>
-      </div>
-
-      <% unless item.class == Resource %>
-      <div>
-        Collection:
-        <a href="<%= app_prefix(item.resolved_resource['uri']) %>">  <%== item.resolved_resource['display_string'] %></a>
-      </div>
+          <a href="<%= app_prefix(item.record.uri) %>">  <%== item.record.name %></a>
+        </div>
       <% end %>
 
       <div>
+        Collection:
+        <a href="<%= app_prefix(item.collection.uri) %>">  <%== item.collection.name %></a>
+      </div>
+
+      <div>
         Repository:
+        <a href="<%= app_prefix(item.repository.uri) %>">  <%== item.repository.name %></a>
       </div>
 
     </div>

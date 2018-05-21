@@ -4,13 +4,13 @@
      data-uri="<%= item.uri %>"
      onclick="request_list.toggleItemExpand(this);">
 
-  <%= render partial: 'request_list/remove_from_list_button', locals: {:record => item } %>
+  <%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
 
   <%= render partial: "request_list/item_display", locals: {:form => form, :item => item } %>
 
   <% if include_form %>
     <div class="request-list-item-form recordinfo">
-      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => map } %>
+      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => item.form_fields } %>
     </div>
   <% end %>
 

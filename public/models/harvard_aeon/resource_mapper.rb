@@ -9,24 +9,23 @@ module HarvardAeon
     end
 
 
-    def map(item)
+    def form_fields(mapped)
       shared_fields = {
-        'Site' => repo_field_for(item, 'Site'),
-        'ItemInfo2' => hollis_number_for(item['json']),
-        'ItemTitle' => strip_mixed_content(item['title']),
-        'ItemAuthor' => (item.raw["creators"] || []).join('; '), 
-        'ItemDate' => creation_date_for(item['json']),
-        'Location' => repo_field_for(item, 'Location'),
-        'SubLocation' => physical_location_for(item['json']),
-        'CallNumber' => item.identifier,
-        'ItemPlace' => access_restrictions_for(item['json']),
+        'Site'          => mapped.ext(:site).name,
+        'ItemInfo2'     => mapped.ext(:hollis).id,
+        'ItemTitle'     => mapped.collection.name,
+        'ItemAuthor'    => mapped.creator.name,
+        'ItemDate'      => mapped.date.name,
+        'Location'      => mapped.ext(:location).name,
+        'SubLocation'   => mapped.ext(:physical_location).name,
+        'CallNumber'    => mapped.collection.id,
+        'ItemPlace'     => mapped.ext(:access_restrictions).name,
       }
 
-      containers = containers_for(item)
-      return [with_request_number(shared_fields)] if containers.empty?
+      return [with_request_number(shared_fields)] unless mapped.container.has_multi?
 
-      containers.map {|c|
-        with_request_number(with_mapped_container(shared_fields, c))
+      mapped.container.multi.map {|c|
+        with_request_number(with_mapped_container(mapped, shared_fields, c))
       }
     end
 

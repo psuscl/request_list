@@ -3,32 +3,32 @@ module HarvardAeon
 
     RequestList.register_item_mapper(self, :harvard_aeon, ArchivalObject)
 
-    def map(item)
-      resource = JSON.parse(item.resolved_resource['json'])
+    def map_extensions(mapped, item, repository, resource, resource_json)
+      super
+      mapped.ext(:level_and_extent).name = [item['level'].capitalize, mapped.extent.name].join(': ')
+    end
 
+
+    def form_fields(mapped)
       shared_fields = {
-        'Site'           => repo_field_for(item, 'Site'),
-        'ItemInfo2'      => hollis_number_for(resource),
-        'ItemTitle'      => strip_mixed_content(resource['title']),
-        'ItemSubTitle'   => strip_mixed_content(item['title']),
-        'ItemAuthor'     => (item.resolved_resource["creators"] || []).join('; '), 
-        'ItemDate'       => creation_date_for(item['json']),
-        'Location'       => repo_field_for(item, 'Location'),
-        'SubLocation'    => physical_location_for(item['json']),
-        'ItemInfo3'      => [item['level'].capitalize,
-                             (item['json']['extents'].map{|e| e['number'] + ' ' + e['extent_type']}).join('; ')]
-                              .compact.select {|e| !e.empty?}.join(': '),
-        'CallNumber'     => item.resolved_resource['identifier'],
-        'ItemPlace'      => access_restrictions_for(resource), # actually any level - inheritance?
-        'ItemIssue'      => item.identifier,
-        '_component_id'  => item.identifier,
+        'Site'           => mapped.ext(:site).name,
+        'ItemInfo2'      => mapped.ext(:hollis).id,
+        'ItemTitle'      => mapped.collection.name,
+        'ItemSubTitle'   => mapped.record.name,
+        'ItemAuthor'     => mapped.creator.name,
+        'ItemDate'       => mapped.date.name,
+        'Location'       => mapped.ext(:location).name,
+        'SubLocation'    => mapped.ext(:physical_location).name,
+        'ItemInfo3'      => mapped.ext(:level_and_extent).name,
+        'CallNumber'     => mapped.collection.id,
+        'ItemPlace'      => mapped.ext(:access_restrictions).name,
+        'ItemIssue'      => mapped.record.id,
       }
 
-      containers = containers_for(item)
-      return [with_request_number(shared_fields)] if containers.empty?
+      return [with_request_number(shared_fields)] unless mapped.container.has_multi?
 
-      containers.map {|c|
-        with_request_number(with_mapped_container(shared_fields, c))
+      mapped.container.multi.map {|c|
+        with_request_number(with_mapped_container(mapped, shared_fields, c))
       }
     end
 

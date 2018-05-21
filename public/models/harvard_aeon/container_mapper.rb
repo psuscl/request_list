@@ -9,21 +9,18 @@ module HarvardAeon
     end
 
 
-    def map(item)
-      resolved_resource = item['_resolved_collection_uri_u_sstr'].values.first.first
-      resource = JSON.parse(resolved_resource['json'])
-
-      [with_request_number(with_mapped_container({
-        'Site' => repo_field_for(item, 'Site'),
-        'ItemInfo2' => hollis_number_for(resource),
-        'ItemTitle' => strip_mixed_content(resource['title']),
-        'ItemAuthor' => (resolved_resource["creators"] || []).join('; '),
-        'ItemDate' => creation_date_for(resource),
-        'Location' => repo_field_for(item, 'Location'),
-        'SubLocation' => physical_location_for(resource),
-        'CallNumber' => resolved_resource['identifier'],
-        'ItemPlace' => access_restrictions_for(resource),
-      }, item.raw))]
+    def form_fields(mapped)
+      [with_request_number(with_mapped_container(mapped, {
+        'Site'           => mapped.ext(:site).name,
+        'ItemInfo2'      => mapped.ext(:hollis).id,
+        'ItemTitle'      => mapped.collection.name,
+        'ItemAuthor'     => mapped.creator.name,
+        'ItemDate'       => mapped.date.name,
+        'Location'       => mapped.ext(:location).name,
+        'SubLocation'    => mapped.ext(:physical_location).name,
+        'CallNumber'     => mapped.collection.id,
+        'ItemPlace'      => mapped.ext(:access_restrictions).name,
+      }, mapped.container.multi.first))]
     end
 
   end
