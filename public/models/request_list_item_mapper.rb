@@ -72,7 +72,7 @@ class RequestListItemMapper
     end
     mapped.creator.name_from_multi
 
-    creation_dates_for(item.class == Container ? resource_json : item).map do |c|
+    creation_dates_for(item.class == Container ? resource_json : item['json']).map do |c|
       mapped.date.add(:name => c)
     end
     mapped.date.name_from_multi
@@ -111,7 +111,7 @@ class RequestListItemMapper
 
 
   def creation_dates_for(item)
-    (item['dates'] || []).select {|d| d['label'] == 'creation'}.map {|d| d['expression']}
+    (item['dates'] || []).select {|d| d['label'] == 'creation'}.map {|d| d['expression'] || [d['begin'], d['end']].join(' -- ')}
   end
 
 
