@@ -5,7 +5,7 @@ module HarvardAeon
 
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
-      mapped.ext(:level_and_extent).name = [item['level'].capitalize, mapped.extent.name].join(': ')
+      mapped.ext(:level_and_extent).name = [item['level'].capitalize, mapped.extent.name].select {|x| !x.empty?}.join(': ')
     end
 
 
