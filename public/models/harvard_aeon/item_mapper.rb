@@ -29,7 +29,6 @@ module HarvardAeon
 
     def without_unneeded_fields(map)
       map.delete_if {|k, v| !v || v.strip.empty?} # empty values
-         .delete_if {|k, v| k.start_with?('_')}   # private keys
     end
 
 
@@ -54,11 +53,6 @@ module HarvardAeon
       item['notes'].select {|n| n['type'] == 'accessrestrict'}
                    .map {|n| n['subnotes'].map {|s| s['content']}}
                    .flatten.compact.join('; ')
-    end
-
-
-    def creation_date_for(item)
-      item['dates'].select {|d| d['label'] == 'creation'}.map {|d| d['expression']}.join('; ')
     end
 
 
