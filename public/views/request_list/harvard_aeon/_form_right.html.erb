@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'bootstrap-datepicker' %>
+<%= javascript_include_tag 'bootstrap-combobox' %>
 
 <% handler.list_map.each do |name, value| %>
 
@@ -20,7 +22,23 @@
 
 <div class="col-sm-12 request-list-additional-fields">
 <div class="row"><br/></div>
-<div id="photoduplication-options-form">
+
+<div class="rl-options-form" id="readingroom-options-form">
+
+  <div class="form-group">
+    <div class="input-group datepicker">
+      <input class="date-field form-control"
+             data-format="yyyy-mm-dd"
+             data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
+             data-autoclose="true"
+             data-force-parse="true"
+             placeholder="YYYY-MM-DD"
+             name="ScheduledDate">
+    </div>
+  </div>
+</div>
+
+<div class="rl-options-form" id="photoduplication-options-form">
   <div class="form-group">
     <select name="Format" class="form-control">
       <option value="">Select a format ...</option>
@@ -60,8 +78,36 @@
 </div>
 </div>
 
-
 <script>
+
+  $.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
+  $(function() {
+    var initDateFields = function(scope) {
+      scope = scope || $(document.body);
+      $(".date-field:not(.initialised)", scope).each(function() {
+        var $dateInput = $(this);
+
+        if ($dateInput.parent().is(".input-group")) {
+          $dateInput.parent().addClass("date");
+        } else {
+          $dateInput.wrap("<div class='input-group date'></div>");
+        }
+
+        $dateInput.addClass("initialised");
+
+        var $addon = $("<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>");
+        $dateInput.after($addon);
+
+        $dateInput.datepicker($dateInput.data());
+
+        $addon.on("click", function() {
+          $dateInput.focus().select();
+        });
+      });
+    };
+    initDateFields();
+  });
+
 
   $("#request_type_select").change(function() {
     var selected = this.selectedOptions[0];
@@ -69,15 +115,20 @@
     for(var name in inputs) {
       $(this).parent().parent().parent().find("input[name=" + name + "]").attr("value", inputs[name]);
     }
-    if (selected.text == 'Photoduplication') {
+    $('.rl-options-form').hide();
+    if (selected.text == 'Reading room') {
+      $("#readingroom-options-form").show();
+      $(".request-list-additional-fields").slideDown();
+    } else if (selected.text == 'Photoduplication') {
       $("#photoduplication-options-form").show();
       $(".request-list-additional-fields").slideDown();
     } else {
       $(".request-list-additional-fields").slideUp('normal', function() {
-        var form = $("#photoduplication-options-form");
+        var form = $(".rl-options-form");
         form.hide();
         form.find("select").val("");
         form.find("textarea").val("");
+        form.find("input").val("");
       });
     }
   });
