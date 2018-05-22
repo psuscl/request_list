@@ -21,11 +21,10 @@
   <div class="col-sm-7">
     <a name="main" title="Main Content"></a>
     <div class="row"></div>
-    <div class="row search-results">
+    <div class="row">
       <div class="col-sm-12">
-        <a name="searchresults" id="searchresults"></a>
 
-        <div class="rl-list">
+        <div id="rl-list-pane" class="rl-list">
           <% unhandled_items = handler.each_item_map do |item| %>
             <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :handler => handler, :include_form => true} %>
           <% end %>

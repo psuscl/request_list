@@ -2,6 +2,8 @@ en:
   plugin:
     request_list:
       list_title: My List
+      title_message: Send requests to HOLLIS Special Request for the items in your list.
+      list_session_message: Items will remain in your list for this browser session.
       submit_button_label: Send Requests
       remove_all_button_label: Remove All
       item_expand_message: Click to show and hide item detail

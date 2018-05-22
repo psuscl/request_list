@@ -227,7 +227,7 @@
     };
 
     RequestList.prototype.showRemoveAllButton = function() {
-	if (this.getList().length > 5) {
+	if (this.getList().length > 1) {
             $('.rl-remove-all').show();
         } else {
             $('.rl-remove-all').hide();

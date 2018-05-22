@@ -1,8 +1,12 @@
-<div class="col-sm-7 form-group">
-  <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
+<div class="col-sm-3 form-group">
+  <div class="rl-message rl-message-title pull-right">
+    <%= t('plugin.request_list.title_message') %>
+  </div>
+</div>
 
-  <div class="pull-right">
-    <div class="btn-group">
+<div class="col-sm-4 form-group">
+  <div>
+    <div class="btn-group pull-right">
 
     <% RequestList.sort_fields.each do |k, v| %>
       <a class="btn btn-default rl-sort-button"
@@ -22,6 +26,8 @@
 </div>
 
 <div class="col-sm-5 form-group">
+  <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
+
   <a class="btn btn-default pull-right"
      title="<%= t('plugin.request_list.aeon_button_label') %>"
      href="<%= handler.list_opts[:aeon_link_url]  %>"
