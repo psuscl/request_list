@@ -1,3 +1,5 @@
+<link href="<%= "/assets/datepicker.css" %>" media="all" rel="stylesheet" type="text/css">
+
 <%= javascript_include_tag 'bootstrap-datepicker' %>
 <%= javascript_include_tag 'bootstrap-combobox' %>
 
@@ -30,6 +32,7 @@
       <input class="date-field form-control"
              data-format="yyyy-mm-dd"
              data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
+             data-date-start-date="<%= Date.today.strftime('%Y-%m-%d') %>"
              data-autoclose="true"
              data-force-parse="true"
              placeholder="YYYY-MM-DD"
