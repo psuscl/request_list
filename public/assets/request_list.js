@@ -117,16 +117,22 @@
 
 	icon.parent().parent().children('.rl-sort-button').css('background', '');
 	icon.parent().parent().children('.rl-sort-button').each(function(ix, but) { $(but).attr('title', $(but).attr('data-title')) });
+	$('.rl-sort-button').css('font-weight', 'normal');
+	$('.rl-display').css('background', '');
 	if (icon.hasClass('fa-sort')) {
 	    this.originalListOrder();
 	} else if (icon.hasClass('fa-sort-down')) {
 	    this.sortListByInput(field);
 	    icon.parent().css('background', '#f2f2f2');
 	    $(button).attr('title', 'Sorted A-Z')
+	    $(button).css('font-weight', 'bold');
+            $('.rl-display-' + $(button).data('key')).css('background', '#f2f2f2');
 	} else {
 	    this.reverseSortListByInput(field);
 	    icon.parent().css('background', '#f2f2f2');
 	    $(button).attr('title', 'Sorted Z-A')
+	    $(button).css('font-weight', 'bold');
+            $('.rl-display-' + $(button).data('key')).css('background', '#f2f2f2');
 	}
     };
 
@@ -201,6 +207,7 @@
 	    list.splice($.inArray(uri, list), 1);
 	    this.setList(list);
 	    this.showListCount(!silent);
+            this.showRemoveAllButton();
 	    if (list.length == 0) {
 		location.reload(true);
 	    }
@@ -219,6 +226,14 @@
 	this.updateButtonState();
     };
 
+    RequestList.prototype.showRemoveAllButton = function() {
+	if (this.getList().length > 5) {
+            $('.rl-remove-all').show();
+        } else {
+            $('.rl-remove-all').hide();
+	}
+    };
+
     RequestList.prototype.setUpList = function() {
 	if (!this.cookie("list_contents")) {
 	    this.setList([]);
@@ -226,6 +241,7 @@
 	    
 	this.updateButtonState();
 	this.showListCount();
+        this.showRemoveAllButton();
     };
 
     exports.RequestList = RequestList;
