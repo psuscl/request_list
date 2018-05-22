@@ -10,7 +10,7 @@ module HarvardAeon
       mapped.ext(:location).name = repo_field_for(repository, 'Location')
       mapped.ext(:hollis).id = hollis_number_for(resource_json)
       mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])
-      mapped.ext(:access_restrictions).name = access_restrictions_for(resource_json)
+      mapped.ext(:access_restrictions).name = process_mixed_content(access_restrictions_for(resource_json))
 
       containers_for(item).map do |c|
         mapped.container.multi.select {|m| m.uri == c['uri']}.map do |m|

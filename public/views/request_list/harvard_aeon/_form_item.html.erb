@@ -14,7 +14,7 @@
   <% r.each {|name, value| %>
     <tr>
       <td style="padding: 2px;"><%= name.gsub(/_.+$/, '') %></td>
-      <td style="padding: 2px;"><%= value %></td>
+      <td style="padding: 2px;"><%= value.html_safe %></td>
     </tr>
   <% } %>
 <% } %>
