@@ -1,33 +1,40 @@
 <% @item_count ||= 0; @item_count += 1 %>
+<% is_resource = item.type == Resource %>
 
-<div style="width: 90%;">
-  <div class="pull-left" style="width: 40px; display: inline-block;">
-    <div style="text-align: center;">
+<table class="rl-ha-item-table">
+  <tr>
+    <td rowspan="<%= is_resource ? 2 : 3 %>" width="40px">
       <h3><%= @item_count %></h3>
-    </div>
-  </div>
+    </td>
 
-  <div style="display: inline-block;">
+    <% unless is_resource %>
+      <td width="1%">
+        Record:
+      </td>
+      <td class="rl-display rl-display-record">
+        <a href="<%= app_prefix(item.record.uri) %>">  <%== item.record.name %></a>
+      </td>
+  </tr>
 
-      <% unless item.type == Resource %>
-        <div class="rl-display rl-display-record">
-          Record:
-          <a href="<%= app_prefix(item.record.uri) %>">  <%== item.record.name %></a>
-        </div>
-      <% end %>
+  <tr>
+    <% end %>
+    <td width="1%">
+      Collection:
+    </td>
+    <td class="rl-display rl-display-collection">
+      <a href="<%= app_prefix(item.collection.uri) %>">  <%== item.collection.name %></a>
+    </td>
+  </tr>
 
-      <div class="rl-display rl-display-collection">
-        Collection:
-        <a href="<%= app_prefix(item.collection.uri) %>">  <%== item.collection.name %></a>
-      </div>
-
-      <div class="rl-display rl-display-repository">
-        Repository:
-        <a href="<%= app_prefix(item.repository.uri) %>">  <%== item.repository.name %></a>
-      </div>
-
-  </div>
-</div>
+  <tr>
+    <td>
+      Repository:
+    </td>
+    <td class="rl-display rl-display-repository">
+      <a href="<%= app_prefix(item.repository.uri) %>">  <%== item.repository.name %></a>
+    </td>
+  </tr>
+</table>
 
 <%#
 Line 1: Item Title, Date, Top Container Type and ID, Child Container Type and ID, Item ID, Extent Number and Type
