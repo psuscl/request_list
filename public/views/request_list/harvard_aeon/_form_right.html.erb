@@ -25,12 +25,12 @@
 <div class="col-sm-12 request-list-additional-fields">
 <div class="row"><br/></div>
 
-<div class="rl-options-form" id="readingroom-options-form">
+<div class="rl-options-form" id="readingroom-options-form" data-request-type="readingroom">
 
   <div class="form-group">
     <label class="control-label">Date</label>
     <div class="input-group datepicker rl-datepicker">
-      <input class="date-field form-control"
+      <input class="date-field form-control rl-ha-list-input"
              data-format="yyyy-mm-dd"
              data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
              data-date-start-date="<%= Date.today.strftime('%Y-%m-%d') %>"
@@ -43,17 +43,17 @@
 
   <div class="form-group">
     <label class="control-label">Notes</label>
-    <textarea name="Notes" rows="4" class="form-control"></textarea>
+    <textarea name="Notes" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
   </div>
 
   <div class="form-group">
     <label class="control-label">Questions</label>
-    <textarea name="SpecialRequest" rows="4" class="form-control"></textarea>
+    <textarea name="SpecialRequest" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
   </div>
 
 </div>
 
-<div class="rl-options-form" id="photoduplication-options-form">
+<div class="rl-options-form" id="photoduplication-options-form" data-request-type="photoduplication">
   <div class="form-group">
     <select name="Format" class="form-control">
       <option value="">Select a format ...</option>
@@ -82,12 +82,12 @@
 
   <div class="form-group">
     <label class="control-label">Note</label>
-    <textarea name="Notes" rows="4" class="form-control"></textarea>
+    <textarea name="Notes" rows="4" class="form-control" maxlength="255"></textarea>
   </div>
 
   <div class="form-group">
     <label class="control-label">Photoduplication Instructions</label>
-    <textarea name="SpecialRequest" rows="4" class="form-control"></textarea>
+    <textarea name="SpecialRequest" rows="4" class="form-control" maxlength="255"></textarea>
   </div>
 
 </div>
@@ -146,6 +146,14 @@
         form.find("input").val("");
       });
     }
+  });
+
+
+  $('.rl-ha-list-input').on('change keyup paste', function() {
+    $('.rl-ha-form-' + $(this).parents('.rl-options-form')
+                              .data('request-type'))
+                              .find('[name^="' + $(this).attr('name') + '_"]')
+                              .attr('placeholder', $(this).val());
   });
 
 </script>
