@@ -1,7 +1,11 @@
 <% @item_count ||= 0; @item_count += 1 %>
 <% is_resource = item.type == Resource %>
 
-<table class="rl-ha-item-table">
+<div class="rl-item-display">
+
+<%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
+
+<table class="rl-item-table">
   <tr>
     <td rowspan="<%= is_resource ? 2 : 3 %>" width="40px">
       <h3><%= @item_count %></h3>
@@ -35,6 +39,10 @@
     </td>
   </tr>
 </table>
+
+<%= render partial: 'request_list/expand_item_button', locals: {:item => item } %>
+
+</div>
 
 <%#
 Line 1: Item Title, Date, Top Container Type and ID, Child Container Type and ID, Item ID, Extent Number and Type

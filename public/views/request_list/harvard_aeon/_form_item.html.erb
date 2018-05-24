@@ -6,15 +6,46 @@
 
 <div>
 
-<table class="table table-striped">
+<table class="table table-striped rl-ha-item-form-table">
 <% item.each {|r| %>
   <tr style="height: 30px;">
   </tr>
 
+  <tr class="rl-ha-form-readingroom">
+    <td>Date</td>
+    <td>
+      <div class="input-group datepicker rl-datepicker">
+        <input class="date-field form-control"
+               data-format="yyyy-mm-dd"
+               data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
+               data-date-start-date="<%= Date.today.strftime('%Y-%m-%d') %>"
+               data-autoclose="true"
+               data-force-parse="true"
+               placeholder="YYYY-MM-DD"
+               name="ScheduledDate_<%= r['Request'] %>">
+      </div>
+    </td>
+  </tr>
+
+  <tr class="rl-ha-form-readingroom">
+    <td>Notes</td>
+    <td>
+      <textarea class="form-control" style="resize: none;" name="Notes_<%= r['Request'] %>" rows="3"></textarea>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-form-readingroom">
+    <td>Questions</td>
+    <td>
+      <textarea class="form-control" style="resize: none;" name="SpecialRequest_<%= r['Request'] %>" rows="3"></textarea>
+    </td>
+  <tr>
+
   <% r.each {|name, value| %>
+    <% next if name == 'Request' %>
     <tr>
-      <td style="padding: 2px;"><%= name.gsub(/_.+$/, '') %></td>
-      <td style="padding: 2px;"><%= value.html_safe %></td>
+      <td><%= name.gsub(/_.+$/, '') %></td>
+      <td><%= value.html_safe %></td>
     </tr>
   <% } %>
 <% } %>

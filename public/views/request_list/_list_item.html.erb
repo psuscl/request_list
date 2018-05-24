@@ -1,10 +1,4 @@
-<div class="recordrow rl-list-item"
-     style="clear:both"
-     title="<%= t('plugin.request_list.item_expand_message')  %>"
-     data-uri="<%= item.uri %>"
-     onclick="request_list.toggleItemExpand(this);">
-
-  <%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
+<div class="rl-list-item" data-uri="<%= item.uri %>">
 
   <%= render partial: "request_list/item_display", locals: {:form => form, :item => item } %>
 

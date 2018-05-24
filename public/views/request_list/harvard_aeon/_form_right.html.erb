@@ -28,7 +28,8 @@
 <div class="rl-options-form" id="readingroom-options-form">
 
   <div class="form-group">
-    <div class="input-group datepicker">
+    <label class="control-label">Date</label>
+    <div class="input-group datepicker rl-datepicker">
       <input class="date-field form-control"
              data-format="yyyy-mm-dd"
              data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
@@ -39,6 +40,17 @@
              name="ScheduledDate">
     </div>
   </div>
+
+  <div class="form-group">
+    <label class="control-label">Notes</label>
+    <textarea name="Notes" rows="4" class="form-control"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Questions</label>
+    <textarea name="SpecialRequest" rows="4" class="form-control"></textarea>
+  </div>
+
 </div>
 
 <div class="rl-options-form" id="photoduplication-options-form">

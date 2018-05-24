@@ -56,11 +56,18 @@
     RequestList.prototype.toggleItemExpand = function(item) {
 	var item_form = $(item).children('.request-list-item-form')
 	if (item_form.is(':visible')) {
-	    item_form.slideUp();
+	    item_form.slideUp(function() {
+	        $(this).parent().find('.rl-expand-item-button').find('i')
+		       .removeClass('fa-angle-up').addClass('fa-angle-down');
+	    });
 	    $(item).css('background', '');
 	} else {
 	    $(item).css('background', '#f2f2f2');
-	    item_form.slideDown();
+	    item_form.slideDown(function() {
+		var expandButton = $(this).parent().find('.rl-expand-item-button');
+	        expandButton.find('i').removeClass('fa-angle-down').addClass('fa-angle-up');
+		expandButton.show();
+	    });
 	}
     };
 
@@ -164,7 +171,7 @@
 
     RequestList.prototype.removeFromListButtonClick = function(button) {
 	this.removeFromList($(button).data('uri'));
-	this.removeFromForm($(button).parent());
+	this.removeFromForm($(button).parents('.rl-list-item'));
     };
 
     RequestList.prototype.removeFromForm = function(item) {
@@ -255,10 +262,17 @@ window.onpageshow = function(event) {
   }
 }
 
-// trying to get the list deleted when leaving - not working
-// this works, but does it on every page load
-//window.onunload = function(event) {
-//    window.request_list.setList([]);
-//};
-
-
+$(function() {
+    $('.rl-list-item').hover(
+        function() {
+	    $(this).find('.rl-expand-item-button').show();
+	    return true;
+	},
+	function() {
+	    var itemForm = $(this).find('.request-list-item-form');
+	    if (itemForm.is(':hidden') || itemForm.is(':animated')) {
+		$(this).find('.rl-expand-item-button').hide();
+	    }
+            return true;
+	}
+)});

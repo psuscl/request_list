@@ -1,6 +1,11 @@
+.rl-list-item {
+  position: relative;
+  margin: 4px 2px 12px 2px;
+  padding: 3px 3px 6px 3px;
+}
+
 .rl-list-item:hover {
   background: #f2f2f2;
-  cursor: pointer;
 }
 
 .request-list-item-form {
@@ -19,6 +24,13 @@
   color: #c2c2c2;
 }
 
+.rl-expand-item-button {
+  display: none;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+}
+
 .request-list-type-select {
 }
 
@@ -27,8 +39,10 @@
 }
 
 #rl-list-pane {
-  overflow-y: scroll;
-  height: 600px;
+  overflow-y: auto;
+  min-height:100px;
+  max-height:600px;
+  height: auto;
   resize: vertical;
   padding: 10px;
   margin: 10px 1px 25px 1px;
@@ -56,11 +70,23 @@
   border-radius: 3px;
 }
 
-.rl-ha-item-table {
+.rl-item-display {
+  position: relative;
+}
+
+.rl-item-table {
   width: 95%;
   padding: 5px;
 }
 
-.rl-ha-item-table, td {
+.rl-item-table, td {
   padding: 2px;
+}
+
+.rl-datepicker {
+  width: 200px;
+}
+
+.rl-ha-item-form-table, td {
+  padding: 2px !important;
 }
