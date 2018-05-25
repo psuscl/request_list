@@ -6,6 +6,7 @@ module HarvardAeon
     include ManipulateNode
 
     def map_extensions(mapped, item, repository, resource, resource_json)
+      mapped.record.name = mapped.record.name.split(',').uniq.join(',')
       mapped.ext(:site).name = repo_field_for(repository, 'Site')
       mapped.ext(:location).name = repo_field_for(repository, 'Location')
       mapped.ext(:hollis).id = hollis_number_for(resource_json)

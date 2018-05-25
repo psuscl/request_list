@@ -59,7 +59,7 @@ class RequestListItemMapper
     mapped.repository.set(repository['name'], repository['repo_code'], repository['uri'])
 
     mapped.collection.set(strip_mixed_content(resource['title']), resource['identifier'], resource['uri'])
-    item['_resolved_ancestors'].values.flatten.map do |a|
+    (item['_resolved_ancestors'] || {}).values.flatten.map do |a|
       mapped.collection.add.set(a['title'], [0,1,2,3].map {|n| a["id_#{n}"]}.join('-'), a['uri'])
     end
 
