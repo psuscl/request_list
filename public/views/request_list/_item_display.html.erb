@@ -27,6 +27,9 @@
     </td>
     <td class="rl-display rl-display-collection">
       <a href="<%= app_prefix(item.collection.uri) %>">  <%== item.collection.name %></a>
+      <% item.collection.multi.drop(1).map do |c| %>
+        >> <a href="<%= app_prefix(c.uri) %>">  <%== c.name %></a>
+      <% end %>
     </td>
   </tr>
 

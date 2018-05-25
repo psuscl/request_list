@@ -11,7 +11,9 @@ class RequestListController <  ApplicationController
     results = archivesspace.search_records(uris, {'resolve[]' => ['repository:id',
                                                                   'resource:id',
                                                                   'top_container_uri_u_sstr:id',
-                                                                  'collection_uri_u_sstr:id']})
+                                                                  'collection_uri_u_sstr:id',
+                                                                  'ancestors:id@compact_resource',
+                                                                 ]})
     @mapper = RequestList.new(results.records)
   end
 end
