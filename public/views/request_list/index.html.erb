@@ -8,7 +8,7 @@
 
 <div id="rl-handler-<%= handler.id %>">
 
-<%= form_tag handler.url, :target => (handler.list_opts.fetch(:form_target, '_self')) do |f| %>
+<%= form_tag handler.url, :class => 'rl-form', :target => (handler.list_opts.fetch(:form_target, '_self')) do |f| %>
 
 <div class="row">
   <div>
