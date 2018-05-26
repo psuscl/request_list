@@ -24,6 +24,21 @@
     <div class="row">
       <div class="col-sm-12">
 
+        <div class="btn-group rl-sort-buttons pull-right">
+          <% handler.sort_fields.each do |k,v| %>
+            <a class="btn btn-default rl-sort-button"
+               title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
+               data-key="<%= k %>"
+               data-title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
+               onclick="request_list.sortButtonClick(this, '<%= k %>');"
+               href="javascript:void(0);">
+
+              <i class="fa fa-sort"></i>
+              <%= t("plugin.request_list.sort_#{k}") %>
+            </a>
+          <% end %>
+        </div>
+
         <div id="rl-list-pane" class="rl-list">
           <% unhandled_items = handler.each_item_map do |item| %>
             <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :handler => handler, :include_form => true} %>

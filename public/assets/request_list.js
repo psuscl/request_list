@@ -81,13 +81,13 @@
 	});
     };
 
-    RequestList.prototype._sortListByInput = function(inputName, reverse) {
+    RequestList.prototype._sortList = function(field, reverse) {
 	var $list = $('.rl-list');
 	var $items = $list.children('.rl-list-item');
 
 	$items.sort(function(a, b) {
-		var ia = $(reverse ? b : a).find('input[name^=' + inputName + '_]').val();
-		var ib = $(reverse ? a : b).find('input[name^=' + inputName + '_]').val();
+		var ia = $(reverse ? b : a).data('sort-' + field);
+		var ib = $(reverse ? a : b).data('sort-' + field);
 		if (ia < ib) { return -1 }
 		if (ia > ib) { return 1 }
 		return 0;
@@ -96,12 +96,12 @@
 	$items.detach().appendTo($list);
     };
 
-    RequestList.prototype.sortListByInput = function(inputName) {
-	this._sortListByInput(inputName, false);
+    RequestList.prototype.sortList = function(field) {
+	this._sortList(field, false);
     };
 
-    RequestList.prototype.reverseSortListByInput = function(inputName) {
-	this._sortListByInput(inputName, true);
+    RequestList.prototype.reverseSortList = function(field) {
+	this._sortList(field, true);
     };
 
     RequestList.prototype.sortStates = function() {
@@ -112,7 +112,7 @@
 	};
     };
 
-    RequestList.prototype.sortButtonClick = function(button, name, field) {
+    RequestList.prototype.sortButtonClick = function(button, field) {
 	var icon = $(button).children('i');
 	var allButtonIcons = $('.rl-sort-button').children('i');
 	var states = this.sortStates();
@@ -129,13 +129,13 @@
 	if (icon.hasClass('fa-sort')) {
 	    this.originalListOrder();
 	} else if (icon.hasClass('fa-sort-down')) {
-	    this.sortListByInput(field);
+	    this.sortList(field);
 	    icon.parent().css('background', '#f2f2f2');
 	    $(button).attr('title', 'Sorted A-Z')
 	    $(button).css('font-weight', 'bold');
             $('.rl-display-' + $(button).data('key')).css('background', '#f2f2f2');
 	} else {
-	    this.reverseSortListByInput(field);
+	    this.reverseSortList(field);
 	    icon.parent().css('background', '#f2f2f2');
 	    $(button).attr('title', 'Sorted Z-A')
 	    $(button).css('font-weight', 'bold');

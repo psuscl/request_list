@@ -61,16 +61,6 @@ class RequestList
   end
 
 
-  def self.sort_fields
-    #FIXME: get this out of here and not dependent on harvard_aeon form fields
-    {
-      'record' => 'ItemSubTitle',
-      'collection' => 'ItemTitle',
-      'repository' => 'Site',
-    }
-  end
-
-
   def initialize(records)
     raise 'Call RequestList.init(config) before trying to instantiate.' unless @@init
 

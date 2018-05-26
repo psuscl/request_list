@@ -7,9 +7,18 @@ class RequestListMapper
     @opts = opts
   end
 
+
   def form_fields
     # implement in subclass
     {}
   end
 
+
+  def sort_fields
+    {
+      'record'     => proc {|mapped| mapped.record.name},
+      'collection' => proc {|mapped| mapped.collection.name},
+      'repository' => proc {|mapped| mapped.repository.name},
+    }
+  end
 end

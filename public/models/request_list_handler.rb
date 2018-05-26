@@ -34,6 +34,11 @@ class RequestListHandler
   end
 
 
+  def sort_fields
+    @list_mapper.sort_fields
+  end
+
+
   def each_item_map
     @items.each do |item|
       mapper = item_mapper_for(item)

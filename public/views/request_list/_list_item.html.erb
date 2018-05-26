@@ -1,4 +1,8 @@
-<div class="rl-list-item" data-uri="<%= item.uri %>">
+<div class="rl-list-item" data-uri="<%= item.uri %>"
+<% handler.sort_fields.each do |field, val_proc| %>
+  data-sort-<%= field %>="<%= val_proc.call(item).gsub(/"/, '') %>"
+<% end %>
+>
 
   <%= render partial: "request_list/item_display", locals: {:form => form, :item => item } %>
 
