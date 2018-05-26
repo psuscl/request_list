@@ -7,7 +7,7 @@
 
 <table class="rl-item-table">
   <tr>
-    <td rowspan="<%= is_record ? 4 : 3 %>" width="40px">
+    <td class="rl-display rl-display-left" rowspan="<%= is_record ? 4 : 3 %>" width="30px">
       <h3><%= @item_count %></h3>
     </td>
 
@@ -17,11 +17,18 @@
     <td width="1%">
       <%= t('plugin.request_list.' + title_label) %>:
     </td>
+
     <td class="rl-display rl-display-<%= title_label %>">
       <span class="rl-display-title">
-        <a href="<%= app_prefix(title_attr.uri) %>">  <%= title_attr.id + ': ' unless title_attr.id.empty? %><%= title_attr.name %></a>
+        <a href="<%= app_prefix(title_attr.uri) %>"><%= title_attr.name %></a>
       </span>
+
+      <% unless title_attr.id.empty? %>
+        <span class="rl-display rl-display-id"><%= title_attr.id %></span>
+      <% end %>
+
       <%= ('(' + item.extent.name + ')') unless item.extent.name.empty? %>
+
     </td>
   </tr>
 
@@ -31,9 +38,18 @@
         <%= t('plugin.request_list.collection') %>:
       </td>
       <td class="rl-display rl-display-collection <%= is_record ? '' : 'rl-display-title'  %>">
-        <a href="<%= app_prefix(item.collection.uri) %>">  <%= item.collection.id %>: <%= item.collection.name %></a>
+        <a href="<%= app_prefix(item.collection.uri) %>"><%= item.collection.name %></a>
+
+        <% unless item.collection.id.empty? %>
+          <span class="rl-display rl-display-id"><%= item.collection.id %></span>
+        <% end %>
+
         <% item.collection.multi.drop(1).map do |c| %>
-          >> <a href="<%= app_prefix(c.uri) %>">  <%= c.name %></a>
+          >> <a href="<%= app_prefix(c.uri) %>"><%= c.name %></a>
+
+          <% unless c.id.empty? %>
+            <span class="rl-display rl-display-id"><%= c.id %></span>
+          <% end %>
         <% end %>
         <%= ('(' + item.extent.name + ')') if !is_record && !item.extent.name.empty? %>
       </td>
