@@ -62,11 +62,11 @@ class RequestList
 
 
   def self.sort_fields
+    #FIXME: get this out of here and not dependent on harvard_aeon form fields
     {
-      'repository' => 'Site',
-      'collection' => 'ItemTitle',
       'record' => 'ItemSubTitle',
-      'creator' => 'ItemAuthor',
+      'collection' => 'ItemTitle',
+      'repository' => 'Site',
     }
   end
 
