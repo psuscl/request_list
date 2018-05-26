@@ -11,35 +11,38 @@
       <h3><%= @item_count %></h3>
     </td>
 
-    <% unless is_resource %>
-      <td width="1%">
-        Record:
-      </td>
-      <td class="rl-display rl-display-record">
-        <span class="rl-display-title">
-          <a href="<%= app_prefix(item.record.uri) %>">  <%= item.record.id + ': ' unless item.record.id.empty? %><%= item.record.name %></a>
-        </span>
-        <%= ('(' + item.extent.name + ')') unless item.extent.name.empty? %>
-      </td>
+    <% title_attr = is_resource ? item.collection : item.record %>
+    <% title_label = is_resource ? 'collection' : 'record' %>
+
+    <td width="1%">
+      <%= t('plugin.request_list.' + title_label) %>:
+    </td>
+    <td class="rl-display rl-display-<%= title_label %>">
+      <span class="rl-display-title">
+        <a href="<%= app_prefix(title_attr.uri) %>">  <%= title_attr.id + ': ' unless title_attr.id.empty? %><%= title_attr.name %></a>
+      </span>
+      <%= ('(' + item.extent.name + ')') unless item.extent.name.empty? %>
+    </td>
   </tr>
 
-  <tr>
-    <% end %>
-    <td width="1%">
-      Collection:
-    </td>
-    <td class="rl-display rl-display-collection <%= is_resource ? 'rl-display-title' : ''  %>">
-      <a href="<%= app_prefix(item.collection.uri) %>">  <%= item.collection.id %>: <%= item.collection.name %></a>
-      <% item.collection.multi.drop(1).map do |c| %>
-        >> <a href="<%= app_prefix(c.uri) %>">  <%= c.name %></a>
-      <% end %>
-      <%= ('(' + item.extent.name + ')') if is_resource && !item.extent.name.empty? %>
-    </td>
-  </tr>
+  <% unless is_resource %>
+    <tr>
+      <td width="1%">
+        <%= t('plugin.request_list.collection') %>:
+      </td>
+      <td class="rl-display rl-display-collection <%= is_resource ? 'rl-display-title' : ''  %>">
+        <a href="<%= app_prefix(item.collection.uri) %>">  <%= item.collection.id %>: <%= item.collection.name %></a>
+        <% item.collection.multi.drop(1).map do |c| %>
+          >> <a href="<%= app_prefix(c.uri) %>">  <%= c.name %></a>
+        <% end %>
+        <%= ('(' + item.extent.name + ')') if is_resource && !item.extent.name.empty? %>
+      </td>
+    </tr>
+  <% end %>
 
   <tr>
     <td>
-      Repository:
+      <%= t('plugin.request_list.repository') %>:
     </td>
     <td class="rl-display rl-display-repository">
       <a href="<%= app_prefix(item.repository.uri) %>">  <%= item.repository.name %></a>
