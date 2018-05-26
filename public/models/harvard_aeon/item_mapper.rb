@@ -63,14 +63,6 @@ module HarvardAeon
     end
 
 
-    def containers_for(item)
-      (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.flatten.compact
-        .map {|tc| tc['sub_containers'] = item['json']['instances']
-          .select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
-          .map {|i| i['sub_container']}.select {|sc| sc['top_container']['ref'] == tc['uri']}; tc}
-    end
-
-
     def with_mapped_container(mapped, item_map, container)
       item_map.merge({
         'ItemVolume'  => container.name,

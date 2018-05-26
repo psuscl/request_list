@@ -107,6 +107,8 @@ class RequestListItemMapper
 
 
   def containers_for(item)
+    return [item] if item.class == Container
+
     (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.flatten.compact
       .map {|tc| tc['sub_containers'] = item['json']['instances']
         .select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
