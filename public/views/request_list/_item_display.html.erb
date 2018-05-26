@@ -15,8 +15,11 @@
       <td width="1%">
         Record:
       </td>
-      <td class="rl-display rl-display-record rl-display-title">
-        <a href="<%= app_prefix(item.record.uri) %>">  <%= item.record.name %></a>
+      <td class="rl-display rl-display-record">
+        <span class="rl-display-title">
+          <a href="<%= app_prefix(item.record.uri) %>">  <%= item.record.id + ': ' unless item.record.id.empty? %><%= item.record.name %></a>
+        </span>
+        <%= ('(' + item.extent.name + ')') unless item.extent.name.empty? %>
       </td>
   </tr>
 
@@ -26,10 +29,11 @@
       Collection:
     </td>
     <td class="rl-display rl-display-collection <%= is_resource ? 'rl-display-title' : ''  %>">
-      <a href="<%= app_prefix(item.collection.uri) %>">  <%= item.collection.name %></a>
+      <a href="<%= app_prefix(item.collection.uri) %>">  <%= item.collection.id %>: <%= item.collection.name %></a>
       <% item.collection.multi.drop(1).map do |c| %>
         >> <a href="<%= app_prefix(c.uri) %>">  <%= c.name %></a>
       <% end %>
+      <%= ('(' + item.extent.name + ')') if is_resource && !item.extent.name.empty? %>
     </td>
   </tr>
 
@@ -52,7 +56,7 @@
           <div class="rl-display-container-cell">
             <i class="fa fa-archive"></i>
             <a href="<%= app_prefix(container.uri) %>">  <%= container.name %></a>
-            <%= ('(' + container.ext(:subs) + ')') if container.ext(:subs) %>
+            <%= ('(' + container.ext(:subs) + ')') unless container.ext(:subs).empty? %>
           </div>
         <% end %>
       </div>
@@ -65,10 +69,3 @@
 <%= render partial: 'request_list/expand_item_button', locals: {:item => item } %>
 
 </div>
-
-<%#
-Line 1: Item Title, Date, Top Container Type and ID, Child Container Type and ID, Item ID, Extent Number and Type
-Line 2: Collection Title, Collection ID, Series, Sub-Series [is it possible to provide the collection breadcrumb?]
-Line 3: Repository
-Of course, if any of the fields in line 1 and 2 do not have values, just ignore them.
-%>

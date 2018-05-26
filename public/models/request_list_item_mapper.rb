@@ -60,10 +60,10 @@ class RequestListItemMapper
 
     mapped.collection.set(strip_mixed_content(resource['title']), resource['identifier'], resource['uri'])
     (item['_resolved_ancestors'] || {}).values.flatten.map do |a|
-      mapped.collection.add.set(a['title'], [0,1,2,3].map {|n| a["id_#{n}"]}.join('-'), a['uri'])
+      mapped.collection.add.set(a['title'], (a['component_id'] || [0,1,2,3].map {|n| a["id_#{n}"]}.join('-')), a['uri'])
     end
 
-    mapped.record.set(strip_mixed_content(item['title']), item['identifier'], item['uri'])
+    mapped.record.set(strip_mixed_content(item['title']), item['component_id'], item['uri'])
 
     containers_for(item).map do |c|
       mapped.container.add.set(c['display_string'], (c['barcode_u_sstr'] || []).first, c['uri'])
