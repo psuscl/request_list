@@ -86,8 +86,8 @@
 	var $items = $list.children('.rl-list-item');
 
 	$items.sort(function(a, b) {
-		var ia = $(reverse ? b : a).data('sort-' + field);
-		var ib = $(reverse ? a : b).data('sort-' + field);
+		var ia = $(reverse ? b : a).data('sort-' + field).toLowerCase();
+		var ib = $(reverse ? a : b).data('sort-' + field).toLowerCase();
 		if (ia < ib) { return -1 }
 		if (ia > ib) { return 1 }
 		return 0;
