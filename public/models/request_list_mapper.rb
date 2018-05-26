@@ -7,8 +7,9 @@ class RequestListMapper
     @opts = opts
   end
 
-  def map
-    raise NotImplementedError.new("Subclass must implement this")
+  def form_fields
+    # implement in subclass
+    {}
   end
 
 end

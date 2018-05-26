@@ -3,7 +3,7 @@ module HarvardAeon
 
     RequestList.register_list_mapper(self, :harvard_aeon)
 
-    def map
+    def form_fields
       {
         'SystemId'              => 'ArchivesSpace',
         'ReturnLinkURL'         => AppConfig[:public_proxy_url] + '/plugin/request_list',
