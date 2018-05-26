@@ -87,6 +87,20 @@
   padding: 2px;
 }
 
+.rl-display-container-pane {
+}
+
+.rl-display-container-cell {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 2px 4px 2px 4px;
+  margin: 2px 6px 2px 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c2c2c2;
+  border-radius: 3px;
+}
+
 .rl-datepicker {
   width: 200px;
 }

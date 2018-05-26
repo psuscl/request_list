@@ -7,7 +7,7 @@
 
 <table class="rl-item-table">
   <tr>
-    <td rowspan="<%= is_resource ? 2 : 3 %>" width="40px">
+    <td rowspan="<%= is_resource ? 3 : 4 %>" width="40px">
       <h3><%= @item_count %></h3>
     </td>
 
@@ -16,7 +16,7 @@
         Record:
       </td>
       <td class="rl-display rl-display-record rl-display-title">
-        <a href="<%= app_prefix(item.record.uri) %>">  <%== item.record.name %></a>
+        <a href="<%= app_prefix(item.record.uri) %>">  <%= item.record.name %></a>
       </td>
   </tr>
 
@@ -26,9 +26,9 @@
       Collection:
     </td>
     <td class="rl-display rl-display-collection <%= is_resource ? 'rl-display-title' : ''  %>">
-      <a href="<%= app_prefix(item.collection.uri) %>">  <%== item.collection.name %></a>
+      <a href="<%= app_prefix(item.collection.uri) %>">  <%= item.collection.name %></a>
       <% item.collection.multi.drop(1).map do |c| %>
-        >> <a href="<%= app_prefix(c.uri) %>">  <%== c.name %></a>
+        >> <a href="<%= app_prefix(c.uri) %>">  <%= c.name %></a>
       <% end %>
     </td>
   </tr>
@@ -38,9 +38,28 @@
       Repository:
     </td>
     <td class="rl-display rl-display-repository">
-      <a href="<%= app_prefix(item.repository.uri) %>">  <%== item.repository.name %></a>
+      <a href="<%= app_prefix(item.repository.uri) %>">  <%= item.repository.name %></a>
     </td>
   </tr>
+
+  <tr>
+    <td>
+    </td>
+
+    <td class="rl-display rl-display-container">
+      <div class="rl-display-container-pane">
+        <% item.container.multi.map do |container| %>
+          <div class="rl-display-container-cell">
+            <i class="fa fa-archive"></i>
+            <a href="<%= app_prefix(container.uri) %>">  <%= container.name %></a>
+            <%= ('(' + container.ext(:subs) + ')') if container.ext(:subs) %>
+          </div>
+        <% end %>
+      </div>
+    </td>
+
+  </tr>
+
 </table>
 
 <%= render partial: 'request_list/expand_item_button', locals: {:item => item } %>

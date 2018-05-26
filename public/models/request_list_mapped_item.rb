@@ -43,6 +43,7 @@ class RequestListMappedItem
       @name = name || ''
       @id = id || ''
       @uri = uri || ''
+      self
     end
 
     def add(opts = {})
