@@ -14,7 +14,7 @@
     <% title_attr = is_record ? item.record : item.collection %>
     <% title_label = is_record ? 'record' : 'collection' %>
 
-    <td width="1%">
+    <td class="rl-display-label">
       <%= t('plugin.request_list.' + title_label) %>:
     </td>
 
@@ -34,7 +34,7 @@
 
   <% if is_record %>
     <tr>
-      <td width="1%">
+      <td class="rl-display-label">
         <%= t('plugin.request_list.collection') %>:
       </td>
       <td class="rl-display rl-display-collection <%= is_record ? '' : 'rl-display-title'  %>">
@@ -57,7 +57,7 @@
   <% end %>
 
   <tr>
-    <td>
+    <td class="rl-display-label">
       <%= t('plugin.request_list.repository') %>:
     </td>
     <td class="rl-display rl-display-repository">

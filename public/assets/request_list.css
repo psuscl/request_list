@@ -74,14 +74,16 @@
   font-size: 130%;
 }
 
-.rl-message-session {
-  font-size: 110%;
+.rl-message-list-options {
+  margin: 1px 1px 12px 1px;
 }
 
 .rl-message {
+  font-size: 110%;
   width: 100%;
-  background: #f2f2f2;
+  background: #effaff;
   text-align: center;
+  padding: 4px 1px 4px 1px;
   border-style: solid;
   border-width: 1px;
   border-color: #c2c2c2;
@@ -118,6 +120,13 @@
 .rl-display-left {
   background: #f2f2f2;
   text-align: center;
+}
+
+.rl-display-label {
+  text-align: right;
+  vertical-align: text-top;
+  width: 1%;
+  padding: 0px 8px 0px 8px;
 }
 
 .rl-datepicker {
