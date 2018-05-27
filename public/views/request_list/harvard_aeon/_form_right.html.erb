@@ -57,6 +57,20 @@
 
 </div>
 
+
+<div class="rl-options-form" id="saved-options-form" data-request-type="saved">
+  <div class="form-group">
+    <label class="control-label">Notes</label>
+    <textarea name="Notes" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Questions</label>
+    <textarea name="SpecialRequest" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
+  </div>
+</div>
+
+
 <div class="rl-options-form" id="photoduplication-options-form" data-request-type="photoduplication">
   <div class="form-group">
     <select name="Format" class="form-control">
@@ -137,6 +151,9 @@
     $('.rl-options-form').hide();
     if (selected.text == 'Reading room') {
       $("#readingroom-options-form").show();
+      $(".request-list-additional-fields").slideDown();
+    } else if (selected.text == 'Saved') {
+      $("#saved-options-form").show();
       $(".request-list-additional-fields").slideDown();
     } else if (selected.text == 'Photoduplication') {
       $("#photoduplication-options-form").show();
