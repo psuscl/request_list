@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group request-list-type-select">
-  <label class="control-label col-sm-5">Request Type</label>
+  <label class="control-label col-sm-5"><%= t('plugin.request_list.options.request_type') %></label>
   <div class="col-sm-7">
     <select name="request_type" id="request_type_select" class="form-control">
       <% handler.list_opts[:request_types].each do |type, values| %>
@@ -29,10 +29,10 @@
 <div class="col-sm-12 request-list-additional-fields">
 <div class="row"><br/></div>
 
-<div class="rl-options-form" id="readingroom-options-form" data-request-type="readingroom">
+<div class="rl-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
 
   <div class="form-group">
-    <label class="control-label">Date</label>
+    <label class="control-label"><%= t('plugin.request_list.options.date') %></label>
     <div class="input-group datepicker rl-datepicker">
       <input class="date-field form-control rl-ha-list-input"
              data-format="yyyy-mm-dd"
@@ -46,35 +46,35 @@
   </div>
 
   <div class="form-group">
-    <label class="control-label">Notes</label>
+    <label class="control-label"><%= t('plugin.request_list.options.notes') %></label>
     <textarea name="Notes" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Questions</label>
+    <label class="control-label"><%= t('plugin.request_list.options.questions') %></label>
     <textarea name="SpecialRequest" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
   </div>
 
 </div>
 
 
-<div class="rl-options-form" id="saved-options-form" data-request-type="saved">
+<div class="rl-options-form" id="rl-saved-options-form" data-request-type="saved">
   <div class="form-group">
-    <label class="control-label">Notes</label>
+    <label class="control-label"><%= t('plugin.request_list.options.notes') %></label>
     <textarea name="Notes" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Questions</label>
+    <label class="control-label"><%= t('plugin.request_list.options.questions') %></label>
     <textarea name="SpecialRequest" rows="4" class="form-control rl-ha-list-input" maxlength="255"></textarea>
   </div>
 </div>
 
 
-<div class="rl-options-form" id="photoduplication-options-form" data-request-type="photoduplication">
+<div class="rl-options-form" id="rl-photoduplication-options-form" data-request-type="photoduplication">
   <div class="form-group">
     <select name="Format" class="form-control">
-      <option value="">Select a format ...</option>
+      <option value=""><%= t('plugin.request_list.options.format_message') %></option>
       <% handler.list_opts[:format_options].each do |option| %>
         <option value="<%= option %>"><%= option %></option>
       <% end %>
@@ -83,7 +83,7 @@
 
   <div class="form-group">
     <select name="ShippingOption" class="form-control">
-      <option value="">Select a delivery option ...</option>
+      <option value=""><%= t('plugin.request_list.options.delivery_message') %></option>
       <% handler.list_opts[:delivery_options].each do |option| %>
         <option value="<%= option %>"><%= option %></option>
       <% end %>
@@ -92,19 +92,19 @@
 
   <div class="form-group">
     <select name="ForPublication" class="form-control">
-      <option value="">Intended for publication? ...</option>
-      <option value="Yes">Yes, intended for publication</option>
-      <option value="No">No, not intended for publication</option>
+      <option value=""><%= t('plugin.request_list.options.for_publication_message') %></option>
+      <option value="Yes"><%= t('plugin.request_list.options.for_publication_yes') %></option>
+      <option value="No"><%= t('plugin.request_list.options.for_publication_no') %></option>
     </select>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Note</label>
+    <label class="control-label"><%= t('plugin.request_list.options.notes') %></label>
     <textarea name="Notes" rows="4" class="form-control" maxlength="255"></textarea>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Photoduplication Instructions</label>
+    <label class="control-label"><%= t('plugin.request_list.options.photoduplication_instructions') %></label>
     <textarea name="SpecialRequest" rows="4" class="form-control" maxlength="255"></textarea>
   </div>
 
@@ -150,13 +150,13 @@
     }
     $('.rl-options-form').hide();
     if (selected.text == 'Reading room') {
-      $("#readingroom-options-form").show();
+      $("#rl-readingroom-options-form").show();
       $(".request-list-additional-fields").slideDown();
     } else if (selected.text == 'Saved') {
-      $("#saved-options-form").show();
+      $("#rl-saved-options-form").show();
       $(".request-list-additional-fields").slideDown();
     } else if (selected.text == 'Photoduplication') {
-      $("#photoduplication-options-form").show();
+      $("#rl-photoduplication-options-form").show();
       $(".request-list-additional-fields").slideDown();
     } else {
       $(".request-list-additional-fields").slideUp('normal', function() {

@@ -31,3 +31,14 @@ en:
       unhandled_items_title: Unhandled Items
       unhandled_items_message: The following items could not be requested. Please contact the Archives for assistance.
       sent_items_message: You sent requests for %{sent} items.
+      options:
+        request_type: Request Type
+        date: Requested for date
+        notes: Notes
+        questions: Questions
+        format_message: Select a format ...
+        delivery_message: Select a delivery option ...
+        for_publication_message: Intended for publication? ...
+        for_publication_yes: Yes, intended for publication
+        for_publication_no: No, not intended for publication
+        photoduplication_instructions: Photoduplication Instructions

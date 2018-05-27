@@ -29,7 +29,11 @@
   background-color: #fcc;
 }
 
-#photoduplication-options-form {
+#rl-photoduplication-options-form {
+  display: none;
+}
+
+#rl-saved-options-form {
   display: none;
 }
 
