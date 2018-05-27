@@ -171,10 +171,12 @@
 
 
   $('.rl-ha-list-input').on('change keyup paste', function() {
+    var srcVal = $(this).val();
+    if (srcVal.length > 20) { srcVal = srcVal.substr(0,20) + '...' }
     $('.rl-ha-form-' + $(this).parents('.rl-options-form')
                               .data('request-type'))
                               .find('[name^="' + $(this).attr('name') + '_"]')
-                              .attr('placeholder', $(this).val());
+                              .attr('placeholder', srcVal);
   });
 
 
