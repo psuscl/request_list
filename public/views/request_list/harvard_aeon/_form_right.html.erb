@@ -193,7 +193,7 @@
       var selected = this.selectedOptions[0].text;
       if (selected != '...') { selected = '(' + selected + ')' }
 
-      itemForms.find('select[name^="' + $(this).attr('name') + '_"]').children('option').first().text(selected);
+      itemForms.find('select[name^="' + $(this).attr('name') + '_"]').children('option:first-child').text(selected);
     }
   });
 
