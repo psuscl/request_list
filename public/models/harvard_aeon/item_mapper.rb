@@ -11,7 +11,8 @@ module HarvardAeon
       mapped.ext(:location).name = repo_field_for(repository, 'Location')
       mapped.ext(:hollis).id = hollis_number_for(resource_json)
       mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])
-      mapped.ext(:access_restrictions).name = process_mixed_content(access_restrictions_for(resource_json))
+      # FIXME: planning to do validation in js, so will drop the truncation
+      mapped.ext(:access_restrictions).name = strip_mixed_content(access_restrictions_for(resource_json))[0,254]
 
       containers_for(item).map do |c|
         mapped.container.multi.select {|m| m.uri == c['uri']}.map do |m|
