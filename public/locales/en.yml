@@ -36,9 +36,9 @@ en:
         date: Requested for date
         notes: Notes
         questions: Questions
-        format_message: Select a format ...
-        delivery_message: Select a delivery option ...
-        for_publication_message: Intended for publication? ...
+        format: Format
+        delivery: Delivery Option
+        for_publication: Intended for Publication?
         for_publication_yes: Yes, intended for publication
         for_publication_no: No, not intended for publication
         photoduplication_instructions: Photoduplication Instructions

@@ -4,11 +4,11 @@
 <% end %>
 >
 
-  <%= render partial: "request_list/item_display", locals: {:form => form, :item => item } %>
+  <%= render partial: "request_list/item_display", locals: {:form => form, :item => item, :handler => handler } %>
 
   <% if include_form %>
     <div class="request-list-item-form recordinfo">
-      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => item.form_fields } %>
+      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => item.form_fields, :handler => handler } %>
     </div>
   <% end %>
 

@@ -11,8 +11,8 @@
   <tr style="height: 30px;">
   </tr>
 
-  <tr class="rl-ha-form-readingroom">
-    <td>Date</td>
+  <tr class="rl-ha-item-form rl-ha-item-form-readingroom">
+    <td><%= t('plugin.request_list.options.date') %></td>
     <td>
       <div class="input-group datepicker rl-datepicker">
         <input class="date-field form-control"
@@ -27,15 +27,78 @@
     </td>
   </tr>
 
-  <tr class="rl-ha-form-readingroom">
-    <td>Notes</td>
+  <tr class="rl-ha-item-form rl-ha-item-form-readingroom">
+    <td><%= t('plugin.request_list.options.notes') %></td>
     <td>
       <textarea class="form-control" style="resize: none;" name="Notes_<%= r['Request'] %>" rows="3"></textarea>
     </td>
   <tr>
 
-  <tr class="rl-ha-form-readingroom">
-    <td>Questions</td>
+  <tr class="rl-ha-item-form rl-ha-item-form-readingroom">
+    <td><%= t('plugin.request_list.options.questions') %></td>
+    <td>
+      <textarea class="form-control" style="resize: none;" name="SpecialRequest_<%= r['Request'] %>" rows="3"></textarea>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-saved">
+    <td><%= t('plugin.request_list.options.notes') %></td>
+    <td>
+      <textarea class="form-control" style="resize: none;" name="Notes_<%= r['Request'] %>" rows="3"></textarea>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-saved">
+    <td><%= t('plugin.request_list.options.questions') %></td>
+    <td>
+      <textarea class="form-control" style="resize: none;" name="SpecialRequest_<%= r['Request'] %>" rows="3"></textarea>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-photoduplication">
+    <td><%= t('plugin.request_list.options.format') %></td>
+    <td>
+      <select name="Format_<%= r['Request'] %>" class="form-control">
+        <option value="">...</option>
+        <% handler.list_opts[:format_options].each do |option| %>
+          <option value="<%= option %>"><%= option %></option>
+        <% end %>
+      </select>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-photoduplication">
+    <td><%= t('plugin.request_list.options.delivery') %></td>
+    <td>
+      <select name="ShippingOption_<%= r['Request'] %>" class="form-control">
+        <option value="">...</option>
+        <% handler.list_opts[:delivery_options].each do |option| %>
+          <option value="<%= option %>"><%= option %></option>
+        <% end %>
+      </select>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-photoduplication">
+    <td><%= t('plugin.request_list.options.for_publication') %></td>
+    <td>
+      <select name="ForPublication_<%= r['Request'] %>" class="form-control">
+        <option value="">...</option>
+        <option value="Yes"><%= t('plugin.request_list.options.for_publication_yes') %></option>
+        <option value="No"><%= t('plugin.request_list.options.for_publication_no') %></option>
+      </select>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-photoduplication">
+    <td><%= t('plugin.request_list.options.notes') %></td>
+    <td>
+      <textarea class="form-control" style="resize: none;" name="Notes_<%= r['Request'] %>" rows="3"></textarea>
+    </td>
+  <tr>
+
+  <tr class="rl-ha-item-form rl-ha-item-form-photoduplication">
+    <td><%= t('plugin.request_list.options.photoduplication-instructions') %></td>
     <td>
       <textarea class="form-control" style="resize: none;" name="SpecialRequest_<%= r['Request'] %>" rows="3"></textarea>
     </td>

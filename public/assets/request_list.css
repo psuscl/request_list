@@ -140,3 +140,14 @@
 .rl-ha-item-form-table, td {
   padding: 2px !important;
 }
+
+.rl-ha-item-form-readingroom {
+}
+
+.rl-ha-item-form-saved {
+  display: none;
+}
+
+.rl-ha-item-form-photoduplication {
+  display: none;
+}
