@@ -147,19 +147,21 @@
 	var self = this;
 	var startListLength = self.getList().length
 
-        $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').each(function(ix, rli) {
-            self.removeFromList($(rli).data('uri'), true);
-            self.removeFromForm($(rli));
-        })
-        self.setUpList();
+        setTimeout(function() {
+            $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').each(function(ix, rli) {
+                self.removeFromList($(rli).data('uri'), true);
+                self.removeFromForm($(rli));
+            })
+            self.setUpList();
 
-	var itemsSent = startListLength - self.getList().length;
+	    var itemsSent = startListLength - self.getList().length;
 
-	if (itemsSent > 0) {
-	    // seems we need to cover 2 cases here - whether the submit button's target tab is open yet ... sigh
-	    setTimeout(function() { location.replace(location.href + '?sent=' + itemsSent); }, 1000);
-	    location.replace(location.href + '?sent=' + itemsSent);
-	}
+	    if (itemsSent > 0) {
+	        // seems we need to cover 2 cases here - whether the submit button's target tab is open yet ... sigh
+	        setTimeout(function() { location.replace(location.href + '?sent=' + itemsSent); }, 1000);
+	        location.replace(location.href + '?sent=' + itemsSent);
+	    }
+	}, 100);
 
 	return true;
     };
