@@ -22,7 +22,7 @@
   border-radius: 3px;
 }
 
-.request-list-item-form {
+.rl-item-form {
   display: none;
 }
 
@@ -39,7 +39,27 @@
 }
 
 .rl-remove-from-list-button {
+  width: 22px;
+  height: 24px;
+  margin: 1px 1px 3px 1px;
+  text-align: center;
   color: #c2c2c2;
+  padding-left: 7px;
+  font-size: 12;
+}
+
+.rl-edited-indicator {
+  display: none;
+  width: 22px;
+  height: 24px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c2c2c2;
+  border-radius: 3px;
+  background: #effffa;
+  margin: 3px 1px 6px 1px; 
+  text-align: center;
+  padding-top: 2px;
 }
 
 .rl-expand-item-button {
@@ -97,6 +117,7 @@
 
 .rl-item-display {
   position: relative;
+  min-height: 85px;
 }
 
 .rl-item-table {

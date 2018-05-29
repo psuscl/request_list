@@ -197,6 +197,15 @@
     }
   });
 
+  $('.rl-ha-item-input').on('change keyup paste', function() {
+    var allInputs = $(this).parents('.rl-ha-item-form-table').find('.rl-ha-item-input');
+    if (allInputs.filter(function() { return $(this).val() != ''}).length > 0) {
+      $(this).parents('.rl-list-item').find('.rl-edited-indicator').show();
+    } else {
+      $(this).parents('.rl-list-item').find('.rl-edited-indicator').hide();
+    }
+  });
+
 
 //  $('#rl-handler-<%= handler.id %>').find('.rl-form').submit(function(e) {
 //    e.preventDefault();

@@ -10,6 +10,7 @@ en:
       expand_item_button_label: Options
       expand_item_button_message: Set options for this item
       item_expand_message: Click to show and hide item detail
+      edited_indicator_message: Options have been set for this item
       sort_button_label: Sort
       sort_repository: Repository
       sort_collection: Collection

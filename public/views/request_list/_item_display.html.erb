@@ -3,7 +3,13 @@
 
 <div class="rl-item-display">
 
-<%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
+<div class="pull-right">
+  <%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
+
+  <div class="rl-edited-indicator" title="<%= t('plugin.request_list.edited_indicator_message') %>">
+    <i class="fa fa-edit"></i>
+  </div>
+</div>
 
 <table class="rl-item-table">
   <tr>

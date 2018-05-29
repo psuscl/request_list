@@ -54,7 +54,7 @@
     };
 
     RequestList.prototype.toggleItemExpand = function(item) {
-	var item_form = $(item).children('.request-list-item-form')
+	var item_form = $(item).children('.rl-item-form')
 	if (item_form.is(':visible')) {
 	    item_form.slideUp(function() {
 	        $(this).parent().find('.rl-expand-item-button').find('i')
@@ -271,7 +271,7 @@ $(function() {
 	    return true;
 	},
 	function() {
-	    var itemForm = $(this).find('.request-list-item-form');
+	    var itemForm = $(this).find('.rl-item-form');
 	    if (itemForm.is(':hidden') || itemForm.is(':animated')) {
 		$(this).find('.rl-expand-item-button').hide();
 	    }
