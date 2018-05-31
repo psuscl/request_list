@@ -8,8 +8,12 @@ module HarvardAeon
         'SystemId'              => 'ArchivesSpace',
         'ReturnLinkURL'         => AppConfig[:public_proxy_url] + '/plugin/request_list',
         'ReturnLinkSystemName'  => @opts[:return_link_label],
+        'AeonForm'              => 'EADRequest',
+        'WebRequestForm'        => 'DefaultRequest',
+        'DocumentType'          => 'Default',
         'RequestType'           => 'Loan',
         'UserReview'            => 'No',
+        'SubmitButton'          => 'Submit Request',
       }
     end
 
