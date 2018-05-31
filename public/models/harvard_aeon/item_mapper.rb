@@ -66,7 +66,7 @@ module HarvardAeon
 
     def with_mapped_container(mapped, item_map, container)
       item_map.merge({
-        'ItemVolume'  => container.name,
+        'ItemVolume'  => container.name.sub(/ \[\.+\]$/, ''),
         'ItemNumber'  => container.id,
         'ItemIssue'   => [mapped.record.id, container.ext(:indicator)].compact.select{|i| !i.empty?}.join(': '),
         'ItemInfo5'   => container.ext(:location)
