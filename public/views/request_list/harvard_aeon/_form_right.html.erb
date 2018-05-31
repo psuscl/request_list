@@ -35,12 +35,12 @@
     <label class="control-label col-sm-5"><%= t('plugin.request_list.options.date') %></label>
     <div class="input-group datepicker rl-datepicker col-sm-7">
       <input class="date-field form-control rl-ha-list-input"
-             data-format="yyyy-mm-dd"
-             data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
-             data-date-start-date="<%= Date.today.strftime('%Y-%m-%d') %>"
+             data-format="mm/dd/yyyy"
+             data-date="<%= Date.today.strftime('%m/%d/%Y') %>"
+             data-date-start-date="<%= Date.today.strftime('%m/%d/%Y') %>"
              data-autoclose="true"
              data-force-parse="true"
-             placeholder="YYYY-MM-DD"
+             placeholder="MM/DD/YYYY"
              name="ScheduledDate">
     </div>
   </div>

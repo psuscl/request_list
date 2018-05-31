@@ -16,12 +16,12 @@
     <td>
       <div class="input-group datepicker rl-datepicker">
         <input class="date-field form-control rl-ha-item-input"
-               data-format="yyyy-mm-dd"
-               data-date="<%= Date.today.strftime('%Y-%m-%d') %>"
-               data-date-start-date="<%= Date.today.strftime('%Y-%m-%d') %>"
+               data-format="mm/dd/yyyy"
+               data-date="<%= Date.today.strftime('%m/%d/%Y') %>"
+               data-date-start-date="<%= Date.today.strftime('%m/%d/%Y') %>"
                data-autoclose="true"
                data-force-parse="true"
-               placeholder="YYYY-MM-DD"
+               placeholder="MM/DD/YYYY"
                name="ScheduledDate_<%= r['Request'] %>">
       </div>
     </td>
