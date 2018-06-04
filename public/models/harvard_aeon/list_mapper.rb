@@ -14,6 +14,25 @@ module HarvardAeon
         'RequestType'           => 'Loan',
         'UserReview'            => 'No',
         'SubmitButton'          => 'Submit Request',
+
+        'GroupRequestsByLocation'       => 'Yes',
+        'GroupingIdentifier'            => 'gid',
+        'GroupingOption_Site'           => 'FirstValue',
+        'GroupingOption_ItemInfo2'      => 'FirstValue',
+        'GroupingOption_ItemTitle'      => 'FirstValue',
+        'GroupingOption_ItemSubTitle'   => 'Concatenate',
+        'GroupingOption_ItemAuthor'     => 'FirstValue',
+        'GroupingOption_ItemDate'       => 'Concatenate',
+        'GroupingOption_Location'       => 'FirstValue',
+        'GroupingOption_SubLocation'    => 'FirstValue',
+        'GroupingOption_ItemInfo3'      => 'FirstValue',
+        'GroupingOption_CallNumber'     => 'FirstValue',
+        'GroupingOption_ItemPlace'      => 'FirstValue',
+        'GroupingOption_ItemIssue'      => 'Concatenate',
+        'GroupingOption_ItemVolume'     => 'FirstValue',
+        'GroupingOption_ItemNumber'     => 'FirstValue',
+        'GroupingOption_ItemIssue'      => 'FirstValue',
+        'GroupingOption_ItemInfo5'      => 'FirstValue',
       }
     end
 
