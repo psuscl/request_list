@@ -11,6 +11,10 @@ en:
       expand_item_button_message: Set options for this item
       item_expand_message: Click to show and hide item detail
       edited_indicator_message: Options have been set for this item
+      select_all_title: Select All Items
+      select_all_button_label: All
+      select_none_title: Select No Items
+      select_none_button_label: None
       sort_button_label: Sort
       sort_repository: Repository
       sort_collection: Collection

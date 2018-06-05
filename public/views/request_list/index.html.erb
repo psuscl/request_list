@@ -24,6 +24,30 @@
     <div class="row">
       <div class="col-sm-12">
 
+        <div class="btn-group rl-select-buttons pull-left">
+
+            <a class="btn btn-default rl-select-all-button"
+               title="<%= t('plugin.request_list.select_all_title') %>"
+               data-title="<%= t('plugin.request_list.select_all_title') %>"
+               onclick="request_list.selectAllButtonClick();"
+               href="javascript:void(0);">
+
+              <i class="fa fa-check rl-all-selected"></i>
+              <%= t("plugin.request_list.select_all_button_label") %>
+            </a>
+
+            <a class="btn btn-default rl-select-none-button"
+               title="<%= t('plugin.request_list.select_none_title') %>"
+               data-title="<%= t('plugin.request_list.select_none_title') %>"
+               onclick="request_list.selectNoneButtonClick();"
+               href="javascript:void(0);">
+
+              <i class="fa fa-minus rl-none-selected"></i>
+              <%= t("plugin.request_list.select_none_button_label") %>
+            </a>
+
+        </div>
+
         <div class="btn-group rl-sort-buttons pull-right">
           <% handler.sort_fields.each do |k,v| %>
             <a class="btn btn-default rl-sort-button"

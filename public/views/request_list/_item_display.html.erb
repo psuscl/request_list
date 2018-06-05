@@ -14,7 +14,8 @@
 <table class="rl-item-table">
   <tr>
     <td class="rl-display rl-display-left" rowspan="<%= is_record ? 4 : 3 %>" width="30px">
-      <h3><%= @item_count %></h3>
+      <input type="checkbox" name="item-check-<%= @item_count %>" class="rl-item-check"/>
+      <div class="rl-item-count-label"><%= @item_count %></div>
     </td>
 
     <% title_attr = is_record ? item.record : item.collection %>

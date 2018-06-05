@@ -143,6 +143,18 @@
 	}
     };
 
+    RequestList.prototype._setAllItems = function(value) {
+	$('.rl-item-check').prop('checked', value);
+    };
+
+    RequestList.prototype.selectAllButtonClick = function() {
+	this._setAllItems(true);
+    };
+
+    RequestList.prototype.selectNoneButtonClick = function() {
+	this._setAllItems(false);
+    };
+
     RequestList.prototype.submitButtonClick = function(handlerId) {
 	var self = this;
 	var startListLength = self.getList().length
