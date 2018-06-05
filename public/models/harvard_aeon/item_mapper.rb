@@ -14,6 +14,11 @@ module HarvardAeon
       # FIXME: planning to do validation in js, so will drop the truncation
       mapped.ext(:access_restrictions).name = strip_mixed_content(access_restrictions_for(resource_json))[0,254]
 
+      (item.class == Container ? resource_json : item['json'])['extents'].zip(mapped.extent.multi) do |e, me|
+        me.ext(:container_summary, e['container_summary'])
+        me.ext(:physical_details, e['physical_details'])
+      end
+
       containers_for(item).map do |c|
         mapped.container.multi.select {|m| m.uri == c['uri']}.map do |m|
           m.name = m.name.sub(/ \[.+\]$/, '')

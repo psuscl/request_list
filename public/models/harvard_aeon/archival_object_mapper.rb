@@ -5,7 +5,7 @@ module HarvardAeon
 
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
-      mapped.ext(:level_and_extent).name = [item['level'].capitalize, mapped.extent.name].select {|x| !x.empty?}.join(': ')
+      mapped.ext(:level).name = item['level'].capitalize
     end
 
 
@@ -14,12 +14,13 @@ module HarvardAeon
         'Site'           => mapped.ext(:site).name,
         'ItemInfo2'      => mapped.ext(:hollis).id,
         'ItemTitle'      => mapped.collection.name,
-        'ItemSubTitle'   => mapped.record.name,
+        'ItemSubTitle'   => mapped.ext(:level).name + ': ' + mapped.record.name,
+        'ItemCitation'   => mapped.collection.multi.map {|c| "#{c.ext(:level)}: #{c.name} (#{c.id})"}.join('; '),
         'ItemAuthor'     => mapped.creator.name,
         'ItemDate'       => mapped.date.name,
         'Location'       => mapped.ext(:location).name,
         'SubLocation'    => mapped.ext(:physical_location).name,
-        'ItemInfo3'      => mapped.ext(:level_and_extent).name,
+        'ItemInfo3'      => mapped.extent.multi.map {|e| [e.name, e.ext(:container_summary), e.ext(:physical_details)].select {|e| !e.blank?}.join(", ")}.join('; '),
         'CallNumber'     => mapped.collection.id,
         'ItemPlace'      => mapped.ext(:access_restrictions).name,
         'ItemIssue'      => mapped.record.id,
