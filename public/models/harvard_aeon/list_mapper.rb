@@ -13,6 +13,7 @@ module HarvardAeon
         'DocumentType'          => 'Default',
         'RequestType'           => 'Loan',
         'UserReview'            => 'No',
+        'SkipOrderEstimate'     => '',
         'SubmitButton'          => 'Submit Request',
 
         'GroupRequestsByLocation'       => 'Yes',
