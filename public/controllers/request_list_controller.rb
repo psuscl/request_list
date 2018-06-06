@@ -3,8 +3,9 @@ class RequestListController <  ApplicationController
 
     uris = JSON.parse((cookies['as_pui_request_list_list_contents'] || '[]'))
 
+    flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', {:sent => params[:sent]}) if params[:sent]
+
     if uris.empty?
-      flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', {:sent => params[:sent]}) if params[:sent]
       return render 'request_list/empty_list'
     end
 

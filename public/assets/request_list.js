@@ -157,23 +157,39 @@
 
     RequestList.prototype.submitButtonClick = function(handlerId) {
 	var self = this;
-	var startListLength = self.getList().length
+	var startListLength = self.getList().length;
+	var handler = $('#rl-handler-' + handlerId);
+	var chk_num = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').length;
+
+	if (chk_num == 0) {
+	    alert('Please check the items you would like to request.');
+	    return false;
+	}
+
+	handler.find('.rl-item-check:not(:checked)').each(function(ix, chk) {
+	    $(chk).parents('.rl-list-item').find('.rl-item-form').remove();
+	});
 
         setTimeout(function() {
-            $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').each(function(ix, rli) {
+	    $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
                 self.removeFromList($(rli).data('uri'), true);
                 self.removeFromForm($(rli));
-            })
+	    });
             self.setUpList();
 
 	    var itemsSent = startListLength - self.getList().length;
 
 	    if (itemsSent > 0) {
+		// strip off the querystring
+		var new_location = location.href.replace(location.search, '');
+		new_location += '?sent=' + itemsSent;
 	        // seems we need to cover 2 cases here - whether the submit button's target tab is open yet ... sigh
-	        setTimeout(function() { location.replace(location.href + '?sent=' + itemsSent); }, 1000);
-	        location.replace(location.href + '?sent=' + itemsSent);
+	        setTimeout(function() { location.replace(new_location); }, 1000);
+	        location.replace(new_location);
 	    }
 	}, 100);
+
+	handler.find('.rl-form').submit();
 
 	return true;
     };
@@ -289,4 +305,5 @@ $(function() {
 	    }
             return true;
 	}
-)});
+    )
+});
