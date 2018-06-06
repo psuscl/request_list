@@ -36,23 +36,20 @@ $(function() {
     for(var name in inputs) {
       $(this).parent().parent().parent().find("input[name=" + name + "]").attr("value", inputs[name]);
     }
-    $('.rl-options-form').hide();
+    $('.rl-ha-options-form').hide();
     $('.rl-ha-item-form').hide();
     if (selected.text == 'Reading room') {
       $("#rl-readingroom-options-form").show();
-      $(".request-list-additional-fields").slideDown();
-      $('.rl-ha-item-form-readingroom').show();
+      $(".rl-ha-additional-fields").slideDown();
     } else if (selected.text == 'Saved') {
       $("#rl-saved-options-form").show();
-      $(".request-list-additional-fields").slideDown();
-      $('.rl-ha-item-form-saved').show();
+      $(".rl-ha-additional-fields").slideDown();
     } else if (selected.text == 'Photoduplication') {
       $("#rl-photoduplication-options-form").show();
-      $(".request-list-additional-fields").slideDown();
-      $('.rl-ha-item-form-photoduplication').show();
+      $(".rl-ha-additional-fields").slideDown();
     } else {
-      $(".request-list-additional-fields").slideUp('normal', function() {
-        var form = $(".rl-options-form");
+      $(".rl-ha-additional-fields").slideUp('normal', function() {
+        var form = $(".rl-ha-options-form");
         form.hide();
         form.find("select").val("");
         form.find("textarea").val("");
@@ -63,9 +60,10 @@ $(function() {
 
 
   $('.rl-ha-list-input').on('change keyup paste', function() {
+    $(this).css('border', 'initial');
     var srcVal = $(this).val();
     if (srcVal.length > 20) { srcVal = srcVal.substr(0,20) + '...' }
-    var itemForms = $('.rl-ha-item-form-' + $(this).parents('.rl-options-form').data('request-type'));
+    var itemForms = $('.rl-ha-item-form-' + $(this).parents('.rl-ha-options-form').data('request-type'));
     itemForms.find('[name^="' + $(this).attr('name') + '_"]').attr('placeholder', srcVal);
 
     if ($(this).is('select')) {
@@ -84,10 +82,5 @@ $(function() {
       $(this).parents('.rl-list-item').find('.rl-edited-indicator').hide();
     }
   });
-
-//  $('#rl-handler-<%= handler.id %>').find('.rl-form').submit(function(e) {
-//    e.preventDefault();
-//    alert('moo');
-//  });
 
 });

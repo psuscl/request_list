@@ -9,6 +9,9 @@ en:
           </span>
 
       list_session_message: Items will remain in your list for this browser session.<br/>Your list will be cleared when you send requests.
+      full_list_error_message: Your list is full. Please go to 'My List' and remove items or submit your requests to make room for more.
+      unfilled_fields_error_message: "Please provide the following:"
+      empty_list_error_message: Please check the items you would like to request.
       submit_button_label: Submit Requests
       remove_all_button_label: Remove All
       expand_item_button_label: Options

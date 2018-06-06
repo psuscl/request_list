@@ -161,10 +161,24 @@
 	var handler = $('#rl-handler-' + handlerId);
 	var chk_num = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').length;
 
-	if (chk_num == 0) {
-	    alert('Please check the items you would like to request.');
+	var unfilled_fields = $('.rl-ha-additional-fields').find('.rl-ha-list-input:visible')
+	                                                   .filter('.required')
+                                                           .filter(function() { return $(this).val() == ""; });
+
+	if (unfilled_fields.length > 0) {
+	    var msg = HARVARD_AEON_MESSAGES['unfilled_fields_error_message'] + "\n";
+            unfilled_fields.each(function(ix, uf) { msg += '    ' + $(uf).closest('.form-group').children('label').text() + "\n"; });
+	    alert(msg);
+	    unfilled_fields.css('border', '2px solid #faa');
 	    return false;
 	}
+
+	if (chk_num == 0) {
+	    alert(HARVARD_AEON_MESSAGES['empty_list_error_message']);
+	    return false;
+	}
+
+	$('.rl-ha-additional-fields').find('.rl-ha-list-input:hidden').remove();
 
 	handler.find('.rl-item-check:not(:checked)').each(function(ix, chk) {
 	    $(chk).parents('.rl-list-item').find('.rl-item-form').remove();
@@ -225,7 +239,7 @@
     RequestList.prototype.addToList = function(uri) {
 	var list = this.getList();
 	if (list.length >= this.item_limit) {
-	    alert("Your list is full. Please go to 'My List' and remove items or submit your requests to make room for more.");
+	    alert(HARVARD_AEON_MESSAGES['full_list_error_message']);
 	    return;
 	}
 	if (this.isInList(uri)) {
