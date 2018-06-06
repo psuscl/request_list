@@ -2,10 +2,14 @@ en:
   plugin:
     request_list:
       list_title: My List
-      title_message: Send requests to HOLLIS Special Request for the items in your list.
+      title_message: |
+          You can select items in this list to submit to HOLLIS Special Request for retrieval or photoduplication order processing.<br/>
+          <span style="color:#ff0000">
+            NOTE: Items will remain in your list for this browser session. Submitted items will be removed.
+          </span>
+
       list_session_message: Items will remain in your list for this browser session.<br/>Your list will be cleared when you send requests.
-      list_options_message: Options set here apply to all items in your list.<br/>Override for an item by clicking the Options button on that item.
-      submit_button_label: Send Requests
+      submit_button_label: Submit Requests
       remove_all_button_label: Remove All
       expand_item_button_label: Options
       expand_item_button_message: Set options for this item
@@ -38,12 +42,16 @@ en:
       sent_items_message: You sent requests for %{sent} items.
       options:
         request_type: Request Type
-        date: Requested for date
+        date: Schedule Retrieval
+        date_help: Click in the field to the right to bring up a calendar and indicate the date you plan to visit. If material is stored off-site please allow at least 1 business day for retrieval.
         notes: Notes
-        questions: Questions
-        format: Format
-        delivery: Delivery Option
-        for_publication: Intended for Publication?
+        notes_help: Enter any notes about this request for your personal reference.
+        questions: Special Requests/Questions?
+        questions_help: Please enter any special requests or questions for library staff.
+        format: Desired Format
+        delivery: Shipping Preference
+        for_publication: For Publication?
         for_publication_yes: Yes, intended for publication
         for_publication_no: No, not intended for publication
         photoduplication_instructions: Photoduplication Instructions
+        photoduplication_instructions_help: Let us know exactly what you would like reproduced. Specific page numbers, special instructions, and questions should all be entered here.

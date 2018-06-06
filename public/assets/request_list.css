@@ -94,9 +94,7 @@
 
 #rl-list-pane {
   clear: both;
-  overflow-y: auto;
   min-height:100px;
-  max-height:600px;
   height: auto;
   resize: vertical;
   padding: 10px;
@@ -107,10 +105,6 @@
   border-radius: 3px;
 }
 
-.rl-message-title {
-  font-size: 130%;
-}
-
 .rl-message-list-options {
   margin: 1px 1px 12px 1px;
 }
@@ -118,13 +112,20 @@
 .rl-message {
   font-size: 110%;
   width: 100%;
-  background: #effaff;
   text-align: center;
   padding: 4px 1px 4px 1px;
   border-style: solid;
   border-width: 1px;
   border-color: #c2c2c2;
   border-radius: 3px;
+}
+
+.rl-message-title {
+  width: 90%;
+  font-size: 120%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 }
 
 .rl-item-display {
@@ -191,4 +192,10 @@
 
 .rl-ha-item-form-photoduplication {
   display: none;
+}
+
+.rl-ha-aeon-link {
+  font-size: 120%;
+  margin-top: -40px;
+  margin-bottom: -40px;
 }

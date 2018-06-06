@@ -1,19 +1,128 @@
-<div class="col-sm-7">
-  <div class="rl-message rl-message-title pull-right">
-    <%= t('plugin.request_list.title_message') %>
+<link href="<%= "/assets/datepicker.css" %>" media="all" rel="stylesheet" type="text/css">
+
+<%= javascript_include_tag 'bootstrap-datepicker' %>
+<%= javascript_include_tag 'bootstrap-combobox' %>
+
+<%= javascript_include_tag 'harvard_aeon_form' %>
+
+
+<% handler.list_map.each do |name, value| %>
+  <input type="hidden" name="<%= name %>" value="<%= value  %>">
+<% end %>
+
+
+<a class="pull-right rl-ha-aeon-link"
+   title="<%= t('plugin.request_list.aeon_button_label') %>"
+   href="<%= handler.list_opts[:aeon_link_url]  %>"
+   target="<%= handler.list_opts.fetch(:form_target, '_self') %>">
+
+  <%= t("plugin.request_list.aeon_button_label") %>
+</a>
+
+
+<div class="rl-message rl-message-title">
+  <%= t('plugin.request_list.title_message').html_safe %>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-4">
+
+    <div class="form-group request-list-type-select">
+      <label class="control-label"><%= t('plugin.request_list.options.request_type') %></label>
+      <div class="">
+        <select name="request_type" id="request_type_select" class="form-control">
+          <% handler.list_opts[:request_types].each do |type, values| %>
+            <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
+          <% end %>         
+        </select>
+      </div>
+    </div>
+
+    <div class="request-list-additional-fields">
+
+      <div class="rl-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
+
+        <div class="form-group">
+          <label class="control-label col-sm-5"><%= t('plugin.request_list.options.date') %></label>
+          <div class="input-group datepicker rl-datepicker">
+            <input class="date-field form-control rl-ha-list-input"
+                   data-format="mm/dd/yyyy"
+                   data-date="<%= Date.today.strftime('%m/%d/%Y') %>"
+                   data-date-start-date="<%= Date.today.strftime('%m/%d/%Y') %>"
+                   data-autoclose="true"
+                   data-force-parse="true"
+                   placeholder="MM/DD/YYYY"
+                   name="ScheduledDate">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="rl-options-form" id="rl-saved-options-form" data-request-type="saved">
+      </div>
+
+      <div class="rl-options-form" id="rl-photoduplication-options-form" data-request-type="photoduplication">
+        <div class="form-group">
+          <label class="control-label col-sm-5"><%= t('plugin.request_list.options.format') %></label>
+          <div class="col-sm-7">
+            <select name="Format" class="form-control rl-ha-list-input">
+              <option value="">...</option>
+              <% handler.list_opts[:format_options].each do |option| %>
+                <option value="<%= option %>"><%= option %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-5"><%= t('plugin.request_list.options.delivery') %></label>
+          <div class="col-sm-7">
+            <select name="ShippingOption" class="form-control rl-ha-list-input">
+              <option value="">...</option>
+              <% handler.list_opts[:delivery_options].each do |option| %>
+                <option value="<%= option %>"><%= option %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-5"><%= t('plugin.request_list.options.for_publication') %></label>
+          <div class="col-sm-7">
+            <select name="ForPublication" class="form-control rl-ha-list-input">
+              <option value="">...</option>
+              <option value="Yes"><%= t('plugin.request_list.options.for_publication_yes') %></option>
+              <option value="No"><%= t('plugin.request_list.options.for_publication_no') %></option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+
+  <div class="form-group rl-ha-notes-and-questions col-sm-3">
+    <div class="form-group">
+      <label class="control-label"><%= t('plugin.request_list.options.notes') %></label>
+      <textarea name="Notes" rows="3" class="form-control rl-ha-list-input" maxlength="255"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group rl-ha-notes-and-questions col-sm-3">
+    <div class="form-group">
+      <label class="control-label"><%= t('plugin.request_list.options.questions') %></label>
+      <textarea name="SpecialRequest" rows="3" class="form-control rl-ha-list-input" maxlength="255"></textarea>
+    </div>
+  </div>
+
+
+  <div class="col-sm-2">
+    <div class="pull-right">
+      <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
+    </div>
+  </div>
+
 </div>
 
-<div class="col-sm-5 form-group">
-  <button type="submit" class="btn btn-primary"><%= t('plugin.request_list.submit_button_label') %></button>
-
-  <a class="btn btn-default pull-right"
-     title="<%= t('plugin.request_list.aeon_button_label') %>"
-     href="<%= handler.list_opts[:aeon_link_url]  %>"
-     target="harvard-library-requests">
-
-    <%= t("plugin.request_list.aeon_button_label") %>
-    &nbsp;
-    <i class="fa fa-angle-double-right"></i>
-  </a>
-</div>
