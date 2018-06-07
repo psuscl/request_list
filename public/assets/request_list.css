@@ -86,7 +86,7 @@
 }
 
 .rl-ha-type-select {
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .rl-ha-additional-fields {
@@ -203,5 +203,15 @@
 
 .form-group {
   margin-bottom: 4px;
+}
+
+.rl-ha-collapsed-help {
+  position: relative;
+}
+
+.rl-ha-expand-help {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
 }
 

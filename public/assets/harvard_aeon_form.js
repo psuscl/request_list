@@ -83,4 +83,16 @@ $(function() {
     }
   });
 
+  $('.rl-ha-expand-help').click(function(e) {
+    $('.rl-ha-expanded-help').slideToggle('normal',
+					  function() {
+					      var expandHelp = $('.rl-ha-expand-help');
+					      var label = expandHelp.data('expand-label');
+					      if ($(this).is(':visible')) {
+						  label = expandHelp.data('collapse-label');
+					      }
+					      expandHelp.html(label);
+      });
+  });
+
 });

@@ -20,7 +20,23 @@
 
 
 <div class="rl-message rl-message-title">
-  <%= t('plugin.request_list.title_message').html_safe %>
+
+  <div class="rl-ha-collapsed-help">
+    <%= t('plugin.request_list.title_message').html_safe %>
+
+    <a class="rl-ha-expand-help"
+       title="<%= t('plugin.request_list.expand_help_message') %>"
+       data-expand-label="<%= t('plugin.request_list.expand_help_label') %>"
+       data-collapse-label="<%= t('plugin.request_list.collapse_help_label') %>"
+       href="javascript:void(0);">
+
+      <%= t('plugin.request_list.expand_help_label') %>
+    </a>
+  </div>
+
+  <div class="rl-ha-expanded-help" style="display:none">
+    <%= t('plugin.request_list.expanded_help').html_safe %>
+  </div>
 </div>
 
 
