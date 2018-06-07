@@ -34,7 +34,7 @@ $(function() {
     var selected = this.selectedOptions[0];
     var inputs = JSON.parse(selected.getAttribute("value"));
     for(var name in inputs) {
-      $(this).parent().parent().parent().find("input[name=" + name + "]").attr("value", inputs[name]);
+      $(this).parents('.rl-form').find("input[name=" + name + "]").attr("value", inputs[name]);
     }
     $('.rl-ha-options-form').hide();
     $('.rl-ha-item-form').hide();
