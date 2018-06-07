@@ -85,7 +85,8 @@
   color: #999999;
 }
 
-.request-list-type-select {
+.rl-ha-type-select {
+  margin-top: 20px;
 }
 
 .rl-ha-additional-fields {
