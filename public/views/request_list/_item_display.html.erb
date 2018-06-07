@@ -94,6 +94,6 @@
 
 </table>
 
-<%= render partial: 'request_list/expand_item_button', locals: {:item => item } %>
+<%= render(partial: 'request_list/expand_item_button', locals: {:item => item }) if handler.list_opts[:expandable_items] %>
 
 </div>
