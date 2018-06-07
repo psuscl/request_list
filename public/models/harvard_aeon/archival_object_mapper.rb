@@ -15,7 +15,7 @@ module HarvardAeon
         'ItemInfo2'      => mapped.ext(:hollis).id,
         'ItemTitle'      => mapped.collection.name,
         'ItemSubTitle'   => mapped.ext(:level).name + ': ' + mapped.record.name,
-        'ItemCitation'   => mapped.collection.multi.map {|c| "#{c.ext(:level)}: #{c.name} (#{c.id})"}.join('; '),
+        'ItemCitation'   => mapped.collection.multi.drop(1).map {|c| "#{c.ext(:level)}: #{c.name} (#{c.id})"}.join('; '),
         'ItemAuthor'     => mapped.creator.name,
         'ItemDate'       => mapped.date.name,
         'Location'       => mapped.ext(:location).name,
