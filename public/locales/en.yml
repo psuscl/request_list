@@ -49,7 +49,7 @@ en:
       options:
         request_type: Request Type
         date: Schedule Retrieval
-        date_help: Click in the field to the right to bring up a calendar and indicate the date you plan to visit. If material is stored off-site please allow at least 1 business day for retrieval.
+        date_help: Click to bring up a calendar and indicate the date you plan to visit. If material is stored off-site please allow at least 1 business day for retrieval.
         notes: Notes
         notes_help: Enter any notes about this request for your personal reference.
         questions: Special Requests/Questions?

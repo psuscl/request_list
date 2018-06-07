@@ -41,12 +41,18 @@ $(function() {
     if (selected.text == 'Reading room') {
       $("#rl-readingroom-options-form").show();
       $(".rl-ha-additional-fields").slideDown();
+      $('.rl-ha-questions-label').html($('.rl-ha-questions-label').data('other-label'));
+      $('.rl-ha-questions-input').attr('title', $('.rl-ha-questions-input').data('other-help'));
     } else if (selected.text == 'Saved') {
       $("#rl-saved-options-form").show();
       $(".rl-ha-additional-fields").slideDown();
+      $('.rl-ha-questions-label').html($('.rl-ha-questions-label').data('other-label'));
+      $('.rl-ha-questions-input').attr('title', $('.rl-ha-questions-input').data('other-help'));
     } else if (selected.text == 'Photoduplication') {
       $("#rl-photoduplication-options-form").show();
       $(".rl-ha-additional-fields").slideDown();
+      $('.rl-ha-questions-label').html($('.rl-ha-questions-label').data('photoduplication-label'));
+      $('.rl-ha-questions-input').attr('title', $('.rl-ha-questions-input').data('photoduplication-help'));
     } else {
       $(".rl-ha-additional-fields").slideUp('normal', function() {
         var form = $(".rl-ha-options-form");
@@ -60,7 +66,7 @@ $(function() {
 
 
   $('.rl-ha-list-input').on('change keyup paste', function() {
-    $(this).css('border', 'initial');
+    $(this).css('border', '1px solid #ccc');
     var srcVal = $(this).val();
     if (srcVal.length > 20) { srcVal = srcVal.substr(0,20) + '...' }
     var itemForms = $('.rl-ha-item-form-' + $(this).parents('.rl-ha-options-form').data('request-type'));

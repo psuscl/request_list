@@ -61,14 +61,28 @@
   <div class="form-group rl-ha-notes-and-questions col-sm-3">
     <div class="form-group">
       <label class="control-label"><%= t('plugin.request_list.options.notes') %></label>
-      <textarea name="Notes" rows="3" class="form-control rl-ha-list-input" maxlength="65536"></textarea>
+      <textarea name="Notes"
+                rows="3"
+                class="form-control rl-ha-list-input"
+                title="<%= t('plugin.request_list.options.notes_help') %>"
+                maxlength="65536"></textarea>
     </div>
   </div>
 
   <div class="form-group rl-ha-notes-and-questions col-sm-3">
     <div class="form-group">
-      <label class="control-label"><%= t('plugin.request_list.options.questions') %></label>
-      <textarea name="SpecialRequest" rows="3" class="form-control rl-ha-list-input" maxlength="255"></textarea>
+      <label class="control-label rl-ha-questions-label"
+             data-photoduplication-label="<%= t('plugin.request_list.options.photoduplication_instructions') %>"
+             data-other-label="<%= t('plugin.request_list.options.questions') %>">
+        <%= t('plugin.request_list.options.questions') %>
+      </label>
+      <textarea name="SpecialRequest"
+                rows="3"
+                class="form-control rl-ha-list-input rl-ha-questions-input"
+                title="<%= t('plugin.request_list.options.questions_help') %>"
+                data-photoduplication-help="<%= t('plugin.request_list.options.photoduplication_instructions_help') %>"
+                data-other-help="<%= t('plugin.request_list.options.questions_help') %>"
+                maxlength="255"></textarea>
     </div>
   </div>
 
@@ -90,9 +104,10 @@
       <div class="rl-ha-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
 
         <div class="form-group col-sm-4">
-          <label class="control-label col-sm-5"><%= t('plugin.request_list.options.date') %></label>
+          <label class="control-label col-sm-5" style="margin-top:10px"><%= t('plugin.request_list.options.date') %></label>
           <div class="input-group datepicker rl-datepicker">
             <input class="date-field form-control rl-ha-list-input required"
+                   title="<%= t('plugin.request_list.options.date_help') %>"
                    data-format="mm/dd/yyyy"
                    data-date="<%= Date.today.strftime('%m/%d/%Y') %>"
                    data-date-start-date="<%= Date.today.strftime('%m/%d/%Y') %>"
