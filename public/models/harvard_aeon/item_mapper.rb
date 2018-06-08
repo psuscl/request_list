@@ -10,9 +10,9 @@ module HarvardAeon
       mapped.ext(:site).name = repo_field_for(repository, 'Site')
       mapped.ext(:location).name = repo_field_for(repository, 'Location')
       mapped.ext(:hollis).id = hollis_number_for(resource_json)
-      mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])
-      # FIXME: planning to do validation in js, so will drop the truncation
-      mapped.ext(:access_restrictions).name = strip_mixed_content(access_restrictions_for(resource_json))[0,254]
+      mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])[0,255]
+      mapped.collection.ext(:access_restrictions, strip_mixed_content(access_restrictions_for(resource_json))[0,255])
+      mapped.record.ext(:access_restrictions, strip_mixed_content(access_restrictions_for(item['json']))[0,255])
 
       (item.class == Container ? resource_json : item['json'])['extents'].zip(mapped.extent.multi) do |e, me|
         me.ext(:container_summary, e['container_summary'])

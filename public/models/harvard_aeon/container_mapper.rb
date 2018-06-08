@@ -19,7 +19,7 @@ module HarvardAeon
         'Location'       => mapped.ext(:location).name,
         'SubLocation'    => mapped.ext(:physical_location).name,
         'CallNumber'     => mapped.collection.id,
-        'ItemPlace'      => mapped.ext(:access_restrictions).name,
+        'ItemPublisher'  => mapped.collection.ext(:access_restrictions),
       }, mapped.container.multi.first))]
     end
 
