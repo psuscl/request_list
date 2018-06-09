@@ -184,6 +184,22 @@
 	    $(chk).parents('.rl-list-item').find('.rl-item-form').remove();
 	});
 
+	// set gid on items from HOU that have no gid but have 'consecutive component_ids'
+	// var rx = /^(.*?)(\d+)(\D*)$/;
+	// var m = rx.exec(component_id)
+	// go through items building up a hash like this:
+	// { m[1] + m[3]: [ [rl-list-item, m[2]], [rl-list-item, m[2]] ]  }
+	// actually keying on m[1]+m[3] might not be enough - different resources might use the same id scheme
+	// so, might have to key on resource id as well: res_id + m[1] + m[3]
+	// then the values of the outer hash contain arrays of candidate group items
+	// sort by m[2] then iterate
+	// if current is last + 1 then add rl-list-item to group
+	// when the sequence is broken, make the group by setting a gid on the rl-list-item array, then clear the array
+	// shouldn't have to handle the case where current == last because ids are unique and they only differ by m[2]
+	// which means it should be safe to make the inner struct a hash rather than an array, like this:
+	// { rid + m[1] + m[3]: { m[2]: rl-list-item, ... } }
+
+
         setTimeout(function() {
 	    $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
                 self.removeFromList($(rli).data('uri'), true);
