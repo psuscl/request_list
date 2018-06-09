@@ -10,9 +10,9 @@ module HarvardAeon
       mapped.ext(:site).name = repo_field_for(repository, 'Site')
       mapped.ext(:location).name = repo_field_for(repository, 'Location')
       mapped.ext(:hollis).id = hollis_number_for(resource_json)
-      mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])[0,255]
-      mapped.collection.ext(:access_restrictions, strip_mixed_content(access_restrictions_for(resource_json))[0,255])
-      mapped.record.ext(:access_restrictions, strip_mixed_content(access_restrictions_for(item['json']))[0,255])
+      mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])
+      mapped.collection.ext(:access_restrictions, access_restrictions_for(resource_json))
+      mapped.record.ext(:access_restrictions, access_restrictions_for(item['json']))
 
       (item.class == Container ? resource_json : item['json'])['extents'].zip(mapped.extent.multi) do |e, me|
         me.ext(:container_summary, e['container_summary'])
@@ -26,12 +26,14 @@ module HarvardAeon
           m.ext(:location, (c['location_display_string_u_sstr'] || []).join('; '))
         end
       end
+
+      mapped.scrub! {|v| strip_mixed_content(v) }
     end
 
 
-    def with_request_number(item_map)
+    def as_aeon_request(item_map)
       num = SecureRandom.hex(4)
-      Hash[[['Request', num]] + without_unneeded_fields(item_map).map {|k,v| [k+'_'+num, v]}]
+      Hash[[['Request', num]] + without_unneeded_fields(item_map).map {|k,v| [k+'_'+num, v[0,255]]}]
     end
 
 

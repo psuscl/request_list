@@ -10,7 +10,7 @@ module HarvardAeon
 
 
     def form_fields(mapped)
-      [with_request_number(with_mapped_container(mapped, {
+      [as_aeon_request(with_mapped_container(mapped, {
         'Site'           => mapped.ext(:site).name,
         'ItemInfo2'      => mapped.ext(:hollis).id,
         'ItemTitle'      => mapped.collection.name,

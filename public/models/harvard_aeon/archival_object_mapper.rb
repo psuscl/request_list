@@ -27,10 +27,10 @@ module HarvardAeon
         'ItemIssue'      => mapped.record.id,
       }
 
-      return [with_request_number(shared_fields)] unless mapped.container.has_multi?
+      return [as_aeon_request(shared_fields)] unless mapped.container.has_multi?
 
       mapped.container.multi.map {|c|
-        with_request_number(with_mapped_container(mapped, shared_fields, c))
+        as_aeon_request(with_mapped_container(mapped, shared_fields, c))
       }
     end
 

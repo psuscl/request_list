@@ -8,6 +8,7 @@ class RequestListMappedItem
   def initialize(uri, type)
     @uri = uri
     @type = type
+
     @repository = Attribute.new
     @collection = Attribute.new
     @record = Attribute.new
@@ -23,6 +24,18 @@ class RequestListMappedItem
 
   def ext(key)
     @extensions[key] ||= Attribute.new
+  end
+
+
+  def scrub!(&block)
+    @repository.scrub!(&block)
+    @collection.scrub!(&block)
+    @record.scrub!(&block)
+    @container.scrub!(&block)
+    @creator.scrub!(&block)
+    @date.scrub!(&block)
+    @extent.scrub!(&block)
+    @extensions.map {|k,v| v.scrub!(&block)}
   end
 
 
@@ -63,8 +76,13 @@ class RequestListMappedItem
       @name = @multi.map {|m| m.name}.join('; ')
     end
 
+    def scrub!(&block)
+      @name = block.call(@name)
+      @id = block.call(@id)
+      @uri = block.call(@uri)
+      @multi.map {|m| m.scrub!(&block)}
+      @extensions.map {|k,v| @extensions[k] = block.call(v) }
+    end
   end
-
-
 
 end
