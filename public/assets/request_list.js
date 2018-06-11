@@ -184,20 +184,71 @@
 	    $(chk).parents('.rl-list-item').find('.rl-item-form').remove();
 	});
 
-	// set gid on items from HOU that have no gid but have 'consecutive component_ids'
-	// var rx = /^(.*?)(\d+)(\D*)$/;
-	// var m = rx.exec(component_id)
-	// go through items building up a hash like this:
-	// { m[1] + m[3]: [ [rl-list-item, m[2]], [rl-list-item, m[2]] ]  }
-	// actually keying on m[1]+m[3] might not be enough - different resources might use the same id scheme
-	// so, might have to key on resource id as well: res_id + m[1] + m[3]
-	// then the values of the outer hash contain arrays of candidate group items
-	// sort by m[2] then iterate
-	// if current is last + 1 then add rl-list-item to group
-	// when the sequence is broken, make the group by setting a gid on the rl-list-item array, then clear the array
-	// shouldn't have to handle the case where current == last because ids are unique and they only differ by m[2]
-	// which means it should be safe to make the inner struct a hash rather than an array, like this:
-	// { rid + m[1] + m[3]: { m[2]: rl-list-item, ... } }
+
+	/*
+	  Group by consecutive component_id
+	  This is quite curly. It goes like this:
+
+	  The goal is to set a hidden input with name=gid_req# on items from HOU that have no gid but have 'consecutive component_ids'
+	  Assumptions:
+	      - we're looking for consecutive ids within a collection
+              - any length run of consecutive ids can be grouped
+              - 'consecutive ids' is actually determined by looking at the last number in the id
+	          HOU ids have many forms, but mostly they are '(###)', where ### is the number we're interested in
+
+	   So we use this regex: rx = /^(.*?)(\d+)(\D*)$/;
+	   Then after matching, the match array has our number at index 2
+	   Like this:
+	       var m = rx.exec(component_id);
+	       m[2]; // our number for testing consecutive runs
+
+	   So, we go through HOU items without a gid building up a hash like this:
+	       { CallNumber + m[1] + m[3]: { m[2]: rl-list-item, ... } }
+
+	   Then, each of the values in our hash is a hash keyed on our number
+	   So we go through that inner hash in numerically sorted key order
+	   And if the current number is one more than the last number
+             then add this number to an array of (grp)
+	   When the sequence is broken (or at the end)
+             make the group by setting a gid on the rl-list-items pointed to by the numbers in our grp array
+             then clear the array
+	*/
+
+	var groups = {};
+        var groupKeys = {};
+	var rx = /^(.*?)(\d+)(\D*)$/;
+	$('.rl-item-form:not(:has(input[name^=gid_]))').has('input[name^=Location_][value=HOU]').each(function(ix, rif) {
+	    var m = rx.exec($(rif).find('input[name^=ItemIssue_]').attr('value'));
+	    var k = $(rif).find('input[name^=CallNumber_]').attr('value') + m[1] + m[3];
+	    if (!groups.hasOwnProperty(k)) { groups[k] = {}; groupKeys[k] = []; }
+	    groupKeys[k].push(parseInt(m[2]));
+	    groups[k][parseInt(m[2])] = rif;
+	});
+
+	$.each(groups, function(k, collection) {
+	    var last_id = false;
+	    var grp = []
+	    $(groupKeys[k].sort(function(a,b) { return a - b })).each(function(ix, id) {
+		if (last_id && id == last_id + 1) {
+		    if ($.inArray(last_id, grp) == -1) { grp.push(last_id) }
+		    grp.push(id);
+		} else if (grp.length > 0) {
+		    $(grp).each(function(ix, id) {
+			var request_number = $(collection[id]).children('input[name=Request]').attr('value');
+			$(collection[id]).append('<input type="hidden" name="gid_' + request_number + '" value="' + k + grp[0] + '"/>');
+		    });
+		    grp = [];
+		}
+		last_id = id;
+	    });
+
+	    if (grp.length > 0) {
+	        $(grp).each(function(ix, id) {
+		    var request_number = $(collection[id]).children('input[name=Request]').attr('value');
+		    $(collection[id]).append('<input type="hidden" name="gid_' + request_number + '" value="' + k + grp[0] + '"/>');
+		});
+	    }
+	});
 
 
         setTimeout(function() {
