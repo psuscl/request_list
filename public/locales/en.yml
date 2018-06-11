@@ -12,6 +12,7 @@ en:
       full_list_error_message: Your list is full. Please go to 'My List' and remove items or submit your requests to make room for more.
       unfilled_fields_error_message: "Please provide the following:"
       empty_list_error_message: Please check the items you would like to request.
+      excluded_items_error_message: "This request type is not permitted for the following:"
       submit_button_label: Submit Requests
       remove_all_button_label: Remove All
       expand_item_button_label: Options

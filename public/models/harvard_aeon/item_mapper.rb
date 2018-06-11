@@ -27,6 +27,10 @@ module HarvardAeon
         end
       end
 
+      (@opts[:excluded_request_types] || []).map do |t|
+        mapped.ext(:excluded_request_types).add.name = t
+      end
+
       mapped.scrub! {|v| strip_mixed_content(v) }
     end
 

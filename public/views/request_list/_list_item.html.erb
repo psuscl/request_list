@@ -8,7 +8,7 @@
 
   <% if include_form %>
     <div class="rl-item-form recordinfo">
-      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => item.form_fields, :handler => handler } %>
+      <%= render partial: "request_list/#{handler.profile}/form_item", locals: {:form => form, :item => item, :handler => handler } %>
     </div>
   <% end %>
 

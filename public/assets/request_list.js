@@ -159,7 +159,7 @@
 	var self = this;
 	var startListLength = self.getList().length;
 	var handler = $('#rl-handler-' + handlerId);
-	var chk_num = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').length;
+	var checkedItems = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked');
 
 	var unfilled_fields = $('.rl-ha-additional-fields').find('.rl-ha-list-input:visible')
 	                                                   .filter('.required')
@@ -173,7 +173,18 @@
 	    return false;
 	}
 
-	if (chk_num == 0) {
+	// Don't allow items that are excluded from this request type
+	var rt = $("#request_type_select").children('option:selected').text();
+	var excludedItems = checkedItems.has('.rl-ha-excluded-request-types > data[value="' + rt + '"]')
+	if (excludedItems.length > 0) {
+	    var msg = HARVARD_AEON_MESSAGES['excluded_items_error_message'] + "\n";
+	    excludedItems.each(function(ix, ei) { msg += '    ' + $(ei).find('.rl-item-count-label').text() + ': ' + $(ei).find('.rl-display-title').text().trim()  + "\n" });
+	    alert(msg);
+	    //excludedItems.css('border', '2px solid #faa');
+	    return false;
+	}
+
+	if (checkedItems.length == 0) {
 	    alert(HARVARD_AEON_MESSAGES['empty_list_error_message']);
 	    return false;
 	}
