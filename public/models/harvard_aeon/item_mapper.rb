@@ -18,6 +18,9 @@ module HarvardAeon
         me.ext(:container_summary, e['container_summary'])
         me.ext(:physical_details, e['physical_details'])
       end
+      mapped.extent.ext(:container_summary, mapped.extent.multi.map {|e| e.ext(:container_summary)}.compact.join('; '))
+      mapped.extent.ext(:physical_details, mapped.extent.multi.map {|e| e.ext(:physical_details)}.compact.join('; '))
+
 
       containers_for(item).map do |c|
         mapped.container.multi.select {|m| m.uri == c['uri']}.map do |m|
