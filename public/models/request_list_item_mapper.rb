@@ -123,7 +123,7 @@ class RequestListItemMapper
 
 
   def extents_for(item)
-    item['extents'].map{|e| e['number'] + ' ' + e['extent_type']}
+    item['extents'].map{|e| e['number'] + ' ' + I18n.t("enumerations.extent_extent_type.#{e['extent_type'].gsub(' ', '_')}", default: e['extent_type'])}
   end
 
 end
