@@ -45,6 +45,15 @@
               <%= t("plugin.request_list.select_none_button_label") %>
             </a>
 
+            <a class="btn btn-default rl-remove-all"
+               title="<%= t('plugin.request_list.remove_all_button_label') %>"
+               onclick="request_list.removeAll();"
+               href="javascript:void(0);">
+
+              <i class="fa fa-times"></i>
+              <%= t("plugin.request_list.remove_all_button_label") %>
+            </a>
+
         </div>
 
         <div class="btn-group rl-sort-buttons pull-right">
