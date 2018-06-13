@@ -228,7 +228,7 @@
 	var groups = {};
         var groupKeys = {};
 	var rx = /^(.*?)(\d+)(\D*)$/;
-	$('.rl-item-form:not(:has(input[name^=gid_]))').has('input[name^=Location_][value=HOU]').each(function(ix, rif) {
+	$('.rl-item-form:not(:has(input[name^=gid_]))').has('input[name^=ItemIssue_]').has('input[name^=Location_][value=HOU]').each(function(ix, rif) {
 	    var m = rx.exec($(rif).find('input[name^=ItemIssue_]').attr('value'));
 	    var k = $(rif).find('input[name^=CallNumber_]').attr('value') + m[1] + m[3];
 	    if (!groups.hasOwnProperty(k)) { groups[k] = {}; groupKeys[k] = []; }
