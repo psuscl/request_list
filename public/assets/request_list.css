@@ -215,6 +215,15 @@
   right: 2px;
 }
 
+.rl-ha-expanded-help {
+  text-align: left;
+  margin: 10px 30px 10px 30px;
+}
+
+.rl-ha-expanded-help, p {
+  margin-bottom: 6px;
+}
+
 .rl-ha-options-help {
   font-size: 80%;
 }
