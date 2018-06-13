@@ -24,7 +24,7 @@ module HarvardAeon
 
       containers_for(item).map do |c|
         mapped.container.multi.select {|m| m.uri == c['uri']}.map do |m|
-          m.name = m.name.sub(/:? \[.+\]$/, '')
+          m.name = m.name.sub(/: .*$/, '')
           m.ext(:indicator, (c['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '))
           m.ext(:location, (c['location_display_string_u_sstr'] || []).join('; '))
         end
@@ -81,7 +81,7 @@ module HarvardAeon
     def with_mapped_container(mapped, item_fields, container)
       item_fields.merge({
         'gid'         => mapped.collection.uri + container.uri,
-        'ItemVolume'  => container.name.sub(/:? \[\.+\]$/, ''),
+        'ItemVolume'  => container.name.sub(/: .*$/, ''),
         'ItemNumber'  => container.id,
         'ItemIssue'   => [mapped.record.id, container.ext(:indicator)].compact.select{|i| !i.empty?}.join(': '),
         'ItemInfo5'   => container.ext(:location)
