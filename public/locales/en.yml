@@ -54,7 +54,7 @@ en:
         notes: Notes
         notes_help: Enter any notes about this request for your personal reference.
         questions: Special Requests/Questions?
-        questions_help: Please enter any special requests or questions for library staff.
+        questions_help: Please enter any special requests or questions for library staff (up to 255 characters).
         format: Desired Format
         delivery: Shipping Preference
         for_publication: For Publication?
