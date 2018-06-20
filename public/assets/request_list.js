@@ -173,7 +173,7 @@
 	var rt = $("#request_type_select").children('option:selected').text();
 	var excludedItems = checkedItems.has('.rl-ha-excluded-request-types > data[value="' + rt + '"]')
 	if (excludedItems.length > 0) {
-	    var msg = HARVARD_AEON_MESSAGES['excluded_items_error_message'] + "\n";
+	    var msg = HARVARD_AEON_MESSAGES['excluded_items_' + rt.toLowerCase().replace(' ', '_') + '_error_message'] + "\n";
 	    excludedItems.each(function(ix, ei) { msg += '    ' + $(ei).find('.rl-item-count-label').text() + ': ' + $(ei).find('.rl-display-title').text().trim()  + "\n" });
 	    alert(msg);
 	    //excludedItems.css('border', '2px solid #faa');
