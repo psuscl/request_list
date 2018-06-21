@@ -69,7 +69,7 @@ class RequestListItemMapper
     containers_for(item).map do |c|
       mapped.container.add.set(c['display_string'], (c['barcode_u_sstr'] || []).first, c['uri'])
           .ext(:subs, (c['sub_containers'] || [])
-                 .map {|sc| [I18n.t("enumerations.container_type.#{sc['type_2'].gsub(' ', '_')}", default: sc['type_2']), sc['indicator_2']].compact.join(' ')}.compact.join('; '))
+                 .map {|sc| [(sc['type_2'] ? I18n.t("enumerations.container_type.#{sc['type_2'].gsub(' ', '_')}", default: sc['type_2']) : nil), sc['indicator_2']].compact.join(' ')}.compact.join('; '))
     end
     mapped.container.name_from_multi
 
