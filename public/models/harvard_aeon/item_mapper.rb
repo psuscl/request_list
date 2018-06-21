@@ -83,7 +83,7 @@ module HarvardAeon
         'gid'         => mapped.collection.uri + container.uri,
         'ItemVolume'  => container.name.sub(/: .*$/, ''),
         'ItemNumber'  => container.id,
-        'ItemIssue'   => [mapped.record.id, container.ext(:indicator)].compact.select{|i| !i.empty?}.join(': '),
+        'ItemIssue'   => [mapped.record.id, container.ext(:subs)].compact.select{|i| !i.empty?}.join(': '),
         'ItemInfo5'   => container.ext(:location)
       })
     end
