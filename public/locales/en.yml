@@ -63,6 +63,6 @@ en:
         for_publication_yes: Yes, intended for publication
         for_publication_no: No, not intended for publication
         photoduplication_instructions: Photoduplication Instructions
-        photoduplication_instructions_help: Let us know exactly what you would like reproduced. Specific page numbers, special instructions, and questions should all be entered here.
+        photoduplication_instructions_help: Let us know exactly what you would like reproduced. Specific page numbers, special instructions, and questions should all be entered here (up to 255 characters).
       expanded_help: "..."
 
