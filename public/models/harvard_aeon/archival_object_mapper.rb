@@ -12,7 +12,7 @@ module HarvardAeon
     def form_fields(mapped)
       shared_fields = {
         'Site'           => mapped.ext(:site).name,
-        'ItemInfo2'      => mapped.ext(:hollis).id,
+        'ReferenceNumber' => mapped.ext(:hollis).id,
         'ItemTitle'      => mapped.collection.name,
         'ItemSubTitle'   => mapped.ext(:level).name + ': ' + ((mapped.ext(:level).name == 'Series' || mapped.ext(:level).name == 'Subseries') && !mapped.record.id.empty? ? mapped.record.id + ' ' : '') + mapped.record.name,
         'ItemCitation'   => mapped.collection.multi.drop(1).map {|c| "#{c.ext(:level)}: #{c.name} (#{c.id})"}.join('; '),

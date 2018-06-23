@@ -12,7 +12,7 @@ module HarvardAeon
     def form_fields(mapped)
       shared_fields = {
         'Site'          => mapped.ext(:site).name,
-        'ItemInfo2'     => mapped.ext(:hollis).id,
+        'ReferenceNumber' => mapped.ext(:hollis).id,
         'ItemTitle'     => mapped.collection.name,
         'ItemAuthor'    => mapped.creator.name,
         'ItemDate'      => mapped.date.name,
