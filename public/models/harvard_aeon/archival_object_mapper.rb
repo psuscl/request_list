@@ -22,7 +22,7 @@ module HarvardAeon
         'SubLocation'    => mapped.ext(:physical_location).name,
         'ItemInfo3'      => mapped.extent.multi.map {|e| [e.name, e.ext(:container_summary), e.ext(:physical_details)].select {|e| !e.blank?}.join(", ")}.join('; '),
         'CallNumber'     => mapped.collection.id,
-        'ItemPlace'      => mapped.record.ext(:access_restrictions),
+        'ItemInfo2'      => mapped.record.ext(:access_restrictions),
         'ItemPublisher'  => mapped.collection.ext(:access_restrictions),
         'ItemIssue'      => mapped.record.id,
       }

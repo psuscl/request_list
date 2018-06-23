@@ -19,7 +19,7 @@ module HarvardAeon
         'Location'      => mapped.ext(:location).name,
         'SubLocation'   => mapped.ext(:physical_location).name,
         'CallNumber'    => mapped.collection.id,
-        'ItemPublisher' => mapped.collection.ext(:access_restrictions),
+        'ItemInfo2'     => mapped.collection.ext(:access_restrictions),
       }
 
       return [as_aeon_request(shared_fields)] unless mapped.container.has_multi?
