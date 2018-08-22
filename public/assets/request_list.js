@@ -403,5 +403,9 @@ $(function() {
 	    }
             return true;
 	}
-    )
+    );
+
+    if (!SHOW_BUILTIN_REQUEST_BUTTON_FOR_HANDLED_REPOSITORIES && $('meta[name=rl-handler-defined]').length) {
+        $('#request_sub').parent().hide();
+    }
 });

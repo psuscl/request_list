@@ -20,4 +20,11 @@
     'excluded_items_photoduplication_error_message': "<%= t('plugin.request_list.excluded_items_photoduplication_error_message').gsub('"', '\"').html_safe %>",
   };
 
+  SHOW_BUILTIN_REQUEST_BUTTON_FOR_HANDLED_REPOSITORIES = <%= AppConfig[:request_list].has_key?(:show_builtin_request_button_for_handled_repositories) && AppConfig[:request_list][:show_builtin_request_button_for_handled_repositories] %>
+
 </script>
+
+<% if defined?(@result) && @result.respond_to?(:resolved_repository) && RequestList.handler_config_for(@result) %>
+  <meta name="rl-handler-defined" content="true"/>
+<% end %>
+

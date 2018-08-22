@@ -46,6 +46,11 @@ Optional. `:button_position` specifies the position of the `Add to My List` butt
 Optional. `:record_types` specifies a list of ArchivesSpace JSONModel types that can be added to the list. The default is `['archival_object', 'accession']`.
 
 ```ruby
+  :show_builtin_request_button_for_handled_repositories => true
+```
+Optional. If the builtin request button is enabled, then by default the builtin request button will only be shown for repositories that are not handled by request_list (see below). If this option is set to true, then the builtin request button will be shown for handled repositories. The default is `false`.
+
+```ruby
   :request_handlers => { ... }
 ```
 
