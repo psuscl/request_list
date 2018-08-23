@@ -292,6 +292,12 @@
 	return true;
     };
 
+    RequestList.prototype.removeAllButtonClick = function(msg) {
+	if (confirm(msg)) {
+	    this.removeAll();
+	}
+    };
+
     RequestList.prototype.removeAll = function() {
 	this.setList([]);
 	location.reload(true);
