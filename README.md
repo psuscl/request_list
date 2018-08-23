@@ -38,7 +38,7 @@ The `AppConfig[:request_list]` configuration contains a hash. The allowed key/va
 ```ruby
   :button_position => 0,
 ```
-Optional. `:button_position` specifies the position of the `Add to My List` button among the other action buttons. By default it is added to the right of the other buttons. A value of `0` places it leftmost.
+Optional. `:button_position` specifies the position of the `Add to My Request List` button among the other action buttons. By default it is added to the right of the other buttons. A value of `0` places it leftmost.
 
 ```ruby
   :record_types => ['archival_object', 'resource', 'top_container'],
