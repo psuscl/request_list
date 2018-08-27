@@ -2,7 +2,9 @@
   EXCLUDED_MESSAGE = JSON.parse('<%= @excluded.html_safe %>');
 </script>
 
-<h2><%= t('plugin.request_list.list_title')  %></h2>
+<div class="row">
+  <h2><%= t('plugin.request_list.list_title')  %></h2>
+</div>
 
 <% @mapper.handlers.each do |handler| %>
 
@@ -18,14 +20,11 @@
 
 <div class="row">
 
-  <div class="col-sm-1">
-  </div>
-
   <div class="col-sm-10">
     <a name="main" title="Main Content"></a>
     <div class="row"></div>
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 no-pad">
 
         <div class="btn-group rl-select-buttons pull-left">
 
@@ -97,7 +96,7 @@
     <% end %>
   </div>
 
-  <div class="col-sm-1">
+  <div class="col-sm-2">
     <div>
       <%= render partial: "request_list/#{handler.profile}/form_right", locals: {:form => f, :handler => handler} %>
     </div>

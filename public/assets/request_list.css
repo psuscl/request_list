@@ -86,7 +86,6 @@
 }
 
 .rl-ha-type-select {
-  padding-left: 20px;
 }
 
 .rl-ha-additional-fields {
@@ -122,10 +121,8 @@
 }
 
 .rl-message-title {
-  width: 90%;
+  width: 100%;
   font-size: 120%;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 20px;
 }
 
