@@ -16,7 +16,7 @@ en:
       submit_button_label: Submit Requests
       back_to_top_button_label: Back to Top
       remove_all_button_label: Remove All
-      remove_all_confirm_message: Remove all items from your request list?
+      remove_all_confirm_message: Are you sure you want to remove all the items from your list? You will not be able to undo this action.
       expand_item_button_label: Options
       expand_item_button_message: Set options for this item
       item_expand_message: Click to show and hide item detail
