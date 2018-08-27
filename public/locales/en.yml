@@ -14,6 +14,7 @@ en:
       empty_list_error_message: Please check the items you would like to request.
       excluded_items_message: The %{repo} does not accept %{request_type} requests.  The following items from your list cannot be submitted. Please contact %{repo} directly.
       submit_button_label: Submit Requests
+      back_to_top_button_label: Back to Top
       remove_all_button_label: Remove All
       remove_all_confirm_message: Remove all items from your request list?
       expand_item_button_label: Options
