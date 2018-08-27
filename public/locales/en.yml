@@ -24,9 +24,9 @@ en:
       expand_help_message: Click to see more help
       edited_indicator_message: Options have been set for this item
       select_all_title: Select All Items
-      select_all_button_label: All
+      select_all_button_label: Select All
       select_none_title: Select No Items
-      select_none_button_label: None
+      select_none_button_label: Clear Selections
       sort_button_label: Sort
       sort_repository: Repository
       sort_collection: Collection
