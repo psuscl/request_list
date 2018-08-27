@@ -1,4 +1,4 @@
-<div class="rl-list-item" data-uri="<%= item.uri %>"
+<div class="rl-list-item" data-uri="<%= item.uri %>" data-repo="<%= item.repository.id.downcase  %>"
 <% handler.sort_fields.each do |field, val_proc| %>
   data-sort-<%= field %>="<%= val_proc.call(item).gsub(/"/, '') %>"
 <% end %>

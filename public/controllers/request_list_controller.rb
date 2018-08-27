@@ -16,5 +16,18 @@ class RequestListController <  ApplicationController
                                                                   'ancestors:id@compact_resource',
                                                                  ]})
     @mapper = RequestList.new(results.records)
+
+    excluded = {}
+    AppConfig[:request_list][:repositories].each do |k,v|
+      next if k == :default
+      next unless @mapper.repos.has_key?(k)
+      ((v[:item_opts] || {})[:excluded_request_types] || []).each do |rt|
+        excluded[rt] ||= {}
+        excluded[rt][k] = I18n.t('plugin.request_list.excluded_items_message',
+                                 {:request_type => rt, :repo => @mapper.repos[k]})
+      end
+    end
+    @excluded = excluded.to_json
+
   end
 end

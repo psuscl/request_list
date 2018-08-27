@@ -171,10 +171,25 @@
 
 	// Don't allow items that are excluded from this request type
 	var rt = $("#request_type_select").children('option:selected').text();
-	var excludedItems = checkedItems.has('.rl-ha-excluded-request-types > data[value="' + rt + '"]')
+	var excludedItems = checkedItems.has('.rl-ha-excluded-request-types > data[value="' + rt + '"]');
+	var msg = "";
 	if (excludedItems.length > 0) {
-	    var msg = HARVARD_AEON_MESSAGES['excluded_items_' + rt.toLowerCase().replace(' ', '_') + '_error_message'] + "\n";
-	    excludedItems.each(function(ix, ei) { msg += '    ' + $(ei).find('.rl-item-count-label').text() + ': ' + $(ei).find('.rl-display-title').text().trim()  + "\n" });
+	    while (excludedItems.length > 0) {
+		var repo = $(excludedItems[0]).data('repo');
+		var excludedForRepo = $(excludedItems).filter('[data-repo="' + repo + '"]');
+
+		msg += EXCLUDED_MESSAGE[rt][repo] + "\n";
+
+		excludedForRepo.each(function(ix, ei) {
+			msg += '    ' + $(ei).find('.rl-item-count-label').text() + ': ' + $(ei).find('.rl-display-title').text().trim()  + "\n"
+			    });
+
+		excludedItems = jQuery.grep(excludedItems, function(item) {
+			return $(item).data('repo') != repo;
+		    });
+
+		msg += "\n";
+	    }
 	    alert(msg);
 	    //excludedItems.css('border', '2px solid #faa');
 	    return false;

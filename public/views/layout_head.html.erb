@@ -14,10 +14,7 @@
   HARVARD_AEON_MESSAGES = {
     'empty_list_error_message': "<%= t('plugin.request_list.empty_list_error_message').gsub('"', '\"').html_safe %>",
     'unfilled_fields_error_message': "<%= t('plugin.request_list.unfilled_fields_error_message').gsub('"', '\"').html_safe %>",
-    'full_list_error_message': "<%= t('plugin.request_list.full_list_error_message').gsub('"', '\"').html_safe %>",
-    'excluded_items_reading_room_error_message': "<%= t('plugin.request_list.excluded_items_reading_room_error_message').gsub('"', '\"').html_safe %>",
-    'excluded_items_saved_error_message': "<%= t('plugin.request_list.excluded_items_saved_error_message').gsub('"', '\"').html_safe %>",
-    'excluded_items_photoduplication_error_message': "<%= t('plugin.request_list.excluded_items_photoduplication_error_message').gsub('"', '\"').html_safe %>",
+    'full_list_error_message': "<%= t('plugin.request_list.full_list_error_message').gsub('"', '\"').html_safe %>"
   };
 
   SHOW_BUILTIN_REQUEST_BUTTON_FOR_HANDLED_REPOSITORIES = <%= AppConfig[:request_list].has_key?(:show_builtin_request_button_for_handled_repositories) && AppConfig[:request_list][:show_builtin_request_button_for_handled_repositories] %>

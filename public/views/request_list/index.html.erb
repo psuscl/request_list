@@ -1,3 +1,7 @@
+<script>
+  EXCLUDED_MESSAGE = JSON.parse('<%= @excluded.html_safe %>');
+</script>
+
 <h2><%= t('plugin.request_list.list_title')  %></h2>
 
 <% @mapper.handlers.each do |handler| %>

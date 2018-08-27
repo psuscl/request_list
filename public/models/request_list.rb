@@ -1,5 +1,7 @@
 class RequestList
 
+  attr_reader :repos
+
   @@init = false
   @@profiles = {}
 
@@ -73,8 +75,10 @@ class RequestList
 
     @handlers = {}
     @records = records
+    @repos = {}
 
     @records.each do |record|
+      @repos[record.resolved_repository['repo_code'].downcase] = record.resolved_repository['name']
       handler_for(record).add(record)
     end
   end
