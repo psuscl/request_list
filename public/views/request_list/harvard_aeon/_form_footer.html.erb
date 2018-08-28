@@ -3,7 +3,11 @@
 
 <div class="col-sm-2">
 <div class="form-group pull-right">
-  <button type="button" class="btn btn-secondary" onclick="window.scrollTo(0,0);"><%= t('plugin.request_list.back_to_top_button_label') %></button>
+  <a class="btn btn-default" onclick="window.scrollTo(0,0);" title="<%= t('plugin.request_list.back_to_top_button_label') %>">
+    <%= t('plugin.request_list.back_to_top_button_label').html_safe %>
+    <br/>
+    <i class="fa fa-3x fa-angle-up"></i>
+  </a>
 </div>
 </div>
 

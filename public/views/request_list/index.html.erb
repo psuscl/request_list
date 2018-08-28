@@ -111,7 +111,7 @@
 </div>
 
 <script>
-    $('#rl-handler-<%= handler.id %>').find('.btn-primary').click(function(e) {
+    $('#rl-handler-<%= handler.id %>').find('.submit-requests').click(function(e) {
         e.preventDefault();
         request_list.submitButtonClick('<%= handler.id %>');
     });
