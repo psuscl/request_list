@@ -1,5 +1,8 @@
 <script>
-  EXCLUDED_MESSAGE = JSON.parse('<%= @excluded.html_safe %>');
+  EXCLUDED_MESSAGE = JSON.parse('<%= @excluded.gsub("'", "\\\\'").html_safe %>'
+                                  .replace(/\n/g, " ")
+                                  .replace(/\r/g, " ")
+                                  .replace(/\t/g, " "));
 </script>
 
 <div class="row">
