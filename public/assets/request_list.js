@@ -283,6 +283,19 @@
 	});
 
 
+	// Sort items by ItemIssue before submiting
+	var $list = handler.find('.rl-list');
+	var $items = $list.children('.rl-list-item');
+	$items.sort(function(a, b) {
+		var ia = $(a).find('input[name^=ItemIssue_]').attr('value');
+		var ib = $(b).find('input[name^=ItemIssue_]').attr('value');
+		if (ia < ib) { return -1 }
+		if (ia > ib) { return 1 }
+		return 0;
+	    });
+	$items.detach().appendTo($list);
+
+
         setTimeout(function() {
 	    $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
                 self.removeFromList($(rli).data('uri'), true);
