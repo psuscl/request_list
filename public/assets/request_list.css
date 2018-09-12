@@ -219,3 +219,12 @@
 .rl-ha-options-help {
   font-size: 80%;
 }
+
+.rl-extra-button-pane {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.rl-extra-button {
+  margin-left: 10px;
+}
