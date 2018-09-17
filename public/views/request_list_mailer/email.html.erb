@@ -14,10 +14,7 @@
       <% title_label = is_record ? 'record' : 'collection' %>
 
       <div style="margin-top:20px;">
-        <%= t('plugin.request_list.' + title_label) %>:
-        <a href="<%= url_prefix + title_attr.uri %>"><%= title_attr.name %></a>,
-        <%= item.date.name %>.
-        <br/>
+        <%= render file: File.join(view_path, 'request_list', '_item_external_display'), locals: {:item => item, :url_prefix => url_prefix } %>
       </div>
     <% end %>
   <% end %>

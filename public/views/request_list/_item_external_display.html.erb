@@ -1,0 +1,110 @@
+<% is_record = item.type == ArchivalObject %>
+
+<div class="rl-item-display">
+
+<table class="rl-item-table">
+  <tr>
+    <% title_attr = is_record ? item.record : item.collection %>
+    <% title_label = is_record ? 'record' : 'collection' %>
+
+    <td>
+      <span class="rl-display-label">
+        <%= t('plugin.request_list.' + title_label) %>:
+      </span>
+
+      <span class="rl-display rl-display-<%= title_label %>">
+
+        <%=
+          [
+           {:val => title_attr.name, :class => 'rl-display-title', :uri => title_attr.uri},
+           {:val => item.date.name, :class => 'rl-display-date'},
+           {:val => item.extent.name, :class => 'rl-display-extent'},
+           {:val => item.extent.ext(:container_summary), :class => 'rl-display-container-summary'},
+           {:val => item.extent.ext(:physical_details), :class => 'rl-display-physical-details'}
+          ].select {|s| !s[:val].empty?}.map {|m|
+            disp = m[:uri] ? "<a href=\"#{url_prefix + m[:uri]}\">#{m[:val]}</a>" : m[:val]
+            "<span class=\"#{m[:class]}\">#{disp}</span>"
+          }.join(', ').html_safe
+        %>
+
+      </span>
+    </td>
+  </tr>
+
+  <% if is_record %>
+    <tr>
+      <td>
+        <span class="rl-display-label">
+          <%= t('plugin.request_list.collection') %>:
+        </span>
+        <span class="rl-display rl-display-collection <%= is_record ? '' : 'rl-display-title'  %>">
+          <a href="<%= url_prefix + item.collection.uri %>"><%= item.collection.name %></a>
+
+          <% item.collection.multi.drop(1).map do |c| %>
+            / <a href="<%= url_prefix + c.uri %>"><%= c.name %></a>
+          <% end %>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td>
+      <span class="rl-display-label">
+        <%= t('plugin.request_list.call_number') %>:
+      </span>
+      <span class="rl-display rl-display-repository">
+        <%= item.collection.id %>
+        <% if is_record && !item.record.id.empty? %>
+          ,
+          <span class="rl-display-label">
+            <%= t('plugin.request_list.component_id') %>:
+          </span>
+          <span class="rl-display rl-display-component-id">
+            <%= item.record.id %>
+          </span>
+        <% end %>
+      </span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="rl-display rl-display-container">
+      <div class="rl-display-container-pane">
+        <% item.container.multi.map do |container| %>
+          <div class="rl-display-container-cell">
+            <i class="fa fa-archive"></i>
+            <a href="<%= url_prefix + container.uri %>">  <%= container.name %></a>
+          </div>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <span class="rl-display-label">
+        <%= t('plugin.request_list.repository') %>:
+      </span>
+      <span class="rl-display rl-display-repository">
+        <a href="<%= url_prefix + item.repository.uri %>">  <%= item.repository.name %></a>
+      </span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <% restrictions = item.record.ext(:access_restrictions) %>
+      <% restrictions = item.collection.ext(:access_restrictions) if item.record.ext(:access_restrictions).empty? %>
+      <% unless restrictions.empty? %>
+        <span class="rl-display-label">
+          <%= t('plugin.request_list.restrictions') %>:
+        </span>
+        <span class="rl-display rl-display-restrictions">
+          <%= restrictions %>
+        </span>
+      <% end %>
+    </td>
+  </tr>
+</table>
+</div>
