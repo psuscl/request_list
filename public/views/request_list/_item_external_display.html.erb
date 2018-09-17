@@ -68,18 +68,20 @@
     </td>
   </tr>
 
+  <% if item.container.has_multi? %>
   <tr>
     <td class="rl-display rl-display-container">
       <div class="rl-display-container-pane">
         <% item.container.multi.map do |container| %>
-          <div class="rl-display-container-cell">
-            <i class="fa fa-archive"></i>
+          <div class="rl-display-container-cell"
+               style="display:inline-block;white-space:nowrap;padding:2px 4px 2px 4px;margin:2px 6px 2px 0px;border:1px solid #c2c2c2;border-radius: 3px;">
             <a href="<%= url_prefix + container.uri %>">  <%= container.name %></a>
           </div>
         <% end %>
       </div>
     </td>
   </tr>
+  <% end %>
 
   <tr>
     <td>
