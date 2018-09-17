@@ -1,8 +1,5 @@
 class RequestListController <  ApplicationController
   def index
-
-    uris = JSON.parse((cookies['as_pui_request_list_list_contents'] || '[]'))
-
     flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', {:sent => params[:sent]}) if params[:sent]
 
     if uris.empty?
@@ -29,5 +26,37 @@ class RequestListController <  ApplicationController
     end
     @excluded = excluded.to_json
 
+  end
+
+
+  def email
+    if !params[:user_email].blank? && params[:user_email].match(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i)
+      flash[:notice] = I18n.t('plugin.request_list.email.sent_message', {:email => params[:user_email]})
+
+      RequestListMailer.email(params[:user_email], mapper).deliver
+
+      redirect_back(fallback_location: request[:request_uri]) and return
+    else
+      flash[:error] = I18n.t('plugin.request_list.email.error_message', {:email => params[:user_email]})
+      redirect_back(fallback_location: request[:request_uri]) and return
+    end
+  end
+
+
+  private
+
+
+  def uris
+    @uris ||= JSON.parse((cookies['as_pui_request_list_list_contents'] || '[]'))
+  end
+
+
+  def mapper
+    @mapper ||= RequestList.new(archivesspace.search_records(uris, {'resolve[]' => ['repository:id',
+                                                                                    'resource:id',
+                                                                                    'top_container_uri_u_sstr:id',
+                                                                                    'collection_uri_u_sstr:id',
+                                                                                    'ancestors:id@compact_resource',
+                                                                                   ]}).records)
   end
 end

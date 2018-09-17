@@ -49,6 +49,16 @@ en:
       unhandled_items_title: Unhandled Items
       unhandled_items_message: The following items could not be requested. Please contact the Archives for assistance.
       sent_items_message: You sent requests for %{sent} items.
+      email:
+        list_button_label: Email List
+        send_button_label: Send Email
+        sent_message: Your list has been sent to %{email}.
+        error_message: Your list was not sent. Please provide a validate email address.
+        from: '"ArchivesSpace Request List" <do_not_reply@example.com>'
+        subject: ArchivesSpace List Items
+        header: ArchivesSpace List Items
+      print:
+        list_button_label: Print List
       options:
         request_type: Request Type
         date: Schedule Retrieval

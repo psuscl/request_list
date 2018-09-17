@@ -32,13 +32,13 @@
         <div class="pull-right">
 
           <a class="btn btn-default page_action rl-extra-button">
-            <i class="fa fa-file-pdf-o"></i>
-            Print List
+            <i id="rl-print-list-button" class="fa fa-file-pdf-o"></i>
+            <%= t('plugin.request_list.print.list_button_label') %>
           </a>
 
-          <a class="btn btn-default page_action rl-extra-button">
+          <a id="rl-email-list-button" class="btn btn-default page_action rl-extra-button">
             <i class="fa fa-envelope-o"></i>
-            Email List
+            <%= t('plugin.request_list.email.list_button_label') %>
           </a>
 
         </div>
@@ -144,4 +144,17 @@
 </div>
 
 <% end %>
+
+
+<%= render partial: 'shared/modal', locals: {:modal_id => 'rl-email-modal',
+                                             :title => t('plugin.request_list.email.list_button_label'),
+                                             :modal_body => (render partial: 'request_list/email_modal')} %>
+
+<script>
+    $('#rl-email-list-button').click(function(e) {
+        e.preventDefault();
+        request_list.emailListButtonClick("<%= t('plugin.request_list.email.send_button_label') %>");
+    });
+</script>
+
 

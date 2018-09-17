@@ -11,6 +11,10 @@ Plugins::add_record_page_action_erb(cfg.fetch(:record_types, ['archival_object',
                                     'request_list/action_button',
                                     cfg.fetch(:button_position, nil))
 
+ArchivesSpacePublic::Application.class_eval do
+    config.paths["app/mailers"].concat(ASUtils.find_local_directories("public/mailers"))
+end
+
 Rails.application.config.after_initialize do
   RequestList.init(cfg)
 end

@@ -320,6 +320,39 @@
 	return true;
     };
 
+
+    RequestList.prototype.emailListButtonClick = function(buttonLabel) {
+	this.showEmailModal();
+	var $modal = $('#rl-email-modal');
+	$modal.find('div.modal-body').attr('id', 'requestThis');
+	var $btn = $modal.find('.action-btn');
+	$btn.html(buttonLabel);
+	$btn.click(function(e) {
+		$("#rl-email-list-form").submit();
+	    });
+    };
+
+
+    RequestList.prototype.showEmailModal = function() {
+	$("#rl-email-modal").modal('show');
+
+	$('#user_name',this).closest('.form-group').removeClass('has-error');
+	$('#user_email',this).closest('.form-group').removeClass('has-error');
+
+	$('#rl-email-list-form', '#rl-email-modal').on('submit', function() {
+		var proceed = true;
+
+		if ($('#user_email',this).val().trim() == '') {
+		    $('#user_email',this).closest('.form-group').addClass('has-error');
+		    proceed = false;
+		} else {
+		    $('#user_email',this).closest('.form-group').removeClass('has-error');
+		}
+
+		return proceed;
+	    });
+    };
+
     RequestList.prototype.removeAllButtonClick = function(msg) {
 	if (confirm(msg)) {
 	    this.removeAll();

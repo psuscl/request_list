@@ -1,0 +1,24 @@
+<% url_prefix = AppConfig[:public_proxy_url].sub(/\/$/, '') %>
+
+<div>
+  <p>
+    <%= t('plugin.request_list.email.header').html_safe %>
+  </p>
+</div>
+
+<div style="margin-left:20px;">
+  <% mapper.handlers.each do |handler| %>
+    <% handler.each_item_map do |item| %>
+      <% is_record = item.type == ArchivalObject %>
+      <% title_attr = is_record ? item.record : item.collection %>
+      <% title_label = is_record ? 'record' : 'collection' %>
+
+      <div style="margin-top:20px;">
+        <%= t('plugin.request_list.' + title_label) %>:
+        <a href="<%= url_prefix + title_attr.uri %>"><%= title_attr.name %></a>,
+        <%= item.date.name %>.
+        <br/>
+      </div>
+    <% end %>
+  <% end %>
+</div>
