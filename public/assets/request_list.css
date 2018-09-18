@@ -228,3 +228,14 @@
 .rl-extra-button {
   margin-left: 10px;
 }
+
+.rl-item-list-header {
+  font-size: 120%;
+  margin-left: 5px;
+}
+
+.rl-request-form-header {
+  font-size: 120%;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}

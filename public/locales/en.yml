@@ -2,6 +2,8 @@ en:
   plugin:
     request_list:
       list_title: My Request List
+      item_list_subtitle: ITEM LIST
+      request_form_subtitle: REQUEST FORM
       title_message: |
           You can select items in this list to submit to HOLLIS Special Request for retrieval or photoduplication order processing.<br/>
           <span style="color:#ff0000">
