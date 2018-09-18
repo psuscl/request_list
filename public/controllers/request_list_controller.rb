@@ -43,6 +43,32 @@ class RequestListController <  ApplicationController
   end
 
 
+  def pdf
+    pdf = RequestListPDF.new(mapper, "#{request.protocol}#{request.host_with_port}")
+    pdf_file = pdf.generate
+
+    respond_to do |format|
+      filename = pdf.filename
+
+      format.all do
+        fh = File.open(pdf_file.path, "r")
+        self.headers["Content-type"] = "application/pdf"
+        self.headers["Content-disposition"] = "attachment; filename=\"#{filename}\""
+        self.response_body = Enumerator.new do |y|
+          begin
+            while chunk = fh.read(4096)
+              y << chunk
+            end
+          ensure
+            fh.close
+            pdf_file.unlink
+          end
+        end
+      end
+    end
+  end
+
+
   private
 
 

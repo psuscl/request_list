@@ -59,6 +59,8 @@ en:
         header: ArchivesSpace List Items
       print:
         list_button_label: Print List
+        title: ArchivesSpace Request List
+        header: ArchivesSpace Request List Items
       options:
         request_type: Request Type
         date: Schedule Retrieval

@@ -31,7 +31,8 @@
       <div class="rl-extra-button-pane col-sm-12 no-pad">
         <div class="pull-right">
 
-          <a class="btn btn-default page_action rl-extra-button">
+          <a class="btn btn-default page_action rl-extra-button"
+             href="<%= url_for(:controller => :request_list, :action => :pdf) %>">
             <i id="rl-print-list-button" class="fa fa-file-pdf-o"></i>
             <%= t('plugin.request_list.print.list_button_label') %>
           </a>
