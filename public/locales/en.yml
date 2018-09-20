@@ -5,11 +5,8 @@ en:
       item_list_subtitle: ITEM LIST
       request_form_subtitle: REQUEST FORM
       title_message: |
-          You can select items in this list to submit to HOLLIS Special Request for retrieval or photoduplication order processing.<br/>
-          <span style="color:#ff0000">
-            NOTE: Items will remain in your list for this browser session. Submitted items will be removed.
-          </span>
-
+          You can select items in this list to submit requests for retrieval or photoduplication.<br/>
+          NOTE: Items will remain in your list for this browser session. Submitted items will be removed.
       list_session_message: Items will remain in your list for this browser session.<br/>Your list will be cleared when you send requests.
       full_list_error_message: Your list is full. Please go to 'My Request List' and remove items or submit your requests to make room for more.
       unfilled_fields_error_message: "Please provide the following:"
@@ -81,5 +78,7 @@ en:
         for_publication_no: No, not intended for publication
         photoduplication_instructions: Photoduplication Instructions
         photoduplication_instructions_help: Let us know exactly what you would like reproduced. Specific page numbers, special instructions, and questions should all be entered here (up to 255 characters).
-      expanded_help: "..."
-
+      expanded_help: |
+        <p>
+          Fill out the request form, select the items you want to include in the request, and then click Submit Requests.
+        </p>
