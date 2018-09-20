@@ -42,6 +42,8 @@ en:
       container: Container
       creator: Creator
       extent: Extent
+      alert_label: Error
+      ok_button_label: Proceed
       menu_label: My Request List (0)
       add_to_list_button_label: Add to My Request List
       add_to_list_button_icon: fa-plus

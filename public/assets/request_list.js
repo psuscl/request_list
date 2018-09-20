@@ -155,6 +155,18 @@
 	this._setAllItems(false);
     };
 
+    RequestList.prototype.showAlertModal = function(message, callback) {
+        if (callback) {
+	  $('#rl-alert-modal').find('.action-btn').click(function() { callback(); $("#rl-alert-modal").modal('hide')});
+          $('#rl-alert-modal').find('.action-btn').show();
+	} else {
+          $('#rl-alert-modal').find('.action-btn').hide();
+	}
+
+	$("#rl-alert-message").html(message);
+	$("#rl-alert-modal").modal('show');
+    };
+
     RequestList.prototype.submitButtonClick = function(handlerId) {
 	var self = this;
 	var startListLength = self.getList().length;
@@ -164,7 +176,7 @@
 
 	// Don't allow submission of an empty list
 	if (checkedItems.length == 0) {
-	    alert(HARVARD_AEON_MESSAGES['empty_list_error_message']);
+	    self.showAlertModal(HARVARD_AEON_MESSAGES['empty_list_error_message']);
 	    return false;
 	}
 
@@ -178,11 +190,12 @@
 		var repo = $(excludedItems[0]).data('repo');
 		var excludedForRepo = $(excludedItems).filter('[data-repo="' + repo + '"]');
 
-		msg += EXCLUDED_MESSAGE[rt][repo] + "\n";
+		msg += '<p>' + EXCLUDED_MESSAGE[rt][repo] + "</p><ul>";
 
 		excludedForRepo.each(function(ix, ei) {
-			msg += '    ' + $(ei).find('.rl-item-count-label').text() + ': ' + $(ei).find('.rl-display-title').text().trim()  + "\n"
+			msg += '<li>' + $(ei).find('.rl-item-count-label').text() + ': ' + $(ei).find('.rl-display-title').text().trim()  + "</li>";
 			    });
+		msg += '</ul>';
 
 		excludedItems = jQuery.grep(excludedItems, function(item) {
 			return $(item).data('repo') != repo;
@@ -190,8 +203,7 @@
 
 		msg += "\n";
 	    }
-	    alert(msg);
-	    //excludedItems.css('border', '2px solid #faa');
+	    self.showAlertModal(msg);
 	    return false;
 	}
 
@@ -201,9 +213,10 @@
 	                                                   .filter('.required')
                                                            .filter(function() { return $(this).val() == ""; });
 	if (unfilled_fields.length > 0) {
-	    var msg = HARVARD_AEON_MESSAGES['unfilled_fields_error_message'] + "\n";
-            unfilled_fields.each(function(ix, uf) { msg += '    ' + $(uf).closest('.form-group').children('label').text() + "\n"; });
-	    alert(msg);
+	    var msg = '<p>' + HARVARD_AEON_MESSAGES['unfilled_fields_error_message'] + "</p><ul>";
+            unfilled_fields.each(function(ix, uf) { msg += '<li>' + $(uf).closest('.form-group').children('label').text() + "</li>"; });
+            msg += '</ul>';
+	    self.showAlertModal(msg);
 	    unfilled_fields.css('border', '2px solid #faa');
 	    return false;
 	}
@@ -354,9 +367,9 @@
     };
 
     RequestList.prototype.removeAllButtonClick = function(msg) {
-	if (confirm(msg)) {
-	    this.removeAll();
-	}
+	this.showAlertModal(msg, function() {
+		request_list.removeAll();
+	    });
     };
 
     RequestList.prototype.removeAll = function() {
