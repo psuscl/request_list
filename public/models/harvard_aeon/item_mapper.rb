@@ -60,6 +60,12 @@ module HarvardAeon
 
 
     def hollis_number_for(resource)
+      out = resource['notes'].select {|n| n['type'] == 'processinfo' && n['label'] == 'Alma ID'}
+                             .map {|n| n['subnotes'].map {|s| s['content'].strip}}
+                             .flatten.compact.join('; ')
+
+      return out unless out.empty?
+
       resource['notes'].select {|n| n['type'] == 'processinfo' && n['label'] == 'Aleph ID'}
                        .map {|n| n['subnotes'].map {|s| s['content'].strip}}
                        .flatten.compact.join('; ')
