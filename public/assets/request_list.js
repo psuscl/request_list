@@ -403,7 +403,7 @@
     RequestList.prototype.addToList = function(uri) {
 	var list = this.getList();
 	if (list.length >= this.item_limit) {
-	    alert(HARVARD_AEON_MESSAGES['full_list_error_message']);
+  	    this.showAlertModal(HARVARD_AEON_MESSAGES['full_list_error_message']);
 	    return;
 	}
 	if (this.isInList(uri)) {

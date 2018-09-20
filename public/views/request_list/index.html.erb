@@ -152,18 +152,11 @@
 
 <% end %>
 
-
-<%= render partial: 'shared/modal', locals: {:modal_id => 'rl-alert-modal',
-                                             :title => '',
-                                             :modal_body => (render partial: 'request_list/alert_modal')} %>
-
 <%= render partial: 'shared/modal', locals: {:modal_id => 'rl-email-modal',
                                              :title => t('plugin.request_list.email.list_button_label'),
                                              :modal_body => (render partial: 'request_list/email_modal')} %>
 
 <script>
-    $('#rl-alert-modal').find('.action-btn').html("<%= t('plugin.request_list.ok_button_label') %>");
-
     $('#rl-email-list-button').click(function(e) {
         e.preventDefault();
         request_list.emailListButtonClick("<%= t('plugin.request_list.email.send_button_label') %>");
