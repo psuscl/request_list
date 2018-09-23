@@ -43,10 +43,12 @@
             <%= t('plugin.request_list.print.list_button_label') %>
           </a>
 
-          <a id="rl-email-list-button" class="btn btn-default page_action rl-extra-button">
-            <i class="fa fa-envelope-o"></i>
-            <%= t('plugin.request_list.email.list_button_label') %>
-          </a>
+          <% if AppConfig[:pui_email_enabled] %>
+            <a id="rl-email-list-button" class="btn btn-default page_action rl-extra-button">
+              <i class="fa fa-envelope-o"></i>
+              <%= t('plugin.request_list.email.list_button_label') %>
+            </a>
+          <% end %>
 
         </div>
       </div>
