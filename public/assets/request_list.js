@@ -302,6 +302,13 @@
 	$items.sort(function(a, b) {
 		var ia = $(a).find('input[name^=ItemIssue_]').attr('value');
 		var ib = $(b).find('input[name^=ItemIssue_]').attr('value');
+		// sort on the last numeric component
+		var ma = rx.exec(ia);
+		var mb = rx.exec(ib);
+		if (ma && mb) {
+		    ia = parseInt(ma[2]);
+		    ib = parseInt(mb[2]);
+		}
 		if (ia < ib) { return -1 }
 		if (ia > ib) { return 1 }
 		return 0;
