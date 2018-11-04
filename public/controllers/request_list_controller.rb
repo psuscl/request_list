@@ -1,4 +1,7 @@
 class RequestListController <  ApplicationController
+
+  skip_before_action  :verify_authenticity_token
+
   def index
     flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', {:sent => params[:sent]}) if params[:sent]
 
