@@ -75,7 +75,6 @@
         <% item.container.multi.map do |container| %>
           <div class="rl-display-container-cell"
                style="display:inline-block;white-space:nowrap;padding:2px 4px 2px 4px;margin:2px 6px 2px 0px;border:1px solid #c2c2c2;border-radius: 3px;">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAP1BMVEUAAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQHZNWGwAAAAFHRSTlMABQkSHCouQFthka20t77Dzuj1/RS4lP4AAAA/SURBVAhbY+DiRQacDCIogBeDz86BDFgZmHmQtHMzMrChqGeG8LkZGBgEkfgi/HwCyPJwQDmfRRiJK8TEgAYAXlQNPZkLXt4AAAAASUVORK5CYII=" style="vertical-align:middle;"/>
             <a href="<%= url_prefix + container.uri %>">  <%= container.name %></a>
           </div>
         <% end %>
