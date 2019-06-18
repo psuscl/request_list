@@ -54,11 +54,12 @@ class RequestList
 
 
   def self.show_button_for?(record)
-    handler_cfg = handler_config_for(record)
-    return false unless handler_cfg
-    profile = handler_cfg[:profile]
-    return false unless @@profiles[profile][:item_mappers].has_key?(record.class)
-    @@profiles[profile][:item_mappers][record.class].new(profile, repo_config_for(record)[:item_opts]).request_permitted?(record)
+    true
+    # handler_cfg = handler_config_for(record)
+    # return false unless handler_cfg
+    # profile = handler_cfg[:profile]
+    # return false unless @@profiles[profile][:item_mappers].has_key?(record.class)
+    # @@profiles[profile][:item_mappers][record.class].new(profile, repo_config_for(record)[:item_opts]).request_permitted?(record)
   end
 
 
