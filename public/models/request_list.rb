@@ -49,6 +49,9 @@ class RequestList
 
 
   def self.repo_config_for(record)
+    if record.resolved_repository.nil?
+      return {}
+    end
     @@repositories[:default].merge(@@repositories[record.resolved_repository['repo_code'].downcase] || {})
   end
 
