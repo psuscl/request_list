@@ -52,7 +52,11 @@ class RequestList
     if record.resolved_repository.nil?
       return @@repositories[:default]
     end
-    @@repositories[:default].merge(@@repositories[record.resolved_repository['repo_code'].downcase])
+    
+    repo_code = record.resolved_repository['repo_code'].downcase
+    repo_settings = @@repositories.fetch(repo_code, {})
+
+    @@repositories[:default].merge(repo_settings)
   end
 
 
