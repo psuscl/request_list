@@ -280,7 +280,8 @@
 		} else if (grp.length > 0) {
 		    $(grp).each(function(ix, id) {
 			var request_number = $(collection[id]).children('input[name=Request]').attr('value');
-			$(collection[id]).append('<input type="hidden" name="gid_' + request_number + '" value="' + k + grp[0] + '"/>');
+			var input_text = '<input type="hidden" name="gid_' + request_number + '" value="' + k + grp[0] + '"/>';
+			$(collection[id]).append(input_text);
 		    });
 		    grp = [];
 		}
@@ -289,8 +290,9 @@
 
 	    if (grp.length > 0) {
 	        $(grp).each(function(ix, id) {
-		    var request_number = $(collection[id]).children('input[name=Request]').attr('value');
-		    $(collection[id]).append('<input type="hidden" name="gid_' + request_number + '" value="' + k + grp[0] + '"/>');
+			var request_number = $(collection[id]).children('input[name=Request]').attr('value');
+			var input_text = '<input type="hidden" name="gid_' + request_number + '" value="' + k + grp[0] + '"/>';
+			$(collection[id]).append(input_text);
 		});
 	    }
 	});
