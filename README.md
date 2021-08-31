@@ -65,7 +65,36 @@ Required. Each key/value pair in `:request_handlers` defines a handler that is a
   }
 ```
 
-Required. The keys in `:repositories` are downcased `repo_code` or `:default`. Only the `:default` key is required. The values are hashes. The `:default` hash must contain a `:handler` key that points to a handler defined in the `:request_handlers` section. This says that, by default, items from all Repositories will use that handler. This can then be overridden in an entry for a particular Repository. The only other key supported is `:item_opts`. This is a hash of arguments passed to the item mapper.
+Required. See 'Configuring Repositories' for details.
+
+### Configuring Repositories
+
+The keys in `:repositories` are either a downcased `repo_code` or `:default`. Only the `:default` key is required. The values are hashes. The `:default` hash must contain a `:handler` key that points to a handler defined in the `:request_handlers` section. This says that, by default, items from all Repositories will use that handler. This can then be overridden in an entry for a particular Repository.
+
+By default, all repositories will use the request list functionality. A repository that is not included in the `repositories` hash will use the `:default` handler and both its `Site` and `Location` will be the same as its `repo_code`. If you would like a repository to not use this plugin's functionality, add it to the `repositories` property with its `:handler` property set to `:none`. For example:
+
+```ruby
+'art' => {
+  :handler: => :none
+}
+```
+
+If you would like a repository's behavior to differ from the defaults outlined above, you will also need to add the repository to the `repositories` hash. All properties are optional, and defaults will be used in the case of missing properties. `:handler` describes which request handler will be used (see the above Configuration section for info on request handlers).
+
+`:item_opts` contains a hash of properties that will be passed to the item mapper. Currently supported item_opts are `Site`, and `Location`.
+
+```ruby
+'arn' => {
+  # hash of arguments to pass to the item mapper
+  :handler => :handler_name,
+  :item_opts: {
+    :excluded_request_types => ['Saved'],
+    :repo_fields => {
+      'Site' => 'HUH'
+    }
+  }
+}
+```
 
 
 ### Request Handlers
