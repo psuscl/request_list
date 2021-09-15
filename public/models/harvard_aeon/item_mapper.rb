@@ -80,7 +80,7 @@ module HarvardAeon
 
 
     def physical_location_for(item)
-      item['notes'].select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
+      (item['notes'] + item['ancestors'].map {|ancestor| ancestor['notes']}.flatten).select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
     end
 
 
