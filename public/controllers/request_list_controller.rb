@@ -13,7 +13,7 @@ class RequestListController <  ApplicationController
                                                                   'resource:id',
                                                                   'top_container_uri_u_sstr:id',
                                                                   'collection_uri_u_sstr:id',
-                                                                  'ancestors:id@compact_resource',
+                                                                  'ancestors:id@aeon_ao',
                                                                  ]})
     @mapper = RequestList.new(results.records)
 
