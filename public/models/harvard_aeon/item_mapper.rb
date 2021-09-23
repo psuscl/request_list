@@ -10,7 +10,7 @@ module HarvardAeon
       mapped.ext(:site).name = repo_field_for(repository, 'Site')
       mapped.ext(:location).name = repo_field_for(repository, 'Location')
       mapped.ext(:hollis).id = hollis_number_for(resource_json)
-      mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])
+      mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item)
       mapped.collection.ext(:access_restrictions, access_restrictions_for(resource_json))
       mapped.record.ext(:access_restrictions, access_restrictions_for(item['json']))
 
@@ -80,7 +80,17 @@ module HarvardAeon
 
 
     def physical_location_for(item)
-      item['notes'].select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
+
+      if item.is_a? Hash
+        # Containers just give you the resource JSON, will never have ancestors because you can't nest resources
+        item_json = item
+        ancestor_notes = []
+      else
+        # Otherwise you have the item, get resolved ancestors
+        item_json = item['json']
+        ancestor_notes = (item.raw.dig('_resolved_ancestors') || {}).values.flatten.map {|ancestor| ancestor['notes']}.flatten
+      end
+      (item_json['notes'] + ancestor_notes).select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
     end
 
 
