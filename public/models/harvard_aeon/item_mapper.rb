@@ -88,9 +88,9 @@ module HarvardAeon
       else
         # Otherwise you have the item, get resolved ancestors
         item_json = item['json']
-        ancestor_notes = (item.raw.dig('_resolved_ancestors') || {}).values.map {|ancestor| ancestor['notes']}.flatten
+        ancestor_notes = (item.raw.dig('_resolved_ancestors') || {}).values.flatten.map {|ancestor| ancestor['notes']}.flatten
       end
-      (['notes'] + ancestor_notes).select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
+      (item_json['notes'] + ancestor_notes).select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
     end
 
 
