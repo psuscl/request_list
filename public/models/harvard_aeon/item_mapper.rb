@@ -90,7 +90,8 @@ module HarvardAeon
         item_json = item['json']
         ancestor_notes = (item.raw.dig('_resolved_ancestors') || {}).values.flatten.map {|ancestor| ancestor['notes']}.flatten
       end
-      (item_json['notes'] + ancestor_notes).select {|n| n['type'] == 'physloc'}.map {|n| n['content'].join(' ')}.join('; ')
+
+      (item_json['notes'] + ancestor_notes).select {|n| n['type'] == 'physloc' && !n.key?('_inherited')}.map {|n| n['content'].join(' ')}.join('; ')
     end
 
 
