@@ -73,7 +73,7 @@ module HarvardAeon
 
 
     def access_restrictions_for(item)
-      (item['notes'] || []).select {|n| n['type'] == 'accessrestrict'}
+      (item['notes'] || []).select {|n| n['type'] == 'accessrestrict' && !n.key?('_inherited')}
                    .map {|n| n['subnotes'].map {|s| s['content']}}
                    .flatten.compact.join('; ')
     end
