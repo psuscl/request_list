@@ -80,7 +80,6 @@ module HarvardAeon
 
 
     def physical_location_for(item)
-
       if item.is_a? Hash
         # Containers just give you the resource JSON, will never have ancestors because you can't nest resources
         item_json = item
@@ -91,7 +90,7 @@ module HarvardAeon
         ancestor_notes = (item.raw.dig('_resolved_ancestors') || {}).values.flatten.map {|ancestor| ancestor['notes']}.flatten
       end
 
-      (item_json['notes'] + ancestor_notes).select {|n| n['type'] == 'physloc' && !n.key?('_inherited')}.map {|n| n['content'].join(' ')}.join('; ')
+      (item_json['notes'] + ancestor_notes).select {|n| n && n['type'] == 'physloc' && !n.key?('_inherited')}.map {|n| n['content'].join(' ')}.join('; ')
     end
 
 
