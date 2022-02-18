@@ -1,3 +1,11 @@
+/*
+  The contents of this file (request_list.js), have been pasted into layout_head's <script>
+  tag to avoid the uglification issue where, seemingly at random upon startup, a semicolon
+  will be added to the code in a place that breaks it. It does not happen every time, and
+  the semicolon is added in seemingly random places. This solution is not ideal, but should
+  be a stopgap to prevent us from having to restart aspace prod constantly to fix the problem.
+*/
+
 (function(exports) {
 
     function RequestList(item_limit) {
