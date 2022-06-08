@@ -3,6 +3,11 @@ module PennStateAeon
 
     RequestList.register_item_mapper(self, :penn_state_aeon, ArchivalObject)
 
+    def request_permitted?(item)
+      # only if not a series or sub-series
+      !['series', 'sub_series'].include?(item['level'])
+    end
+    
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
       mapped.ext(:level).name = item['level'].capitalize
