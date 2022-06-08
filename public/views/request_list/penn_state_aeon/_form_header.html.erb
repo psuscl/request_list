@@ -3,7 +3,7 @@
 <%= javascript_include_tag 'bootstrap-datepicker' %>
 <%= javascript_include_tag 'bootstrap-combobox' %>
 
-<%= javascript_include_tag 'harvard_aeon_form' %>
+<%= javascript_include_tag 'penn_state_aeon_form' %>
 
 <% handler.list_map.each do |name, value| %>
   <input type="hidden" name="<%= name %>" value="<%= value  %>">
@@ -20,41 +20,20 @@
 
 
 <div class="rl-message rl-message-title">
-
   <div class="rl-ha-collapsed-help">
-    <%= t('plugin.request_list.title_message').html_safe %>
-  </div>
-
-  <h7><b class='serif'><%= t('plugin.request_list.expanded_help_title').html_safe %></b></h7>
-  <div class="rl-ha-expanded-help" style="display:none">
-    <ul style='padding-right: 20px'>
-      <% t('plugin.request_list.expanded_help_elements').each do |str| %>
-        <li class="expanded_help_list_item"><p class='serif'><%=str.html_safe%></p></li>
-      <%end%>
-    </ul>
+    <p><%= t('plugin.request_list.title_message').html_safe %></p>
   </div>
 </div>
-
-<a class="rl-ha-expand-help"
-   title="<%= t('plugin.request_list.expand_help_message') %>"
-   data-expand-label="<%= t('plugin.request_list.expand_help_label') %>"
-   data-collapse-label="<%= t('plugin.request_list.collapse_help_label') %>"
-   href="javascript:void(0);">
-
-  <%= t('plugin.request_list.expand_help_label') %>
-</a>
-
 
 <div class="row">
   <div class="col-sm-10 no-pad">
-    <div class="rl-request-form-header">
+    <h3 class="rl-request-form-header">
       <%= t('plugin.request_list.request_form_subtitle')  %>
-    </div>
+    </h3>
   </div>
 </div>
 
 <div class="row">
-
   <div class="col-sm-3">
     <div class="form-group rl-ha-type-select">
       <label class="control-label"><%= t('plugin.request_list.options.request_type') %></label>
@@ -62,17 +41,14 @@
         <select name="request_type" id="request_type_select" class="form-control">
           <% handler.list_opts[:request_types].each do |type, values| %>
             <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
-          <% end %>         
+          <% end %>
         </select>
       </div>
     </div>
   </div>
 
-
   <div class="rl-ha-additional-fields">
-
     <div class="rl-ha-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
-
       <div class="form-group col-sm-4">
         <label class="control-label" title="Required"><%= t('plugin.request_list.options.date') %> *</label>
         <div class="input-group datepicker rl-datepicker">
@@ -89,7 +65,6 @@
       </div>
 
     </div>
-
 
     <div class="rl-ha-options-form" id="rl-saved-options-form" data-request-type="saved">
       <span></span>
@@ -167,5 +142,3 @@
     </div>
   </div>
 </div>
-
-

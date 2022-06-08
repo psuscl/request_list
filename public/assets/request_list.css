@@ -57,7 +57,7 @@
   border-color: #c2c2c2;
   border-radius: 3px;
   background: #effffa;
-  margin: 3px 1px 6px 1px; 
+  margin: 3px 1px 6px 1px;
   text-align: center;
   padding-top: 2px;
 }
@@ -114,7 +114,6 @@
 }
 
 .rl-message {
-  font-size: 110%;
   width: 100%;
   text-align: left;
   padding: 4px 1px 4px 1px;
@@ -122,7 +121,6 @@
 
 .rl-message-title {
   width: 70%;
-  font-size: 120%;
   margin-bottom: 20px;
 }
 
@@ -230,12 +228,10 @@
 }
 
 .rl-item-list-header {
-  font-size: 120%;
   margin-left: 5px;
 }
 
 .rl-request-form-header {
-  font-size: 120%;
   margin-left: 15px;
   margin-bottom: 20px;
 }

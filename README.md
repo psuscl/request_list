@@ -5,6 +5,9 @@ An ArchivesSpace Public User Interface plugin that allows sending lists of recor
 
 Developed against ArchivesSpace v2.3.2 by Hudson Molonglo for Harvard University.
 
+## Penn State notes
+
+Penn State adopted the Harvard Request List plugin in June 2022, with a few modifications (primarily to remove some of the code that groups requests together in ways we don't need). We also added our own profile in place of the `:harvard_aeon` profile it ships with. These changes were tested against v3.1.1 of ArchivesSpace and appear to work well.
 
 ## Summary
 
@@ -246,7 +249,7 @@ Item mapping classes can also define a `map_extensions(mapped, item, repository,
 
 The plugin maps incoming ArchivesSpace PUI objects to `RequestListMappedItem` objects. (See [here](https://github.com/hudmol/request_list/blob/master/public/models/request_list_mapped_item.rb)). A profile's item mapping classes can extend or modify the default mapping which is done [here](https://github.com/hudmol/request_list/blob/master/public/models/request_list_item_mapper.rb).
 
-The mapped item is passed to the templates. It provides a simple and consistent interface for accesssing the properties of the item and its related records. The idea is to keep the complicated logic that is required to navigate PUI objects out of the templates. And since the default item mapper does most of the work, it is only necessary to define extensions in the profile's mapping classes. 
+The mapped item is passed to the templates. It provides a simple and consistent interface for accesssing the properties of the item and its related records. The idea is to keep the complicated logic that is required to navigate PUI objects out of the templates. And since the default item mapper does most of the work, it is only necessary to define extensions in the profile's mapping classes.
 
 
 ### Form Templates

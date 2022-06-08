@@ -1,6 +1,5 @@
 $(function() {
 
-
   $.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
   $(function() {
     var initDateFields = function(scope) {
@@ -90,15 +89,14 @@ $(function() {
   });
 
   $('.rl-ha-expand-help').click(function(e) {
-    $('.rl-ha-expanded-help').slideToggle('normal',
-					  function() {
-					      var expandHelp = $('.rl-ha-expand-help');
-					      var label = expandHelp.data('expand-label');
-					      if ($(this).is(':visible')) {
-						  label = expandHelp.data('collapse-label');
-					      }
-					      expandHelp.html(label);
-      });
+    $('.rl-ha-expanded-help').slideToggle('normal', function() {
+      var expandHelp = $('.rl-ha-expand-help');
+      var label = expandHelp.data('expand-label');
+      if ($(this).is(':visible')) {
+        label = expandHelp.data('collapse-label');
+      }
+      expandHelp.html(label);
+    });
   });
 
 });

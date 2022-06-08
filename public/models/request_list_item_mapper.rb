@@ -69,12 +69,12 @@ class RequestListItemMapper
     containers_for(item).map do |c|
       mapped.container.add.set(c['display_string'], (c['barcode_u_sstr'] || []).first, c['uri'])
           .ext(:subs, (c['sub_containers'] || [])
-                 .map {|sc| [(sc['type_2'] ? I18n.t("enumerations.container_type.#{sc['type_2'].gsub(' ', '_')}", default: sc['type_2']) : nil), sc['indicator_2']].compact.join(' ')}.compact.join('; '))
+          .map {|sc| [(sc['type_2'] ? I18n.t("enumerations.container_type.#{sc['type_2'].gsub(' ', '_')}", default: sc['type_2']) : nil), sc['indicator_2']].compact.join(' ')}.compact.join('; '))
     end
     mapped.container.name_from_multi
 
     resource_json['linked_agents'].select {|a| a['role'] == 'creator'}.map do |a|
-      mapped.creator.add.set(a['_resolved']['names'].select {|n| n['is_display_name']}.map {|n| n['primary_name']}.join('; '), '', a['ref'])
+      mapped.creator.add.set(a['_resolved']['names'].select {|n| n['is_display_name']}.map {|n| n['sort_name']}.join('; '), '', a['ref'])
     end
     mapped.creator.name_from_multi
 
@@ -111,10 +111,12 @@ class RequestListItemMapper
   def containers_for(item)
     return [item] if item.class == Container
 
-    (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.flatten.compact
-      .map {|tc| tc['sub_containers'] = item['json']['instances']
+    (item.raw['_resolved_top_container_uri_u_sstr'] || {}).values.flatten.compact.map do |tc|
+      tc['sub_containers'] = item['json']['instances']
         .select {|i| i.has_key?('sub_container') && i['sub_container'].has_key?('top_container')}
-        .map {|i| i['sub_container']}.select {|sc| sc['top_container']['ref'] == tc['uri']}; tc}
+        .map {|i| i['sub_container']}.select {|sc| sc['top_container']['ref'] == tc['uri']}
+      tc
+    end
   end
 
 
