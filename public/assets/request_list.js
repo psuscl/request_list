@@ -228,26 +228,7 @@
     });
 
 
-	// Sort items by ItemIssue before submiting
-	var $list = handler.find('.rl-list');
-	var $items = $list.children('.rl-list-item');
-	$items.sort(function(a, b) {
-		var ia = $(a).find('input[name^=ItemIssue_]').attr('value');
-		var ib = $(b).find('input[name^=ItemIssue_]').attr('value');
-		// sort on the last numeric component
-		var ma = rx.exec(ia);
-		var mb = rx.exec(ib);
-		if (ma && mb) {
-	    ia = parseInt(ma[2]);
-	    ib = parseInt(mb[2]);
-		}
-		if (ia < ib) { return -1 }
-		if (ia > ib) { return 1 }
-		return 0;
-  });
-	$items.detach().appendTo($list);
-
-  setTimeout(function() {
+	setTimeout(function() {
     $('#rl-handler-' + handlerId).find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
       self.removeFromList($(rli).data('uri'), true);
       self.removeFromForm($(rli));
