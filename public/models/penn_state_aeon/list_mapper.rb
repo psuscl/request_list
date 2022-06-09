@@ -17,7 +17,8 @@ module PennStateAeon
         'SubmitButton'          => 'Submit Request',
 
         'GroupRequestsByLocation'        => 'Yes',
-        'GroupingOPtion_ItemInfo1'       => 'Concatenate',
+        'GroupingIdentifier'             => 'gid',
+        'GroupingOption_ItemInfo1'       => 'Concatenate',
         'GroupingOption_ItemInfo2'       => 'FirstValue',
         'GroupingOption_ItemTitle'       => 'FirstValue',
         'GroupingOption_ItemSubTitle'    => 'Concatenate',
