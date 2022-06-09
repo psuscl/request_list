@@ -188,7 +188,6 @@
 }
 
 .rl-ha-aeon-link {
-  font-size: 120%;
   margin-top: -40px;
   margin-bottom: -40px;
 }
@@ -220,7 +219,6 @@
 
 .rl-extra-button-pane {
   margin-top: 10px;
-  margin-bottom: 20px;
 }
 
 .rl-extra-button {
@@ -234,4 +232,16 @@
 .rl-request-form-header {
   margin-left: 15px;
   margin-bottom: 20px;
+}
+
+.rl-item-list-message {
+  padding: 0.5rem 1rem;
+}
+
+form .form-group.required > .control-label {
+  font-weight: bold;
+  background-image: url(/assets/required_quiet.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 16px;
 }

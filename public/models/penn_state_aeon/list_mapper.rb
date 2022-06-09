@@ -18,7 +18,7 @@ module PennStateAeon
 
         'GroupRequestsByLocation'        => 'Yes',
         'GroupingIdentifier'             => 'gid',
-        'GroupingOption_ItemInfo1'       => 'Concatenate',
+        'GroupingOption_ItemInfo1'       => 'FirstValue',
         'GroupingOption_ItemInfo2'       => 'FirstValue',
         'GroupingOption_ItemTitle'       => 'FirstValue',
         'GroupingOption_ItemSubTitle'    => 'Concatenate',
