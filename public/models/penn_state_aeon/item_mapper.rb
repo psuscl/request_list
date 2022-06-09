@@ -82,6 +82,7 @@ module PennStateAeon
 
     def with_mapped_container(mapped, item_fields, container)
       item_fields.merge({
+        'gid'         => container.ext(:location),
         'ItemVolume'  => container.name.sub(/: .*$/, ''),
         'ItemNumber'  => container.id,
         'ItemIssue'   => [mapped.record.id, container.ext(:subs)].compact.select{|i| !i.empty?}.join(': '),
