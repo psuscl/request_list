@@ -23,9 +23,14 @@ module PennStateAeon
         mapped.container.multi.select {|m| m.uri == c['uri']}.map do |m|
           m.name = m.name.sub(/: .*$/, '')
           m.ext(:indicator, (c['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '))
+
+          # as long as we never add barcodes to top containers,
+          # this will allow us to export the top container classification
+          # into the location field in an Aeon request and group by it
           m.ext(:location, (c['location_display_string_u_sstr'] || [])
                             .join('; ')[/\[(.+)\]/]
-                            .gsub(/(\[|\])/,'')) #testing
+                            .gsub(/(\[|\])/,''))
+                            .split(',')[0]
         end
       end
 
