@@ -12,7 +12,7 @@ module PennStateAeon
         'WebRequestForm'        => 'DefaultRequest',
         'DocumentType'          => 'Default',
         'RequestType'           => 'Loan',
-        'UserReview'            => 'Yes',
+        'UserReview'            => 'No',
         'SkipOrderEstimate'     => '',
         'SubmitButton'          => 'Submit Request',
 
