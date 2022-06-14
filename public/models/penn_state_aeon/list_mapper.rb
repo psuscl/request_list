@@ -16,7 +16,7 @@ module PennStateAeon
         'SkipOrderEstimate'     => '',
         'SubmitButton'          => 'Submit Request',
 
-        'GroupRequestsByLocation'        => 'Yes',
+        'GroupRequestsByLocation'        => 'No',
         'GroupingIdentifier'             => 'gid',
         'GroupingOption_ItemInfo1'       => 'FirstValue',
         'GroupingOption_ItemInfo2'       => 'FirstValue',
