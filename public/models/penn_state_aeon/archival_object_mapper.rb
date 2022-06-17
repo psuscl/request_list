@@ -5,7 +5,7 @@ module PennStateAeon
 
     def request_permitted?(item)
       # only if not a series or sub-series
-      !['series', 'sub_series'].include?(item['level'])
+      !['series', 'subseries'].include?(item['level'])
     end
     
     def map_extensions(mapped, item, repository, resource, resource_json)
