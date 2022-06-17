@@ -29,8 +29,8 @@ module PennStateAeon
           # into the location field in an Aeon request and group by it
           m.ext(:location, (c['location_display_string_u_sstr'] || [])
                             .join('; ')[/\[(.+)\]/]
-                            .gsub(/(\[|\])/,''))
-                            .split(',')[0]
+                            .gsub(/(\[|\])/,'')
+                            .split(',')[0])
         end
       end
 
