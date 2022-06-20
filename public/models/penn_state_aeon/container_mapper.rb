@@ -16,7 +16,7 @@ module PennStateAeon
         'ItemDate'       => mapped.date.name,
         'Location'       => mapped.ext(:location).name,
         'CallNumber'     => mapped.collection.id,
-        'ItemInfo2'      => mapped.collection.ext(:access_restrictions),
+        'ItemInfo1'      => mapped.collection.ext(:access_restrictions),
       }, mapped.container.multi.first))]
     end
 
