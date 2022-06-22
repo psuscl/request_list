@@ -27,10 +27,12 @@ module PennStateAeon
           # as long as we never add barcodes to top containers,
           # this will allow us to export the top container classification
           # into the location field in an Aeon request and group by it
-          m.ext(:location, (c['location_display_string_u_sstr'] || [])
-                            .join('; ')[/\[(.+)\]/]
-                            .gsub(/(\[|\])/,'')
-                            .split(',')[0])
+          if c['location_display_string_u_sstr']
+            m.ext(:location, c['location_display_string_u_sstr']
+                              .join('; ')[/\[(.+)\]/]
+                              .gsub(/(\[|\])/,'')
+                              .split(',')[0])
+          end
         end
       end
 
@@ -87,7 +89,7 @@ module PennStateAeon
 
     def with_mapped_container(mapped, item_fields, container)
       item_fields.merge({
-        'gid'         => container.ext(:location) + ": " + container.name,
+        'gid'         => container.ext(:location) ? container.ext(:location) + ": " + container.name : "",
         'ItemVolume'  => container.name.sub(/: .*$/, ''),
         'ItemNumber'  => container.id,
         'ItemIssue'   => [mapped.record.id, container.ext(:subs)].compact.select{|i| !i.empty?}.join(': '),
