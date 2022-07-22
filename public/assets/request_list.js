@@ -1,19 +1,22 @@
 (function(exports) {
 
   function RequestList(item_limit) {
-  	this.item_limit = item_limit;
+    console.log("initializing the request list");
+    this.item_limit = item_limit;
   	this.setUpList();
   };
 
   RequestList.prototype.cookie = function(cookie_name, value) {
   	if (!value) {
-	    return $.cookie('as_pui_request_list_' + cookie_name, { path: '/' });
+      console.log(Cookies.get('as_pui_request_list_' + cookie.name, { path: '/' }));
+	    return Cookies.get('as_pui_request_list_' + cookie_name, { path: '/' });
   	}
 
   	var args = Array.prototype.slice.call(arguments, 0);
   	args[0] = 'as_pui_request_list_' + args[0];
   	args.push({ path: '/' });
-  	return $.cookie.apply(this, args);
+    console.log(Cookies.get().apply(this, args));
+  	return Cookies.get().apply(this, args);
   };
 
   RequestList.prototype.getList = function() {
@@ -370,7 +373,9 @@
   };
 
   RequestList.prototype.setUpList = function() {
+    console.log("setting up list");
     if (!this.cookie("list_contents")) {
+      console.log("setting up empty list");
       this.setList([]);
     }
 
