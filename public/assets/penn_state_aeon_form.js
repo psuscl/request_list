@@ -1,6 +1,6 @@
 $(function() {
 
-  $.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
+  //$.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
   $(function() {
     var initDateFields = function(scope) {
       scope = scope || $(document.body);
@@ -14,11 +14,6 @@ $(function() {
         }
 
         $dateInput.addClass("initialised");
-
-        var $addon = $("<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>");
-        $dateInput.after($addon);
-
-        $dateInput.datepicker($dateInput.data());
 
         $addon.on("click", function() {
           $dateInput.focus().select();
