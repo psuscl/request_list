@@ -1,7 +1,6 @@
-<link href="<%= "/assets/datepicker.css" %>" media="all" rel="stylesheet" type="text/css">
-
-<%= javascript_include_tag 'bootstrap-datepicker' %>
-<%= javascript_include_tag 'bootstrap-combobox' %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 
 <%= javascript_include_tag 'penn_state_aeon_form' %>
 
@@ -52,14 +51,14 @@
       <div class="form-group required col-sm-4">
         <label class="control-label" title="Required"><%= t('plugin.request_list.options.date') %></label>
         <div class="input-group datepicker rl-datepicker">
-          <input class="date-field form-control rl-ha-list-input required"
+          <input id="datepicker" class="date-field form-control rl-ha-list-input required"
                  title="<%= t('plugin.request_list.options.date_help') %>"
-                 data-format="mm/dd/yyyy"
                  data-date="<%= Date.today.strftime('%m/%d/%Y') %>"
                  data-date-start-date="<%= Date.today.strftime('%m/%d/%Y') %>"
                  data-autoclose="true"
                  data-force-parse="true"
                  placeholder="MM/DD/YYYY"
+                 aria-label="Use the arrow keys to select a date"
                  name="ScheduledDate">
         </div>
       </div>
@@ -142,3 +141,11 @@
     </div>
   </div>
 </div>
+<script>
+  var picker = new Pikaday({ 
+      field: document.getElementById('datepicker'),
+      format: 'MM/DD/YYYY',
+      firstDay: 1,
+      minDate: new Date()
+  });
+</script>

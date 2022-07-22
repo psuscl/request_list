@@ -1,5 +1,5 @@
 <link href="<%= "/assets/request_list.css" %>" media="all" rel="stylesheet" type="text/css">
-<%= javascript_include_tag "jquery.cookie" %>
+<%= javascript_include_tag "js.cookie" %>
 
 <%#
   The below is the contents of request_list.js, placed here to avoid the uglification issue
@@ -13,19 +13,17 @@
   (function(exports) {
 
     function RequestList(item_limit) {
-    	this.item_limit = item_limit;
+      this.item_limit = item_limit;
     	this.setUpList();
     };
 
     RequestList.prototype.cookie = function(cookie_name, value) {
     	if (!value) {
-  	    return $.cookie('as_pui_request_list_' + cookie_name, { path: '/' });
+        return Cookies.get('as_pui_request_list_' + cookie_name);
     	}
 
-    	var args = Array.prototype.slice.call(arguments, 0);
-    	args[0] = 'as_pui_request_list_' + args[0];
-    	args.push({ path: '/' });
-    	return $.cookie.apply(this, args);
+      Cookies.set('as_pui_request_list_' + cookie_name, value, { path: '/' });
+      return Cookies.get('as_pui_request_list_' + cookie_name);
     };
 
     RequestList.prototype.getList = function() {
