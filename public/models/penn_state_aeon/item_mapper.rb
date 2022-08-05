@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'json'
 
 module PennStateAeon
   class ItemMapper < RequestListItemMapper
@@ -24,15 +25,9 @@ module PennStateAeon
           m.name = m.name.sub(/: .*$/, '')
           m.ext(:indicator, (c['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '))
 
-          # as long as we never add barcodes to top containers,
-          # this will allow us to export the top container classification
-          # into the location field in an Aeon request and group by it
-          if c['location_display_string_u_sstr']
-            m.ext(:location, c['location_display_string_u_sstr']
-                              .join('; ')[/\[(.+)\]/]
-                              .gsub(/(\[|\])/,'')
-                              .split(',')[0])
-          end
+          # just use the ILS Holding ID field to group by locations
+          # (they're not always unique so we can't use the barcode field)
+          m.ext(:location, JSON.parse(c['json'])['ils_holding_id'])
         end
       end
 
