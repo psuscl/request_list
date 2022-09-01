@@ -25,11 +25,11 @@ module PennStateAeon
           m.name = m.name.sub(/: .*$/, '')
           m.ext(:indicator, (c['sub_containers'] || []).map {|sc| sc['indicator_2']}.compact.join('; '))
 
-          unless item.class == Container
-            # just use the ILS Holding ID field to group by locations
-            # (they're not always unique so we can't use the barcode field)
-            #
-            # also don't let it choke here when the item *is* a top container
+          # use the ILS Holding ID field to group by locations
+          # (they're not always unique so we can't use the barcode field)
+          if item.class == Container
+            m.ext(:location, c['json']['ils_holding_id'])
+          else
             m.ext(:location, JSON.parse(c['json'])['ils_holding_id'])
           end
         end

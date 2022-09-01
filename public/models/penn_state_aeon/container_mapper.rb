@@ -14,7 +14,6 @@ module PennStateAeon
         'ItemTitle'      => mapped.collection.name,
         'ItemAuthor'     => mapped.creator.name,
         'ItemDate'       => mapped.date.name,
-        'Location'       => mapped.ext(:location).name,
         'CallNumber'     => mapped.collection.id,
         'ItemInfo1'      => mapped.collection.ext(:access_restrictions),
       }, mapped.container.multi.first))]
