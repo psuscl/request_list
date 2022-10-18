@@ -245,3 +245,10 @@ form .form-group.required > .control-label {
   background-position: right center;
   padding-right: 16px;
 }
+
+/* make the badge accessible */
+.badge {
+  color: rgb(0, 23, 31);
+  background-color: #fff;
+  margin-left: 1px;
+}
