@@ -71,6 +71,10 @@ class RequestListController <  ApplicationController
     end
   end
 
+  def help
+
+  end
+
 
   private
 

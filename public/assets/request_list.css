@@ -252,3 +252,25 @@ form .form-group.required > .control-label {
   background-color: #fff;
   margin-left: 1px;
 }
+
+/* help page styles */
+.rl-help-list {
+  list-style: none;
+}
+
+.rl-help-item {
+  display: inline-block;
+}
+
+.rl-help-item-text {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.rl-help-item img {
+  border: 1px solid #000;
+  padding: 0.5rem;
+  width: 80%;
+  height: auto;
+}
+
