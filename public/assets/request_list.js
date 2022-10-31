@@ -309,15 +309,8 @@
 
   RequestList.prototype.showListCount = function() {
     var items = this.getList().length;
-    console.log(items);
-    var a = $("a[href='/plugin/request_list/pennstate']").first();
-    if($('span.badge-requests').length) {
-      console.log('span badge-requests exists');
-      $('span.badge-requests').text(items);
-    } else {
-      console.log('span badge-requests does not exist');
-      a.append(" <span class='badge badge-requests'>" + items + "</span>");
-    }
+    var a = $("#request_list_menu_item");
+    $("#rl-badge-count").text(items);
     if (items >= this.item_limit) {
       a.parent().addClass('request-list-full');
     } else {
@@ -335,9 +328,7 @@
       return false;
     } else {
       list.push(uri);
-      console.log('set List');
       this.setList(list);
-      console.log('show List Count');
       this.showListCount();
       return true;
     }
@@ -347,9 +338,7 @@
     var list = this.getList();
     if (this.isInList(uri)) {
       list.splice($.inArray(uri, list), 1);
-      console.log('set List');
       this.setList(list);
-      console.log('show List Count');
       this.showListCount();
       this.showRemoveAllButton();
 
