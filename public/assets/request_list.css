@@ -252,3 +252,8 @@ form .form-group.required > .control-label {
   background-color: #fff;
   margin-left: 1px;
 }
+
+.rl-request-data {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}

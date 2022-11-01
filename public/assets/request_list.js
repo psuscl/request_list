@@ -346,11 +346,13 @@
     } else { return false; }
   };
 
-  RequestList.prototype.toggleListItem = function(uri) {
+  RequestList.prototype.toggleListItem = function(uri, title) {
     if (this.isInList(uri)) {
       this.removeFromList(uri);
     } else {
       this.addToList(uri);
+      $("#rl-request-modal").modal("show");
+      $("#rl-request-modal").find(".rl-request-data").html('<a href="' + uri + '">' + title + '</a>');
     }
     this.updateButtonState();
   };
