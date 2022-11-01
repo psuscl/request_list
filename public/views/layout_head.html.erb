@@ -27,3 +27,21 @@
 <% if defined?(@result) && @result.respond_to?(:resolved_repository) && RequestList.handler_config_for(@result) %>
   <meta name="rl-handler-defined" content="true"/>
 <% end %>
+
+<div class="modal fade" id="rl-request-modal" tabindex="-1" role="dialog" aria-labelledby="rl-request-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="rl-request-modal-label"><%= t('plugin.request_list.request_confirmation') %></h3>
+      </header>
+      <div class="modal-body">
+        <%= render partial: 'request_list/request_confirmation' %>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="/plugin/request_list/pennstate" class="btn btn-primary" role="button">View Requests</a>
+      </footer>
+    </div>
+  </div>
+</div> 
