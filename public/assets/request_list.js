@@ -309,12 +309,8 @@
 
   RequestList.prototype.showListCount = function() {
     var items = this.getList().length;
-    var a = $("a[href='/plugin/request_list/pennstate']").first();
-    if($('span.badge-requests').length) {
-      $('span.badge-requests').text(items);
-    } else {
-      a.append(" <span class='badge badge-requests'>" + items + "</span>");
-    }
+    var a = $("#request_list_menu_item");
+    $("#rl-badge-count").text(items);
     if (items >= this.item_limit) {
       a.parent().addClass('request-list-full');
     } else {
@@ -350,11 +346,13 @@
     } else { return false; }
   };
 
-  RequestList.prototype.toggleListItem = function(uri) {
+  RequestList.prototype.toggleListItem = function(uri, title) {
     if (this.isInList(uri)) {
       this.removeFromList(uri);
     } else {
       this.addToList(uri);
+      $("#rl-request-modal").modal("show");
+      $("#rl-request-modal").find(".rl-request-data").html('<a href="' + uri + '">' + title + '</a>');
     }
     this.updateButtonState();
   };

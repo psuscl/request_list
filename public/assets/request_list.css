@@ -274,3 +274,7 @@ form .form-group.required > .control-label {
   height: auto;
 }
 
+/* formatting for request confirmation modal */
+.rl-request-data {
+  font-weight: bold;
+}
