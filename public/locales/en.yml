@@ -47,7 +47,7 @@ en:
       add_to_list_button_icon: fa-plus
       remove_from_list_button_label: Remove Request
       remove_from_list_button_icon: fa-times
-      empty_list_message: There are no items in your list. Please use the 'Add to My Request List' button when viewing items you wish to request and then return here to send the requests.
+      empty_list_message: 'There are no items in your list. Please use the "Request This" button when viewing items you wish to request and then return here to send the requests. <a href="/plugin/request_list/help">Learn more about how to make requests on this site.</a>'
       request_confirmation: Request Confirmation
       unhandled_items_title: Unhandled Items
       unhandled_items_message: The following items could not be requested. Please contact the Archives for assistance.
