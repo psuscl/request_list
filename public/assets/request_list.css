@@ -247,7 +247,7 @@ form .form-group.required > .control-label {
 }
 
 /* make the badge accessible */
-.badge {
+#rl-badge-count {
   color: rgb(0, 23, 31);
   background-color: #fff;
   margin-left: 1px;
@@ -277,4 +277,8 @@ form .form-group.required > .control-label {
 /* formatting for request confirmation modal */
 .rl-request-data {
   font-weight: bold;
+}
+
+.label-digital-version {
+  display: inline-block;
 }

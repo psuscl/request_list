@@ -1,18 +1,14 @@
 <% if RequestList.show_button_for?(record) %>
-  <a class="btn btn-default page_action request_list_action_button"
+  <a class="btn btn-primary request_list_action_button"
      data-title="<%= record['title'] %>"
      data-uri="<%= record['uri'] %>"
      data-add-label="<%= t('plugin.request_list.add_to_list_button_label') %>"
      data-remove-label="<%= t('plugin.request_list.remove_from_list_button_label') %>"
-     data-add-icon="<%= t('plugin.request_list.add_to_list_button_icon') %>"
-     data-remove-icon="<%= t('plugin.request_list.remove_from_list_button_icon') %>"
 
      title="<%= t('plugin.request_list.add_to_list_button_label') %>"
      onclick="request_list.toggleListItem($(this).data('uri'), $(this).data('title'));"
      href="javascript:void(0);">
 
-    <i class="fa fa-3x <%= t('plugin.request_list.add_to_list_button_icon') %>"></i>
-    <br>
     <%= t('plugin.request_list.add_to_list_button_label') %>
   </a>
 <% end %>
