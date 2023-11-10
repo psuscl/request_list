@@ -33,7 +33,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <div class="form-group rl-ha-type-select">
       <label class="control-label"><%= t('plugin.request_list.options.request_type') %></label>
       <div class="">
@@ -45,7 +45,9 @@
       </div>
     </div>
   </div>
+</div>
 
+<div class="row">
   <div class="rl-ha-additional-fields">
     <div class="rl-ha-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
       <div class="form-group required col-sm-4">
@@ -86,6 +88,16 @@
         <select name="ShippingOption" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:delivery_options].each do |option| %>
+            <option value="<%= option %>"><%= option %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="form-group col-sm-3">
+        <label class="contro-label" title="Required"><%= t('plugin.request_list.options.service_level') %></label>
+        <select name="ServiceLevel" class="form-control rl-ha-list-input required">
+          <option value="">...</option>
+          <% handler.list_opts[:service_level_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
           <% end %>
         </select>
