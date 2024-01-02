@@ -8,52 +8,51 @@
   <input type="hidden" name="<%= name %>" value="<%= value  %>">
 <% end %>
 
-
-<a class="btn btn-default pull-right rl-ha-aeon-link"
-   title="<%= t('plugin.request_list.aeon_button_label') %>"
-   href="<%= handler.list_opts[:aeon_link_url]  %>"
-   target="<%= handler.list_opts.fetch(:form_target, '_self') %>">
-
-  <%= t("plugin.request_list.aeon_button_label") %>
-</a>
-
-
-<div class="rl-message rl-message-title">
-  <div class="rl-ha-collapsed-help">
-    <p><%= t('plugin.request_list.title_message').html_safe %></p>
-  </div>
-</div>
-
 <div class="row">
-  <div class="col-sm-10 no-pad">
-    <h3 class="rl-request-form-header">
-      <%= t('plugin.request_list.request_form_subtitle')  %>
-    </h3>
-  </div>
-</div>
+  <div class="col-xs-12">
+    <a class="btn btn-default pull-right rl-ha-aeon-link"
+      title="<%= t('plugin.request_list.aeon_button_label') %>"
+      href="<%= handler.list_opts[:aeon_link_url]  %>"
+      target="<%= handler.list_opts.fetch(:form_target, '_self') %>">
 
-<div class="row">
-  <div class="col-sm-4">
-    <div class="form-group rl-ha-type-select">
-      <label class="control-label"><%= t('plugin.request_list.options.request_type') %></label>
-      <div class="">
-        <select name="request_type" id="request_type_select" class="form-control">
-          <% handler.list_opts[:request_types].each do |type, values| %>
-            <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
-          <% end %>
-        </select>
+      <%= t("plugin.request_list.aeon_button_label") %>
+    </a>
+    <div class="rl-message rl-message-title">
+      <div class="rl-ha-collapsed-help">
+        <p><%= t('plugin.request_list.title_message').html_safe %></p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row">
+  <div class="col-xs-12 no-pad">
+    <h2 class="rl-request-form-header">
+      <%= t('plugin.request_list.request_form_subtitle')  %>
+    </h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="form-group rl-ha-type-select">
+      <label for="request_type_select" class="control-label"><%= t('plugin.request_list.options.request_type') %></label>
+      <select name="request_type" id="request_type_select" class="form-control">
+        <% handler.list_opts[:request_types].each do |type, values| %>
+          <option value="<%= ASUtils.to_json(values) %>"><%= type %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="rl-ha-additional-fields">
-    <div class="rl-ha-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
-      <div class="form-group required col-sm-4">
-        <label class="control-label" title="Required"><%= t('plugin.request_list.options.date') %></label>
+    <div class="col-xs-12 col-sm-4 rl-ha-options-form" id="rl-readingroom-options-form" data-request-type="readingroom">
+      <div class="form-group required">
+        <label for="request_date" class="control-label" title="Required"><%= t('plugin.request_list.options.date') %></label>
         <div class="input-group datepicker rl-datepicker">
-          <input id="datepicker" class="date-field form-control rl-ha-list-input required"
+          <input id="request_date" class="date-field form-control rl-ha-list-input required"
                  title="<%= t('plugin.request_list.options.date_help') %>"
                  data-date="<%= Date.today.strftime('%m/%d/%Y') %>"
                  data-date-start-date="<%= Date.today.strftime('%m/%d/%Y') %>"
@@ -73,9 +72,9 @@
 
 
     <div class="rl-ha-options-form" id="rl-photoduplication-options-form" data-request-type="photoduplication">
-      <div class="form-group col-sm-3">
-        <label class="control-label" title="Required"><%= t('plugin.request_list.options.format') %></label>
-        <select name="Format" class="form-control rl-ha-list-input required">
+      <div class="form-group col-xs-12 col-sm-3">
+        <label for="request_format" class="control-label" title="Required"><%= t('plugin.request_list.options.format') %></label>
+        <select id="request_format" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:format_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
@@ -83,9 +82,9 @@
         </select>
       </div>
 
-      <div class="form-group col-sm-3">
-        <label class="control-label" title="Required"><%= t('plugin.request_list.options.delivery') %></label>
-        <select name="ShippingOption" class="form-control rl-ha-list-input required">
+      <div class="form-group col-xs-12 col-sm-3">
+        <label for="request_shipping_option" class="control-label" title="Required"><%= t('plugin.request_list.options.delivery') %></label>
+        <select id="request_shipping_option" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:delivery_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
@@ -93,9 +92,9 @@
         </select>
       </div>
 
-      <div class="form-group col-sm-3">
-        <label class="contro-label" title="Required"><%= t('plugin.request_list.options.service_level') %></label>
-        <select name="ServiceLevel" class="form-control rl-ha-list-input required">
+      <div class="form-group col-xs-12 col-sm-3">
+        <label for="request_service_level" class="contro-label" title="Required"><%= t('plugin.request_list.options.service_level') %></label>
+        <select id="request_service_level" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:service_level_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
@@ -103,10 +102,10 @@
         </select>
       </div>
 
-      <div class="form-group col-sm-2" style="padding-top: 20px">
-        <label class="control-label" style="display:inline"><%= t('plugin.request_list.options.for_publication') %></label>
+      <div class="form-group col-xs-12 col-sm-2" style="padding-top: 20px">
+        <label for="request_for_publication" class="control-label" style="display:inline"><%= t('plugin.request_list.options.for_publication') %></label>
         &nbsp;
-        <input type="checkbox" name="ForPublication" class="rl-ha-list-input" style="display:inline" value="Yes"/>
+        <input id="request_for_publication" type="checkbox" class="rl-ha-list-input" style="display:inline" value="Yes"/>
       </div>
     </div>
   </div>
@@ -116,32 +115,28 @@
 
 <div class="row">
 
-  <div class="form-group rl-ha-notes-and-questions col-sm-5">
-    <div class="form-group">
-      <label class="control-label"><%= t('plugin.request_list.options.notes') %></label>
-      <textarea name="Notes"
-                rows="3"
-                class="form-control rl-ha-list-input"
-                placeholder="<%= t('plugin.request_list.options.notes_help') %>"
-                maxlength="65536"></textarea>
-    </div>
+  <div class="form-group rl-ha-notes-and-questions col-xs-12 col-sm-5">
+    <label for="request_notes" class="control-label"><%= t('plugin.request_list.options.notes') %></label>
+    <textarea id="request_notes"
+              rows="3"
+              class="form-control rl-ha-list-input"
+              placeholder="<%= t('plugin.request_list.options.notes_help') %>"
+              maxlength="65536"></textarea>
   </div>
 
-  <div class="form-group rl-ha-notes-and-questions col-sm-5">
-    <div class="form-group">
-      <label class="control-label rl-ha-questions-label"
-             data-photoduplication-label="<%= t('plugin.request_list.options.photoduplication_instructions') %>"
-             data-other-label="<%= t('plugin.request_list.options.questions') %>">
-        <%= t('plugin.request_list.options.questions') %>
-      </label>
-      <textarea name="SpecialRequest"
-                rows="3"
-                class="form-control rl-ha-list-input rl-ha-questions-input"
-                placeholder="<%= t('plugin.request_list.options.questions_help') %>"
-                data-photoduplication-help="<%= t('plugin.request_list.options.photoduplication_instructions_help') %>"
-                data-other-help="<%= t('plugin.request_list.options.questions_help') %>"
-                maxlength="255"></textarea>
-    </div>
+  <div class="form-group rl-ha-notes-and-questions col-xs-12 col-sm-5">
+    <label for="request_questions" class="control-label rl-ha-questions-label"
+            data-photoduplication-label="<%= t('plugin.request_list.options.photoduplication_instructions') %>"
+            data-other-label="<%= t('plugin.request_list.options.questions') %>">
+      <%= t('plugin.request_list.options.questions') %>
+    </label>
+    <textarea id="request_questions"
+              rows="3"
+              class="form-control rl-ha-list-input rl-ha-questions-input"
+              placeholder="<%= t('plugin.request_list.options.questions_help') %>"
+              data-photoduplication-help="<%= t('plugin.request_list.options.photoduplication_instructions_help') %>"
+              data-other-help="<%= t('plugin.request_list.options.questions_help') %>"
+              maxlength="255"></textarea>
   </div>
 </div>
 
@@ -155,7 +150,7 @@
 </div>
 <script>
   var picker = new Pikaday({ 
-      field: document.getElementById('datepicker'),
+      field: document.getElementById('request_date'),
       format: 'MM/DD/YYYY',
       firstDay: 1,
       minDate: new Date()

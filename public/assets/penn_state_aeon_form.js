@@ -1,29 +1,5 @@
 $(function() {
 
-  //$.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
-  $(function() {
-    var initDateFields = function(scope) {
-      scope = scope || $(document.body);
-      $(".date-field:not(.initialised)", scope).each(function() {
-        var $dateInput = $(this);
-
-        if ($dateInput.parent().is(".input-group")) {
-          $dateInput.parent().addClass("date");
-        } else {
-          $dateInput.wrap("<div class='input-group date'></div>");
-        }
-
-        $dateInput.addClass("initialised");
-
-        $addon.on("click", function() {
-          $dateInput.focus().select();
-        });
-      });
-    };
-    initDateFields();
-  });
-
-
   $("#request_type_select").change(function() {
     var selected = this.selectedOptions[0];
     var inputs = JSON.parse(selected.getAttribute("value"));

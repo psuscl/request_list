@@ -43,9 +43,9 @@
   height: 24px;
   margin: 1px 1px 3px 1px;
   text-align: center;
-  color: #c2c2c2;
-  padding-left: 7px;
+  color: #222;
   font-size: 12;
+  font-weight: bold;
 }
 
 .rl-edited-indicator {
