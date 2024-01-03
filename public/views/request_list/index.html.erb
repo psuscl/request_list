@@ -60,49 +60,45 @@
 
               <div class="btn-group rl-select-buttons pull-left">
 
-                  <a class="btn btn-default rl-select-all-button"
+                  <button type="button" class="btn btn-default rl-select-all-button"
                      title="<%= t('plugin.request_list.select_all_title') %>"
                      data-title="<%= t('plugin.request_list.select_all_title') %>"
-                     onclick="request_list.selectAllButtonClick();"
-                     href="javascript:void(0);">
+                     onclick="request_list.selectAllButtonClick();">
 
                     <i class="fa fa-check rl-all-selected"></i>
                     <%= t("plugin.request_list.select_all_button_label") %>
-                  </a>
+                  </button>
 
-                  <a class="btn btn-default rl-select-none-button"
+                  <button type="button" class="btn btn-default rl-select-none-button"
                      title="<%= t('plugin.request_list.select_none_title') %>"
                      data-title="<%= t('plugin.request_list.select_none_title') %>"
-                     onclick="request_list.selectNoneButtonClick();"
-                     href="javascript:void(0);">
+                     onclick="request_list.selectNoneButtonClick();">
 
                     <i class="fa fa-minus rl-none-selected"></i>
                     <%= t("plugin.request_list.select_none_button_label") %>
-                  </a>
+                  </button>
 
-                  <a class="btn btn-default rl-remove-all"
+                  <button type="button" class="btn btn-default rl-remove-all"
                      title="<%= t('plugin.request_list.remove_all_button_label') %>"
-                     onclick="request_list.removeAllButtonClick('<%= t('plugin.request_list.remove_all_confirm_message') %>');"
-                     href="javascript:void(0);">
+                     onclick="request_list.removeAllButtonClick('<%= t('plugin.request_list.remove_all_confirm_message') %>');">
 
                     <i class="fa fa-times"></i>
                     <%= t("plugin.request_list.remove_all_button_label") %>
-                  </a>
+                  </button>
 
               </div>
 
               <div class="btn-group rl-sort-buttons pull-right">
                 <% handler.sort_fields.each do |k,v| %>
-                  <a class="btn btn-default rl-sort-button"
+                  <button type="button" class="btn btn-default rl-sort-button"
                      title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
                      data-key="<%= k %>"
                      data-title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
-                     onclick="request_list.sortButtonClick(this, '<%= k %>');"
-                     href="javascript:void(0);">
+                     onclick="request_list.sortButtonClick(this, '<%= k %>');">
 
                     <i class="fa fa-sort"></i>
                     <%= t("plugin.request_list.sort_#{k}") %>
-                  </a>
+                  </button>
                 <% end %>
               </div>
 
