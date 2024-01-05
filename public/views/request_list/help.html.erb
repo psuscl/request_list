@@ -1,16 +1,40 @@
-<h1 class="h2">How to Request Materials</h1>
-<p>You may request materials from the Archival Collections database by clicking the "Request This" button for the record(s) you would like to request. There are three ways to do this:</p> 
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="h2">How to Request Materials</h1>
+    <p>You may request materials from the Archival Collections database by clicking the "Request This" button for the record(s) you would like to request. There are three ways to do this:</p>
+  </div>
+</div>
+<div class="row rl-help-list">
+  <div class="rl-help-item">
+    <div class="col-xs-12 col-sm-6">
+      <img src="<%= asset_path('request_record.png')%>" alt="screenshot of a single record in ArchivesSpace, highlighting the 'Request This' button" />
+    </div>
+    <div class="col-xs-12 col-sm-6 rl-help-item-text">
+      Users may select any single record by clicking the "Request This" button found in its info box at the upper left (or top of the page, on mobile devices).
+    </div>
+  </div>
+  <div class="rl-help-item">
+    <div class="col-xs-12 col-sm-6">
+      <img src="<%= asset_path('request_collection.png') %>" alt="screenshot of a collection inventory in ArchivesSpace, highlighting the 'Request This' button for a single record in the list" />
+    </div>
+    <div class="col-xs-12 col-sm-6 rl-help-item-text">
+      Users can select multiple items from a collection by clicking any "Request This" button on the collection inventory, accessible by clicking the green "Request Materials" button at the upper left or top of a collection page.
+    </div>
+  </div>
+  <div class="rl-help-item">
+    <div class="col-xs-12 col-sm-6">
+      <img src="<%= asset_path('request_container.png')%>" alt="screenshot of a container record within a collection, highlighting the Request This button" />
+    </div>
+    <div class="col-xs-12 col-sm-6 rl-help-item-text">
+      Individual container records, such as boxes or film reels, may also be requested by following the link to their records from the "Container Inventory" for a collection, accessible in the left sidebar for (or the top of) a collection page.
+    </div>
+  </div>
+</div>
 
-<ul class="rl-help-list">
-  <li class="rl-help-item"><img src="<%= asset_path('request_record.png')%>" alt="screenshot of a single record in ArchivesSpace, highlighting the 'Request This' button" />
-    <span class="rl-help-item-text">From any single record, in its upper right-hand corner;</span>
-  </li>
-  <li class="rl-help-item"><img src="<%= asset_path('request_collection.png') %>" alt="screenshot of a collection inventory in ArchivesSpace, highlighting the 'Request This' button for a single record in the list" />
-    <span class="rl-help-item-text">From the collection inventory, accessible through the "Review and Request Material" pane of a collection record;</span>
-  </li>
-  <li class="rl-help-item"><img src="<%= asset_path('request_container.png')%>" alt="screenshot of the resource record for a collection, highlighting something I already forgot; fix this text later" />
-    <span class="rl-help-item-text">From the container inventory for a collection, accessible through the "Collection Inventory" pane of a collection record, by clicking on an individual container record from the list and requesting it from its record.</span>
-  </li>
-</ul>
-
-<p>At any time, you may view your requests queue by clicking on the "My Requests" link in the header of this site. You may view your research account by clicking on the "My Account" link. There, you may view and edit existing requests, and view more information about conducting research in the Special Collections Library.</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>The "My Requests" link in the site header will take you to your request queue. You may have a maximum of 50 requests queued at any time due to application limitations. Upon clicking the link, you will be able to select items from your queue to submit for review in the Reading Room.</p>
+    <p>Note that the list is stored as a browser cookie, so site-functional cookies must be enabled for the request queue to work.</p>
+    <p>You may view your research account in Aeon, our research request fulfillment system, by clicking on the "My Account" link in the site header. There, you may view and edit existing requests, and view more information about conducting research in the Special Collections Library.</p>
+  </div>
+</div>

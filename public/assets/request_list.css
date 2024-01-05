@@ -16,9 +16,7 @@
 .rl-display-id {
   font-size: 80%;
   white-space: nowrap;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #c2c2c2;
+  border: solid 1px #c2c2c2;
   border-radius: 3px;
 }
 
@@ -52,9 +50,7 @@
   display: none;
   width: 22px;
   height: 24px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #c2c2c2;
+  border: solid 1px #c2c2c2;
   border-radius: 3px;
   background: #effffa;
   margin: 3px 1px 6px 1px;
@@ -77,18 +73,9 @@
   margin: 1px 1px -1px 1px;
 }
 
-.rl-all-selected {
-  color: #999999;
-}
-
+.rl-all-selected,
 .rl-none-selected {
   color: #999999;
-}
-
-.rl-ha-type-select {
-}
-
-.rl-ha-additional-fields {
 }
 
 .rl-ha-options-form {
@@ -103,9 +90,7 @@
   resize: vertical;
   padding: 10px;
   margin: 10px 1px 25px 1px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #c2c2c2;
+  border: solid 1px #c2c2c2;
   border-radius: 3px;
 }
 
@@ -138,17 +123,12 @@
   padding: 2px;
 }
 
-.rl-display-container-pane {
-}
-
 .rl-display-container-cell {
   display: inline-block;
   white-space: nowrap;
   padding: 2px 4px 2px 4px;
   margin: 2px 6px 2px 0px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #c2c2c2;
+  border: solid 1px #c2c2c2;
   border-radius: 3px;
 }
 
@@ -255,11 +235,12 @@ form .form-group.required > .control-label {
 
 /* help page styles */
 .rl-help-list {
-  list-style: none;
+  padding: 0 1rem;
 }
 
 .rl-help-item {
   display: inline-block;
+  margin-top: 1rem;
 }
 
 .rl-help-item-text {
@@ -268,9 +249,9 @@ form .form-group.required > .control-label {
 }
 
 .rl-help-item img {
-  border: 1px solid #000;
+  border: 1px solid #e5e5e5;
   padding: 0.5rem;
-  width: 80%;
+  width: 100%;
   height: auto;
 }
 
