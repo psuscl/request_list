@@ -255,6 +255,10 @@ form .form-group.required > .control-label {
   height: auto;
 }
 
+.rl-result-button {
+  padding: 0 0.5rem;
+}
+
 /* formatting for request confirmation modal */
 .rl-request-data {
   font-weight: bold;

@@ -1,0 +1,34 @@
+<%# add Request This button for requestable search results %>
+
+<%# any result that is going to be presented in a list %>
+<% if !props.fetch(:full,false) %>
+ <div class="recordrow" style="clear:both" data-uri="<%= result.uri %>">
+<% end %>
+<% if result['json']['representative_file_version'].present? %>
+  <div class="flex items-start">
+    <%= render partial: 'shared/representative_file_version_result', locals: {
+      :uri => result['json']['representative_file_version']['file_uri'],
+      :caption => result['json']['representative_file_version']['caption'],
+      :figure_class => 'result-repfv__figure',
+      :img_class => 'result-repfv__img',
+      :figcaption_class => 'result-repfv__figcaption'
+    } %>
+    <div>
+      <div class="pull-right rl-result-button">
+        <%= render partial: 'request_list/action_button', locals: {:record => result} %>
+      </div>
+      <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>  
+      <%= render partial: 'shared/result_record_summary', locals: {:result => result, :props => props } %>
+    </div>
+  </div>
+<% else %>
+  <div class="pull-right rl-result-button">
+    <%= render partial: 'request_list/action_button', locals: {:record => result} %>
+  </div>
+  <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>
+  <%= render partial: 'shared/result_record_summary', locals: {:result => result, :props => props } %>
+<% end %>
+
+<% if !props.fetch(:full,false) %>
+ </div>
+<% end %>
