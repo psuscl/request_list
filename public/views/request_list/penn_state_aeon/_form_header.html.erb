@@ -73,8 +73,8 @@
 
     <div class="rl-ha-options-form" id="rl-photoduplication-options-form" data-request-type="photoduplication">
       <div class="form-group col-xs-12 col-sm-3">
-        <label for="request_format" class="control-label" title="Required"><%= t('plugin.request_list.options.format') %></label>
-        <select id="request_format" class="form-control rl-ha-list-input required">
+        <label for="Format" class="control-label" title="Required"><%= t('plugin.request_list.options.format') %></label>
+        <select id="Format" name="Format" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:format_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
@@ -83,8 +83,8 @@
       </div>
 
       <div class="form-group col-xs-12 col-sm-3">
-        <label for="request_shipping_option" class="control-label" title="Required"><%= t('plugin.request_list.options.delivery') %></label>
-        <select id="request_shipping_option" class="form-control rl-ha-list-input required">
+        <label for="ShippingOption" class="control-label" title="Required"><%= t('plugin.request_list.options.delivery') %></label>
+        <select id="ShippingOption" name="ShippingOption" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:delivery_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
@@ -93,8 +93,8 @@
       </div>
 
       <div class="form-group col-xs-12 col-sm-3">
-        <label for="request_service_level" class="contro-label" title="Required"><%= t('plugin.request_list.options.service_level') %></label>
-        <select id="request_service_level" class="form-control rl-ha-list-input required">
+        <label for="ServiceLevel" class="contro-label" title="Required"><%= t('plugin.request_list.options.service_level') %></label>
+        <select id="ServiceLevel" name="ServiceLevel" class="form-control rl-ha-list-input required">
           <option value="">...</option>
           <% handler.list_opts[:service_level_options].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
@@ -103,9 +103,9 @@
       </div>
 
       <div class="form-group col-xs-12 col-sm-2" style="padding-top: 20px">
-        <label for="request_for_publication" class="control-label" style="display:inline"><%= t('plugin.request_list.options.for_publication') %></label>
+        <label for="ForPublication" class="control-label" style="display:inline"><%= t('plugin.request_list.options.for_publication') %></label>
         &nbsp;
-        <input id="request_for_publication" type="checkbox" class="rl-ha-list-input" style="display:inline" value="Yes"/>
+        <input id="ForPublication" name="ForPublication" type="checkbox" class="rl-ha-list-input" style="display:inline" value="Yes"/>
       </div>
     </div>
   </div>
@@ -116,8 +116,8 @@
 <div class="row">
 
   <div class="form-group rl-ha-notes-and-questions col-xs-12 col-sm-5">
-    <label for="request_notes" class="control-label"><%= t('plugin.request_list.options.notes') %></label>
-    <textarea id="request_notes"
+    <label for="Notes" class="control-label"><%= t('plugin.request_list.options.notes') %></label>
+    <textarea id="Notes" name="Notes"
               rows="3"
               class="form-control rl-ha-list-input"
               placeholder="<%= t('plugin.request_list.options.notes_help') %>"
@@ -125,12 +125,12 @@
   </div>
 
   <div class="form-group rl-ha-notes-and-questions col-xs-12 col-sm-5">
-    <label for="request_questions" class="control-label rl-ha-questions-label"
+    <label for="SpecialRequest" name="SpecialRequest" class="control-label rl-ha-questions-label"
             data-photoduplication-label="<%= t('plugin.request_list.options.photoduplication_instructions') %>"
             data-other-label="<%= t('plugin.request_list.options.questions') %>">
       <%= t('plugin.request_list.options.questions') %>
     </label>
-    <textarea id="request_questions"
+    <textarea id="SpecialRequest" name="SpecialRequest"
               rows="3"
               class="form-control rl-ha-list-input rl-ha-questions-input"
               placeholder="<%= t('plugin.request_list.options.questions_help') %>"
