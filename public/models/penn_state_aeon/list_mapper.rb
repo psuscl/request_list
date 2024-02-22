@@ -25,6 +25,7 @@ module PennStateAeon
         'GroupingOption_ItemAuthor'      => 'FirstValue',
         'GroupingOption_ItemDate'        => 'Concatenate',
         'GroupingOption_Location'        => 'FirstValue',
+        'GroupingOption_SubLocation'     => 'Concatenate',
         'GroupingOption_CallNumber'      => 'FirstValue',
         'GroupingOption_ItemPlace'       => 'Concatenate',
         'GroupingOption_ItemIssue'       => 'Concatenate',

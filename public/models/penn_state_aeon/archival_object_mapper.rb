@@ -11,6 +11,16 @@ module PennStateAeon
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
       mapped.ext(:level).name = item['level'].capitalize
+      mapped.record.ext(:dao_location, dao_location_for(item['json']))
+    end
+
+
+    def dao_location_for(item)
+      (item['instances'] || []).select{|i| i['instance_type'] == "digital_object"}
+        .map{|d| d['digital_object']['_resolved']}
+        .select{|d| d.has_key?('user_defined') && d['user_defined']['enum_1'] == "preservation"}
+        .map{|d| d['digital_object_id']}
+        .join('; ')
     end
 
 
@@ -23,6 +33,7 @@ module PennStateAeon
         'CallNumber'     => mapped.collection.id,
         'ItemInfo1'      => mapped.collection.ext(:access_restrictions),
         'ItemIssue'      => mapped.record.id,
+        'SubLocation'    => mapped.record.ext(:dao_location),
       }
 
       return [as_aeon_request(shared_fields)] unless mapped.container.has_multi?
