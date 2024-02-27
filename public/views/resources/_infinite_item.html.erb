@@ -1,7 +1,7 @@
 <div class="review-item-information col-sm-9">
   <h4 class="review-item-title">
     <a class="review-item-title-link" href="<%= app_prefix(archival_object_base_url(@result)) %>">
-      <%= @result.display_string %>
+      <%= @result.display_string.html_safe %>
     </a>
   </h4>
   <span class="review-item-container-summary record-type-badge archival_object">
