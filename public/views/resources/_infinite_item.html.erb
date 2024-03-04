@@ -1,16 +1,18 @@
-<div class="review-item-information col-sm-9">
-  <h4 class="review-item-title">
-    <a class="review-item-title-link" href="<%= app_prefix(archival_object_base_url(@result)) %>">
-      <%= @result.display_string.html_safe %>
-    </a>
-  </h4>
-  <span class="review-item-container-summary record-type-badge archival_object">
-    <% if @result.container_summary_for_badge %>
-      <i class="fa fa-file-o"></i>
-      <%= @result.container_summary_for_badge %>
-    <% end %>
-  </span>
-</div>
-<div class="review-item-rl-button col-sm-3">
-  <%= render partial: 'request_list/action_button', :locals => {:record => @result} %>
+<div class="review-record-item">
+  <div class="review-item-information">
+    <div class="review-item-rl-button pull-right">
+      <%= render partial: 'request_list/action_button', :locals => {:record => @result} %>
+    </div>
+    <h4 class="review-item-title">
+      <a class="review-item-title-link" href="<%= app_prefix(archival_object_base_url(@result)) %>">
+        <%= @result.display_string.html_safe %>
+      </a>
+    </h4>
+    <span class="review-item-container-summary record-type-badge archival_object">
+      <% if @result.container_summary_for_badge %>
+        <i class="fa fa-file-o"></i>
+        <%= @result.container_summary_for_badge %>
+      <% end %>
+    </span>
+  </div>
 </div>
