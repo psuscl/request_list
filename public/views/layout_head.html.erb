@@ -427,7 +427,7 @@
     window.request_list = request_list;
 
     $('body').append('<%=j render partial: 'shared/modal', locals: {:modal_id => 'rl-alert-modal',
-                                                  :title => '',
+                                                  :title => I18n.t('plugin.request_list.modal_title'),
                                                   :modal_body => (render partial: 'request_list/alert_modal')} %>');
 
     $('#rl-alert-modal').find('.action-btn').html("<%= t('plugin.request_list.ok_button_label') %>");

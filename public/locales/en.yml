@@ -3,6 +3,7 @@ en:
     request_list:
       list_title: My Requests
       item_list_subtitle: Item List
+      modal_title: Review Request Action
       request_form_subtitle: Request Form
       title_message: |
           You can select items in this list to submit requests for retrieval or photoduplication. Requested items will be grouped by box in your research account.<br/>
