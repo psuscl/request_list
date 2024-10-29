@@ -3,11 +3,11 @@ en:
     request_list:
       list_title: My Requests
       item_list_subtitle: Item List
-      request_form_subtitle: Request Form
+      request_form_subtitle: Submit Your Request
       title_message: |
           You can select items in this list to submit requests for retrieval or photoduplication. Requested items will be grouped by box in your research account.<br/>
           NOTE: Items will remain in your list for this browser session. Submitted items will be removed.
-      item_list_message: Confirm the items you wish to submit for your request by selecting their check boxes in the list below. When you are finished, select the 'Submit Requests' button above to add them to your research account. 
+      item_list_message: Select the items you wish to request from the following list. When you are finished, complete the form below to submit your requests to Special Collections.
       full_list_error_message: Your list is full. Please go to 'My Request List' and remove items or submit your requests to make room for more.
       unfilled_fields_error_message: "Please provide the following:"
       empty_list_error_message: Please check the items you would like to request.

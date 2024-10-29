@@ -3,7 +3,7 @@ class RequestListController <  ApplicationController
   skip_before_action  :verify_authenticity_token
 
   def index
-    flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', {:sent => params[:sent]}) if params[:sent]
+    flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', :sent => params[:sent]) if params[:sent]
 
     if uris.empty?
       return render 'request_list/empty_list'
@@ -24,7 +24,7 @@ class RequestListController <  ApplicationController
       ((v[:item_opts] || {})[:excluded_request_types] || []).each do |rt|
         excluded[rt] ||= {}
         excluded[rt][k] = I18n.t('plugin.request_list.excluded_items_message',
-                                 {:request_type => rt, :repo => @mapper.repos[k]})
+                                 :request_type => rt, :repo => @mapper.repos[k])
       end
     end
     @excluded = excluded.to_json
@@ -34,13 +34,13 @@ class RequestListController <  ApplicationController
 
   def email
     if !params[:user_email].blank? && params[:user_email].match(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i)
-      flash[:notice] = I18n.t('plugin.request_list.email.sent_message', {:email => params[:user_email]})
+      flash[:notice] = I18n.t('plugin.request_list.email.sent_message', :email => params[:user_email])
 
       RequestListMailer.email(params[:user_email], mapper).deliver
 
       redirect_back(fallback_location: request[:request_uri]) and return
     else
-      flash[:error] = I18n.t('plugin.request_list.email.error_message', {:email => params[:user_email]})
+      flash[:error] = I18n.t('plugin.request_list.email.error_message', :email => params[:user_email])
       redirect_back(fallback_location: request[:request_uri]) and return
     end
   end

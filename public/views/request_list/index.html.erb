@@ -5,112 +5,97 @@
                                   .replace(/\t/g, " "));
 </script>
 
-<div class="row">
-  <div class="col-xs-12">
+<div class="d-flex flex-row">
+  <div class="p-2">
     <h1><%= t('plugin.request_list.list_title')  %></h1>
+    <div class="rl-message rl-message-title">
+      <div class="rl-ha-collapsed-help">
+        <p><%= t('plugin.request_list.title_message').html_safe %></p>
+      </div>
+    </div>
   </div>
 </div>
 
 <% @mapper.handlers.each do |handler| %>
   <div id="rl-handler-<%= handler.id %>">
     <%= form_tag handler.url, :class => 'rl-form', :target => (handler.list_opts.fetch(:form_target, '_self')) do |f| %>
-      <%= render partial: "request_list/#{handler.profile}/form_header", locals: {:form => f, :handler => handler} %>
-
-      <div class="row">
-
-        <div class="col-sm-10">
-          <a name="main" title="Main Content"></a>
-          <div class="row"><hr/></div>
-
-          <div class="row">
-            <div class="col-sm-6 no-pad">
-              <h2 class="rl-item-list-header">
-                <%= t('plugin.request_list.item_list_subtitle')  %>
-              </h2>
-            </div>
-
-            <div class="rl-extra-button-pane col-sm-6 no-pad">
-              <div class="pull-right">
-
-                <a class="btn btn-default page_action rl-extra-button"
-                   href="<%= url_for(:controller => :request_list, :action => :pdf) %>">
-                  <i id="rl-print-list-button" class="fa fa-file-pdf-o"></i>
-                  <%= t('plugin.request_list.print.list_button_label') %>
-                </a>
-
-                <% if AppConfig[:pui_email_enabled] %>
-                  <a id="rl-email-list-button" class="btn btn-default page_action rl-extra-button">
-                    <i class="fa fa-envelope-o"></i>
-                    <%= t('plugin.request_list.email.list_button_label') %>
-                  </a>
-                <% end %>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-12 rl-item-list-message alert alert-danger">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="mb-0"><%= t('plugin.request_list.item_list_subtitle') %></h2>
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-row">
+            <div class="col-12 alert alert-danger">
               <%= t('plugin.request_list.item_list_message') %>
             </div>
           </div>
+          <div class="d-flex flex-row">
+            <div class="btn-group">
+              <a class="btn btn-outline-secondary"
+              href="<%= url_for(:controller => :request_list, :action => :pdf) %>">
+                <i id="rl-print-list-button" class="fa fa-file-pdf-o"></i>
+                <%= t('plugin.request_list.print.list_button_label') %>
+              </a>
 
-          <div class="row">
-            <div class="col-sm-12 no-pad">
-
-              <div class="btn-group rl-select-buttons pull-left">
-
-                  <button type="button" class="btn btn-default rl-select-all-button"
-                     title="<%= t('plugin.request_list.select_all_title') %>"
-                     data-title="<%= t('plugin.request_list.select_all_title') %>"
-                     onclick="request_list.selectAllButtonClick();">
-
-                    <i class="fa fa-check rl-all-selected"></i>
-                    <%= t("plugin.request_list.select_all_button_label") %>
-                  </button>
-
-                  <button type="button" class="btn btn-default rl-select-none-button"
-                     title="<%= t('plugin.request_list.select_none_title') %>"
-                     data-title="<%= t('plugin.request_list.select_none_title') %>"
-                     onclick="request_list.selectNoneButtonClick();">
-
-                    <i class="fa fa-minus rl-none-selected"></i>
-                    <%= t("plugin.request_list.select_none_button_label") %>
-                  </button>
-
-                  <button type="button" class="btn btn-default rl-remove-all"
-                     title="<%= t('plugin.request_list.remove_all_button_label') %>"
-                     onclick="request_list.removeAllButtonClick('<%= t('plugin.request_list.remove_all_confirm_message') %>');">
-
-                    <i class="fa fa-times"></i>
-                    <%= t("plugin.request_list.remove_all_button_label") %>
-                  </button>
-
-              </div>
-
-              <div class="btn-group rl-sort-buttons pull-right">
-                <% handler.sort_fields.each do |k,v| %>
-                  <button type="button" class="btn btn-default rl-sort-button"
-                     title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
-                     data-key="<%= k %>"
-                     data-title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
-                     onclick="request_list.sortButtonClick(this, '<%= k %>');">
-
-                    <i class="fa fa-sort"></i>
-                    <%= t("plugin.request_list.sort_#{k}") %>
-                  </button>
-                <% end %>
-              </div>
-
-              <div id="rl-list-pane" class="rl-list">
-                <% unhandled_items = handler.each_item_map do |item| %>
-                  <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :handler => handler, :include_form => true} %>
-                <% end %>
-              </div>
-
+              <% if AppConfig[:pui_email_enabled] %>
+                <a id="rl-email-list-button" class="btn btn-outline-secondary">
+                  <i class="fa fa-envelope-o"></i>
+                  <%= t('plugin.request_list.email.list_button_label') %>
+                </a>
+              <% end %>
             </div>
           </div>
-          <div class="row"></div>
+          <div class="d-flex flex-row">
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-secondary rl-select-all-button"
+                  title="<%= t('plugin.request_list.select_all_title') %>"
+                  data-title="<%= t('plugin.request_list.select_all_title') %>"
+                  onclick="request_list.selectAllButtonClick();">
+
+                <i class="fa fa-check rl-all-selected"></i>
+                <%= t("plugin.request_list.select_all_button_label") %>
+              </button>
+
+              <button type="button" class="btn btn-outline-secondary rl-select-none-button"
+                  title="<%= t('plugin.request_list.select_none_title') %>"
+                  data-title="<%= t('plugin.request_list.select_none_title') %>"
+                  onclick="request_list.selectNoneButtonClick();">
+
+                <i class="fa fa-minus rl-none-selected"></i>
+                <%= t("plugin.request_list.select_none_button_label") %>
+              </button>
+
+              <button type="button" class="btn btn-outline-secondary rl-remove-all"
+                  title="<%= t('plugin.request_list.remove_all_button_label') %>"
+                  onclick="request_list.removeAllButtonClick('<%= t('plugin.request_list.remove_all_confirm_message') %>');">
+
+                <i class="fa fa-times"></i>
+                <%= t("plugin.request_list.remove_all_button_label") %>
+              </button>
+            </div>
+            <div class="btn-group ml-auto">
+              <% handler.sort_fields.each do |k,v| %>
+                <button type="button" class="btn btn-outline-secondary rl-sort-button"
+                  title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
+                  data-key="<%= k %>"
+                  data-title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
+                  onclick="request_list.sortButtonClick(this, '<%= k %>');">
+
+                  <i class="fa fa-sort"></i>
+                  <%= t("plugin.request_list.sort_#{k}") %>
+                </button>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-flex flex-row">
+            <div id="rl-list-pane" class="rl-list col-12">
+              <% unhandled_items = handler.each_item_map do |item| %>
+                <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :handler => handler, :include_form => true} %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-10">
           <% unless unhandled_items.empty? %>
             <div class="row">
               <h3><%= t('plugin.request_list.unhandled_items_title') %></h3>
@@ -123,26 +108,26 @@
             </div>
           <% end %>
         </div>
-
-        <div class="col-sm-2">
-          <div>
-            <%= render partial: "request_list/#{handler.profile}/form_right", locals: {:form => f, :handler => handler} %>
-          </div>
-        </div>
-
       </div>
 
-      <div class="row">
-        <div>
-          <%= render partial: "request_list/#{handler.profile}/form_footer", locals: {:form => f, :handler => handler} %>
+      <%= render partial: "request_list/#{handler.profile}/form_header", locals: {:form => f, :handler => handler} %>
+
+      <div class="d-flex flex-row">
+        <div class="col-2">
+          <div class="form-group">
+            <a class="btn btn-outline-secondary" onclick="window.scrollTo(0,0);" title="<%= t('plugin.request_list.back_to_top_button_label') %>">
+              <i class="fa fa-angle-up"></i>
+              <%= t('plugin.request_list.back_to_top_button_label').html_safe %>
+            </a>
+          </div>
         </div>
       </div>
 
       <script>
-          $('#rl-handler-<%= handler.id %>').find('.submit-requests').click(function(e) {
-              e.preventDefault();
-              request_list.submitButtonClick('<%= handler.id %>');
-          });
+        $('#rl-handler-<%= handler.id %>').find('.submit-requests').click(function(e) {
+          e.preventDefault();
+          request_list.submitButtonClick('<%= handler.id %>');
+        });
       </script>
     <% end %>
   </div>
@@ -153,8 +138,8 @@
                                              :modal_body => (render partial: 'request_list/email_modal')} %>
 
 <script>
-    $('#rl-email-list-button').click(function(e) {
-        e.preventDefault();
-        request_list.emailListButtonClick("<%= t('plugin.request_list.email.send_button_label') %>");
-    });
+  $('#rl-email-list-button').click(function(e) {
+    e.preventDefault();
+    request_list.emailListButtonClick("<%= t('plugin.request_list.email.send_button_label') %>");
+  });
 </script>
