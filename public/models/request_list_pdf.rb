@@ -37,7 +37,7 @@ class RequestListPDF
   def generate
     out_html = source_file
 
-    XMLCleaner.new.clean(out_html.path)
+    XMLCleaner.new(out_html.path)
 
     pdf_file = Tempfile.new
     pdf_file.close
