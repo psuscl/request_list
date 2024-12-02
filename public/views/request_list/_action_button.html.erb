@@ -1,4 +1,4 @@
-<% if RequestList.show_button_for?(record) %>
+<div class="pull-right rl-result-button">
   <a class="btn btn-primary request_list_action_button"
      data-title="<%= record['title'] %>"
      data-uri="<%= record['uri'] %>"
@@ -11,6 +11,6 @@
 
     <%= t('plugin.request_list.add_to_list_button_label') %>
   </a>
-<% end %>
+</div>
 
 

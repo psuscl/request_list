@@ -1,14 +1,9 @@
+/* request list header styles */
+
+.rl-navbar .nav-item .nav-link { color: hsla(0,0%,100%,.5);}
+.rl-navbar .nav-item .nav-link:hover { color: hsla(0,0%,100%,.75); }
+
 .review-item-rl-button { margin-right: 4rem; }
-
-.rl-list-item {
-  position: relative;
-  margin: 4px 2px 12px 2px;
-  padding: 3px 3px 6px 3px;
-}
-
-.rl-list-item:hover {
-  background: #f2f2f2;
-}
 
 .rl-display-title {
   font-weight: bold;
@@ -38,16 +33,6 @@
   display: none;
 }
 
-.rl-remove-from-list-button {
-  width: 22px;
-  height: 24px;
-  margin: 1px 1px 3px 1px;
-  text-align: center;
-  color: #222;
-  font-size: 12;
-  font-weight: bold;
-}
-
 .rl-edited-indicator {
   display: none;
   width: 22px;
@@ -65,14 +50,6 @@
   position: absolute;
   bottom: 2px;
   right: 2px;
-}
-
-.rl-sort-buttons {
-  margin: 1px 1px -1px 1px;
-}
-
-.rl-select-buttons {
-  margin: 1px 1px -1px 1px;
 }
 
 .rl-all-selected,
@@ -98,17 +75,6 @@
 
 .rl-message-list-options {
   margin: 1px 1px 12px 1px;
-}
-
-.rl-message {
-  width: 100%;
-  text-align: left;
-  padding: 4px 1px 4px 1px;
-}
-
-.rl-message-title {
-  width: 70%;
-  margin-bottom: 20px;
 }
 
 .rl-item-display {
@@ -152,10 +118,8 @@
   padding: 0px 8px 0px 8px;
 }
 
-.rl-datepicker {
-  padding-top: 0px !important;
-  width: 200px;
-}
+.rl-type-select,
+.rl-datepicker { width: 200px; }
 
 .rl-ha-item-form-table, td {
   padding: 2px !important;
@@ -167,15 +131,6 @@
 
 .rl-ha-item-form-photoduplication {
   display: none;
-}
-
-.rl-ha-aeon-link {
-  margin-top: -40px;
-  margin-bottom: -40px;
-}
-
-.form-group {
-  margin-bottom: 4px;
 }
 
 .rl-ha-collapsed-help {
@@ -197,27 +152,6 @@
 
 .rl-ha-options-help {
   font-size: 80%;
-}
-
-.rl-extra-button-pane {
-  margin-top: 10px;
-}
-
-.rl-extra-button {
-  margin-left: 10px;
-}
-
-.rl-item-list-header {
-  margin-left: 5px;
-}
-
-.rl-request-form-header {
-  margin-left: 15px;
-  margin-bottom: 20px;
-}
-
-.rl-item-list-message {
-  padding: 0.5rem 1rem;
 }
 
 form .form-group.required > .control-label {

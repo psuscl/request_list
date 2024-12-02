@@ -14,19 +14,30 @@
       :figcaption_class => 'result-repfv__figcaption'
     } %>
     <div>
-      <div class="pull-right rl-result-button">
+      <% if RequestList.show_button_for?(result) %>
         <%= render partial: 'request_list/action_button', locals: {:record => result} %>
-      </div>
+      <% end %>
       <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>  
       <%= render partial: 'shared/result_record_summary', locals: {:result => result, :props => props } %>
     </div>
   </div>
 <% else %>
-  <div class="pull-right rl-result-button">
+  <% if RequestList.show_button_for?(result) %>
     <%= render partial: 'request_list/action_button', locals: {:record => result} %>
-  </div>
+  <% end %>
   <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>
   <%= render partial: 'shared/result_record_summary', locals: {:result => result, :props => props } %>
+<% end %>
+
+<% if result.highlights.present? %>
+  <div>
+    <% result.highlights.each do |key, value| %>
+      <div>
+        <strong><%= I18n.t('search_results.highlighting.found_in') %> <%= I18n.t("search_results.highlighting.#{key}") %>:</strong>&nbsp;
+        <%== value.join(" ") %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <% if !props.fetch(:full,false) %>
