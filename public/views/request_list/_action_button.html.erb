@@ -1,16 +1,18 @@
-<div class="pull-right rl-result-button">
-  <a class="btn btn-primary request_list_action_button"
-     data-title="<%= record['title'] %>"
-     data-uri="<%= record['uri'] %>"
-     data-add-label="<%= t('plugin.request_list.add_to_list_button_label') %>"
-     data-remove-label="<%= t('plugin.request_list.remove_from_list_button_label') %>"
+<%if RequestList.show_button_for?(record) %>
+  <div class="pull-right rl-result-button">
+    <a class="btn btn-primary request_list_action_button"
+      data-title="<%= record['title'] %>"
+      data-uri="<%= record['uri'] %>"
+      data-add-label="<%= t('plugin.request_list.add_to_list_button_label') %>"
+      data-remove-label="<%= t('plugin.request_list.remove_from_list_button_label') %>"
 
-     title="<%= t('plugin.request_list.add_to_list_button_label') %>"
-     onclick="request_list.toggleListItem($(this).data('uri'), $(this).data('title'));"
-     href="javascript:void(0);">
+      title="<%= t('plugin.request_list.add_to_list_button_label') %>"
+      onclick="request_list.toggleListItem($(this).data('uri'), $(this).data('title'));"
+      href="javascript:void(0);">
 
-    <%= t('plugin.request_list.add_to_list_button_label') %>
-  </a>
-</div>
+      <%= t('plugin.request_list.add_to_list_button_label') %>
+    </a>
+  </div>
+<% end %>
 
 
