@@ -1,5 +1,3 @@
-<%# add Request This button for requestable search results %>
-
 <%# any result that is going to be presented in a list %>
 <% if !props.fetch(:full,false) %>
  <div class="recordrow" style="clear:both" data-uri="<%= result.uri %>">
@@ -14,17 +12,21 @@
       :figcaption_class => 'result-repfv__figcaption'
     } %>
     <div>
+      <!-- Begin plugin layout -->
       <% if RequestList.show_button_for?(result) %>
         <%= render partial: 'request_list/action_button', locals: {:record => result} %>
       <% end %>
+      <!-- End plugin layout -->
       <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>  
       <%= render partial: 'shared/result_record_summary', locals: {:result => result, :props => props } %>
     </div>
   </div>
 <% else %>
+  <!-- Begin plugin layout -->
   <% if RequestList.show_button_for?(result) %>
     <%= render partial: 'request_list/action_button', locals: {:record => result} %>
   <% end %>
+  <!-- End plugin layout -->
   <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>
   <%= render partial: 'shared/result_record_summary', locals: {:result => result, :props => props } %>
 <% end %>
@@ -32,7 +34,8 @@
 <% if result.highlights.present? %>
   <div>
     <% result.highlights.each do |key, value| %>
-      <div>
+      <% next if I18n.t("search_results.highlighting.#{key}").include?('Translation missing') %>
+      <div class="highlighting">
         <strong><%= I18n.t('search_results.highlighting.found_in') %> <%= I18n.t("search_results.highlighting.#{key}") %>:</strong>&nbsp;
         <%== value.join(" ") %>
       </div>
