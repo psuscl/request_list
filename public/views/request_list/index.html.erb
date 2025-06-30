@@ -31,23 +31,19 @@
           </div>
           <div class="d-flex flex-row">
             <div class="btn-group">
-              <a class="btn btn-outline-secondary"
+              <a class="btn btn-secondary"
               href="<%= url_for(:controller => :request_list, :action => :pdf) %>">
                 <i id="rl-print-list-button" class="fa fa-file-pdf-o"></i>
                 <%= t('plugin.request_list.print.list_button_label') %>
               </a>
 
               <% if AppConfig[:pui_email_enabled] %>
-                <a id="rl-email-list-button" class="btn btn-outline-secondary">
+                <a id="rl-email-list-button" class="btn btn-secondary">
                   <i class="fa fa-envelope-o"></i>
                   <%= t('plugin.request_list.email.list_button_label') %>
                 </a>
               <% end %>
-            </div>
-          </div>
-          <div class="d-flex flex-row">
-            <div class="btn-group">
-              <button type="button" class="btn btn-outline-secondary rl-select-all-button"
+              <button type="button" class="btn btn-secondary rl-select-all-button"
                   title="<%= t('plugin.request_list.select_all_title') %>"
                   data-title="<%= t('plugin.request_list.select_all_title') %>"
                   onclick="request_list.selectAllButtonClick();">
@@ -56,7 +52,7 @@
                 <%= t("plugin.request_list.select_all_button_label") %>
               </button>
 
-              <button type="button" class="btn btn-outline-secondary rl-select-none-button"
+              <button type="button" class="btn btn-secondary rl-select-none-button"
                   title="<%= t('plugin.request_list.select_none_title') %>"
                   data-title="<%= t('plugin.request_list.select_none_title') %>"
                   onclick="request_list.selectNoneButtonClick();">
@@ -65,7 +61,7 @@
                 <%= t("plugin.request_list.select_none_button_label") %>
               </button>
 
-              <button type="button" class="btn btn-outline-secondary rl-remove-all"
+              <button type="button" class="btn btn-secondary rl-remove-all"
                   title="<%= t('plugin.request_list.remove_all_button_label') %>"
                   onclick="request_list.removeAllButtonClick('<%= t('plugin.request_list.remove_all_confirm_message') %>');">
 
@@ -75,7 +71,7 @@
             </div>
             <div class="btn-group ml-auto">
               <% handler.sort_fields.each do |k,v| %>
-                <button type="button" class="btn btn-outline-secondary rl-sort-button"
+                <button type="button" class="btn btn-secondary rl-sort-button"
                   title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
                   data-key="<%= k %>"
                   data-title="<%= t('plugin.request_list.sort_button_label') %> by <%= t("plugin.request_list.sort_#{k}") %>"
@@ -115,7 +111,7 @@
       <div class="d-flex flex-row">
         <div class="col-2">
           <div class="form-group">
-            <a class="btn btn-outline-secondary" onclick="window.scrollTo(0,0);" title="<%= t('plugin.request_list.back_to_top_button_label') %>">
+            <a class="btn btn-secondary" onclick="window.scrollTo(0,0);" title="<%= t('plugin.request_list.back_to_top_button_label') %>">
               <i class="fa fa-angle-up"></i>
               <%= t('plugin.request_list.back_to_top_button_label').html_safe %>
             </a>
