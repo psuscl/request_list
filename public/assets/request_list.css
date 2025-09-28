@@ -68,7 +68,7 @@
   height: auto;
   resize: vertical;
   padding: 10px;
-  margin: 10px 1px 25px 1px;
+  margin: 10px 1px;
   border: solid 1px #c2c2c2;
   border-radius: 3px;
 }
@@ -82,22 +82,9 @@
   min-height: 85px;
 }
 
-.rl-item-table {
-  width: 95%;
-  padding: 5px;
-}
-
-.rl-item-table, td {
-  padding: 2px;
-}
-
 .rl-display-container-cell {
   display: inline-block;
   white-space: nowrap;
-  padding: 2px 4px 2px 4px;
-  margin: 2px 6px 2px 0px;
-  border: solid 1px #c2c2c2;
-  border-radius: 3px;
 }
 
 .rl-display-left {
@@ -111,12 +98,7 @@
   font-size: 125%;
 }
 
-.rl-display-label {
-  text-align: right;
-  vertical-align: text-top;
-  width: 1%;
-  padding: 0px 8px 0px 8px;
-}
+.rl-display-label { padding: 0px 8px 0px 8px; }
 
 .rl-type-select,
 .rl-datepicker { width: 200px; }
