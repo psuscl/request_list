@@ -136,7 +136,7 @@
   font-size: 80%;
 }
 
-form .form-group.required > .control-label {
+form .form-group.required .control-label {
   font-weight: bold;
   background-image: url(/assets/required_quiet.png);
   background-repeat: no-repeat;
