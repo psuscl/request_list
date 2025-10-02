@@ -22,12 +22,6 @@
       <span class="rl-display-title">
         <a href="<%= app_prefix(title_attr.uri) %>"><%= title_attr.name %></a>
       </span>
-
-      <% unless title_attr.id.empty? %>
-        <span class="rl-display rl-display-id"><%= title_attr.id %></span>
-      <% end %>
-
-      <%= ('(' + item.extent.name + ')') unless item.extent.name.empty? %>
     </dd>
 
     <% if is_record %>
@@ -41,10 +35,6 @@
 
         <% item.collection.multi.drop(1).map do |c| %>
           >> <a href="<%= app_prefix(c.uri) %>"><%= c.name %></a>
-
-          <% unless c.id.empty? %>
-            <span class="rl-display rl-display-id"><%= c.id %></span>
-          <% end %>
         <% end %>
         <%= ('(' + item.extent.name + ')') if !is_record && !item.extent.name.empty? %>
       </dd>
