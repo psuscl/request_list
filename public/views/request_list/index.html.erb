@@ -44,8 +44,6 @@
                 </a>
               <% end %>
               <button type="button" class="btn btn-secondary rl-select-all-button"
-                  title="<%= t('plugin.request_list.select_all_title') %>"
-                  data-title="<%= t('plugin.request_list.select_all_title') %>"
                   onclick="request_list.selectAllButtonClick();">
 
                 <i class="fa fa-check rl-all-selected"></i>
@@ -53,7 +51,6 @@
               </button>
 
               <button type="button" class="btn btn-secondary rl-select-none-button"
-                  title="<%= t('plugin.request_list.select_none_title') %>"
                   data-title="<%= t('plugin.request_list.select_none_title') %>"
                   onclick="request_list.selectNoneButtonClick();">
 
@@ -62,7 +59,6 @@
               </button>
 
               <button type="button" class="btn btn-secondary rl-remove-all"
-                  title="<%= t('plugin.request_list.remove_all_button_label') %>"
                   onclick="request_list.removeAllButtonClick('<%= t('plugin.request_list.remove_all_confirm_message') %>');">
 
                 <i class="fa fa-times"></i>
@@ -84,7 +80,7 @@
             </div>
           </div>
           <div class="d-flex flex-row">
-            <div id="rl-list-pane" class="rl-list col-12">
+            <div class="list-group rl-list col-12" id="rl-list-pane">
               <% unhandled_items = handler.each_item_map do |item| %>
                 <%= render partial: 'request_list/list_item', locals: {:form => f, :item => item, :handler => handler, :include_form => true} %>
               <% end %>

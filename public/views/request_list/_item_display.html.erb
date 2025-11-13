@@ -1,7 +1,13 @@
 <% @item_count ||= 0; @item_count += 1 %>
 <% is_record = item.type == ArchivalObject %>
+<% title_attr = is_record ? item.record : item.collection %>
+<% title_label = is_record ? 'record' : 'collection' %>
 
 <div class="rl-item-display">
+  <div class="rl-display pull-left" width="30px">
+    <label for="item-check-<%= @item_count %>"><span class="sr-only">Select <%= title_attr.name %></span></label>
+    <input id="item-check-<%= @item_count %>" type="checkbox" name="item-check-<%= @item_count %>" class="rl-item-check"/>
+  </div>
   <div class="pull-right">
     <%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
 
@@ -10,89 +16,48 @@
     </div>
   </div>
 
-  <table class="rl-item-table">
-    <tr>
-      <td class="rl-display" rowspan="<%= is_record ? 4 : 3 %>" width="30px">
-        <label for="item-check-<%= @item_count %>"><span class="sr-only">Select item</span></label>
-        <input id="item-check-<%= @item_count %>" type="checkbox" name="item-check-<%= @item_count %>" class="rl-item-check"/>
-      </td>
-      <td class="rl-display rl-display-left" rowspan="<%= is_record ? 4 : 3 %>" width="30px">
-        <div class="rl-item-count-label"><%= @item_count %></div>
-      </td>
-
-      <% title_attr = is_record ? item.record : item.collection %>
-      <% title_label = is_record ? 'record' : 'collection' %>
-
-      <td class="rl-display-label">
-        <%= t('plugin.request_list.' + title_label) %>:
-      </td>
-
-      <td class="rl-display rl-display-<%= title_label %>">
-        <span class="rl-display-title">
-          <a href="<%= app_prefix(title_attr.uri) %>"><%= title_attr.name %></a>
-        </span>
-
-        <% unless title_attr.id.empty? %>
-          <span class="rl-display rl-display-id"><%= title_attr.id %></span>
-        <% end %>
-
-        <%= ('(' + item.extent.name + ')') unless item.extent.name.empty? %>
-
-      </td>
-    </tr>
+  <dl class="row">
+    <dt class="col-sm-1 rl-display-label"><%= t('plugin.request_list.' + title_label) %></dt>
+    <dd class="col-sm-11 rl-display rl-display-<%= title_label %>">
+      <span class="rl-display-title">
+        <a href="<%= app_prefix(title_attr.uri) %>"><%= title_attr.name %></a>
+      </span>
+    </dd>
 
     <% if is_record %>
-      <tr>
-        <td class="rl-display-label">
-          <%= t('plugin.request_list.collection') %>:
-        </td>
-        <td class="rl-display rl-display-collection <%= is_record ? '' : 'rl-display-title'  %>">
-          <a href="<%= app_prefix(item.collection.uri) %>"><%= item.collection.name %></a>
+      <dt class="col-sm-1 rl-display-label"><%= t('plugin.request_list.collection') %></dt>
+      <dd class="col-sm-11 rl-display rl-display-collection <%= is_record ? '' : 'rl-display-title'  %>">
+        <a href="<%= app_prefix(item.collection.uri) %>"><%= item.collection.name %></a>
 
-          <% unless item.collection.id.empty? %>
-            <span class="rl-display rl-display-id"><%= item.collection.id %></span>
-          <% end %>
+        <% unless item.collection.id.empty? %>
+          <span class="rl-display rl-display-id"><%= item.collection.id %></span>
+        <% end %>
 
-          <% item.collection.multi.drop(1).map do |c| %>
-            >> <a href="<%= app_prefix(c.uri) %>"><%= c.name %></a>
-
-            <% unless c.id.empty? %>
-              <span class="rl-display rl-display-id"><%= c.id %></span>
-            <% end %>
-          <% end %>
-          <%= ('(' + item.extent.name + ')') if !is_record && !item.extent.name.empty? %>
-        </td>
-      </tr>
+        <% item.collection.multi.drop(1).map do |c| %>
+          >> <a href="<%= app_prefix(c.uri) %>"><%= c.name %></a>
+        <% end %>
+        <%= ('(' + item.extent.name + ')') if !is_record && !item.extent.name.empty? %>
+      </dd>
     <% end %>
 
-    <tr>
-      <td class="rl-display-label">
-        <%= t('plugin.request_list.repository') %>:
-      </td>
-      <td class="rl-display rl-display-repository">
-        <a href="<%= app_prefix(item.repository.uri) %>">  <%= item.repository.name %></a>
-      </td>
-    </tr>
+    <dt class="col-sm-1 rl-display-label"><%= t('plugin.request_list.repository') %></dt>
+    <dd class="col-sm-11 rl-display rl-display-repository">
+      <a href="<%= app_prefix(item.repository.uri) %>">  <%= item.repository.name %></a>
+    </dd>
 
-    <tr>
-      <td>
-      </td>
-
-      <td class="rl-display rl-display-container">
-        <div class="rl-display-container-pane">
-          <% item.container.multi.map do |container| %>
-            <div class="rl-display-container-cell">
-              <i class="fa fa-archive"></i>
-              <a href="<%= app_prefix(container.uri) %>">  <%= container.name %></a>
-              <%= ('(' + container.ext(:subs) + ')') unless container.ext(:subs).empty? %>
-            </div>
-          <% end %>
-        </div>
-      </td>
-
-    </tr>
-
-  </table>
+    <dt class="col-sm-1 rl-display-label">Container</dt>
+    <dd class="col-sm-11 rl-display rl-display-container">
+      <div class="rl-display-container-pane">
+        <% item.container.multi.map do |container| %>
+          <div class="rl-display-container-cell">
+            <i class="fa fa-archive"></i>
+            <a href="<%= app_prefix(container.uri) %>">  <%= container.name %></a>
+            <%= ('(' + container.ext(:subs) + ')') unless container.ext(:subs).empty? %>
+          </div>
+        <% end %>
+      </div>
+    </dd>
+  </dl>
 
   <%= render(partial: 'request_list/expand_item_button', locals: {:item => item }) if handler.list_opts[:expandable_items] %>
 
