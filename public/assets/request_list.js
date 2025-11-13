@@ -3,7 +3,7 @@
   function RequestList(item_limit) {
     this.item_limit = item_limit;
     this.setUpList();
-  };
+  }
 
   RequestList.prototype.cookie = function(cookie_name, value) {
     if (!value) {
@@ -31,8 +31,9 @@
     var rl = this;
     $(".request_list_action_button").each(function(ix) {
       var button = $(this);
+      var i;
       if (rl.isInList(button.data("uri"))) {
-        var i = button.find("i." + button.data("add-icon"));
+        i = button.find("i." + button.data("add-icon"));
         if (i) {
           i.removeClass(button.data("add-icon"));
           i.addClass(button.data("remove-icon"));
@@ -40,7 +41,7 @@
           button.html(button.html().replace(button.data("add-label"), button.data("remove-label")));
         }
       } else {
-        var i = button.find("i." + button.data("remove-icon"));
+        i = button.find("i." + button.data("remove-icon"));
         if (i) {
           i.removeClass(button.data("remove-icon"));
           i.addClass(button.data("add-icon"));
@@ -52,7 +53,7 @@
   };
 
   RequestList.prototype.toggleItemExpand = function(item) {
-    var item_form = $(item).children('.rl-item-form')
+    var item_form = $(item).children('.rl-item-form');
     if (item_form.is(':visible')) {
       item_form.slideUp(function() {
         $(this).parent().find('.rl-expand-item-button').find('i')
@@ -86,8 +87,8 @@
     $items.sort(function(a, b) {
       var ia = $(reverse ? b : a).data('sort-' + field).toLowerCase();
       var ib = $(reverse ? a : b).data('sort-' + field).toLowerCase();
-      if (ia < ib) { return -1 }
-      if (ia > ib) { return 1 }
+      if (ia < ib) { return -1; }
+      if (ia > ib) { return 1; }
       return 0;
     });
 
@@ -106,7 +107,7 @@
     return {
       'fa-sort': 'fa-sort-down',
       'fa-sort-down': 'fa-sort-up',
-      'fa-sort-up': 'fa-sort',
+      'fa-sort-up': 'fa-sort'
     };
   };
 
@@ -121,7 +122,7 @@
     icon.addClass(nextState);
 
     icon.parent().parent().children('.rl-sort-button').css('background', '');
-    icon.parent().parent().children('.rl-sort-button').each(function(ix, but) { $(but).attr('title', $(but).attr('data-title')) });
+    icon.parent().parent().children('.rl-sort-button').each(function(ix, but) { $(but).attr('title', $(but).attr('data-title')); });
     $('.rl-sort-button').css('font-weight', 'normal');
     $('.rl-display').css('background', '');
     if (icon.hasClass('fa-sort')) {
@@ -129,13 +130,13 @@
     } else if (icon.hasClass('fa-sort-down')) {
       this.sortList(field);
       icon.parent().css('background', '#f2f2f2');
-      $(button).attr('title', 'Sorted A-Z')
+      $(button).attr('title', 'Sorted A-Z');
       $(button).css('font-weight', 'bold');
             $('.rl-display-' + $(button).data('key')).css('background', '#f2f2f2');
     } else {
       this.reverseSortList(field);
       icon.parent().css('background', '#f2f2f2');
-      $(button).attr('title', 'Sorted Z-A')
+      $(button).attr('title', 'Sorted Z-A');
       $(button).css('font-weight', 'bold');
             $('.rl-display-' + $(button).data('key')).css('background', '#f2f2f2');
     }
@@ -155,7 +156,7 @@
 
   RequestList.prototype.showAlertModal = function(message, callback) {
     if (callback) {
-      $('#rl-alert-modal').find('.action-btn').click(function() { callback(); $("#rl-alert-modal").modal('hide')});
+      $('#rl-alert-modal').find('.action-btn').click(function() { callback(); $("#rl-alert-modal").modal('hide'); });
       $('#rl-alert-modal').find('.action-btn').show();
     } else {
       $('#rl-alert-modal').find('.action-btn').hide();
@@ -177,7 +178,7 @@
       return false;
     }
 
-     // Don't allow items that are excluded from this request type
+    // Don't allow items that are excluded from this request type
     var rt = $("#request_type_select").children('option:selected').text();
     var excludedItems = checkedItems.has('.rl-ha-excluded-request-types > data[value="' + rt + '"]');
     var msg = "";
@@ -304,7 +305,7 @@
   };
 
   RequestList.prototype.removeFromForm = function(item) {
-    item.slideUp('normal', function() {$(this).remove()});
+    item.slideUp('normal', function() { $(this).remove(); });
   };
 
   RequestList.prototype.showListCount = function() {
@@ -384,7 +385,7 @@ window.onpageshow = function(event) {
   if (typeof window.request_list !== 'undefined') {
     window.request_list.setUpList();
   }
-}
+};
 
 $(function() {
   $('.rl-list-item').hover(
