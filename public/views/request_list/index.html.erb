@@ -16,6 +16,12 @@
   </div>
 </div>
 
+<div class="d-flex flex-row">
+  <div class="p-2">
+    <%= @uris %>
+  </div>
+</div>
+
 <% @mapper.handlers.each do |handler| %>
   <div id="rl-handler-<%= handler.id %>">
     <%= form_tag handler.url, :class => 'rl-form', :target => (handler.list_opts.fetch(:form_target, '_self')) do |f| %>
