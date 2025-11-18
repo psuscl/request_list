@@ -7,11 +7,11 @@
 
   RequestList.prototype.cookie = function(cookie_name, value) {
     if (!value) {
-      return Cookies.get('as_pui_request_list_' + cookie_name);
+      return Cookies.get('rl-' + cookie_name);
     }
 
-    Cookies.set('as_pui_request_list_' + cookie_name, value, { path: '/' });
-    return Cookies.get('as_pui_request_list_' + cookie_name);
+    Cookies.set('rl-' + cookie_name, value, { path: '/' });
+    return Cookies.get('rl-' + cookie_name);
   };
 
   RequestList.prototype.getList = function() {
@@ -293,14 +293,14 @@
 
   RequestList.prototype.removeAll = function() {
     this.setList([]);
-    location.reload(true);
+    location.reload();
   };
 
   RequestList.prototype.removeFromListButtonClick = function(button) {
     this.removeFromList($(button).data('uri'));
     this.removeFromForm($(button).parents('.rl-list-item'));
     if(this.getList().length == 0) {
-      location.reload(true);
+      location.reload();
     }
   };
 
