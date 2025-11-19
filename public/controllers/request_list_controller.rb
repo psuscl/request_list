@@ -2,6 +2,8 @@ class RequestListController <  ApplicationController
 
   skip_before_action  :verify_authenticity_token
 
+  before_action :set_cache_headers
+
   def index
     flash.now[:success] = I18n.t('plugin.request_list.sent_items_message', :sent => params[:sent]) if params[:sent]
 
@@ -79,6 +81,11 @@ class RequestListController <  ApplicationController
 
 
   private
+
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache"
+  end
 
 
   def uris
