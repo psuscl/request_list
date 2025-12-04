@@ -50,7 +50,7 @@
       <div class="rl-display-container-pane">
         <% item.container.multi.map do |container| %>
           <div class="rl-display-container-cell">
-            <i class="fa fa-archive"></i>
+            <i class="fa fa-archive" role="decorative"></i>
             <a href="<%= app_prefix(container.uri) %>">  <%= container.name %></a>
             <%= ('(' + container.ext(:subs) + ')') unless container.ext(:subs).empty? %>
           </div>
