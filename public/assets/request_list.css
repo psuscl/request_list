@@ -58,7 +58,6 @@
 }
 
 .rl-ha-options-form {
-  min-height: 75px;
   vertical-align: middle;
 }
 
@@ -135,6 +134,10 @@
 .rl-ha-options-help {
   font-size: 80%;
 }
+
+.rl-ha-additional-fields .form-group.required { padding-left: 0px; padding-right: 0px; }
+
+.rl-nav-item a:hover { color: rgb(var(--bs-link-color-rgb)); }
 
 form .form-group.required .control-label {
   font-weight: bold;
