@@ -68,9 +68,9 @@ en:
         header: ArchivesSpace Request List Items
       options:
         request_type: Request Type
-        date: Schedule Retrieval
+        date: Retrieval Date
         date_help: Click to bring up a calendar and indicate the date you plan to visit. If material is stored off-site please allow at least 1 business day for retrieval.
-        notes: Notes
+        notes: Personal Notes
         notes_help: Enter any notes about this request for your personal reference.
         questions: Special Requests/Questions?
         questions_help: Please enter any special requests or questions for library staff (up to 255 characters).
@@ -79,7 +79,7 @@ en:
         for_publication: For Publication?
         for_publication_yes: Yes, intended for publication
         for_publication_no: No, not intended for publication
-        photoduplication_instructions: Photoduplication Instructions
+        photoduplication_instructions: Duplication Instructions
         photoduplication_instructions_help: Let us know exactly what you would like reproduced. Specific page numbers, special instructions, and questions should all be entered here (up to 255 characters).
       expanded_help: |
         <p>
